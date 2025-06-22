@@ -11,21 +11,21 @@ const Statistics = () => {
       suffix: "+", 
       label: "Years of Service",
       description: "Serving communities since 1983",
-      color: "ocean"
+      color: "earth"
     },
     { 
       number: 4, 
       suffix: "", 
       label: "Office Locations",
       description: "Across NSW regions",
-      color: "sky"
+      color: "sun"
     },
     { 
       number: 2500, 
       suffix: "+", 
       label: "Families Supported",
       description: "Lives transformed annually",
-      color: "earth"
+      color: "sky"
     },
     { 
       number: 25, 
@@ -98,9 +98,10 @@ const Statistics = () => {
       ocean: "shadow-ocean/20 hover:shadow-ocean/30 dark:shadow-ocean/20 dark:hover:shadow-ocean/30",
       sky: "shadow-sky/20 hover:shadow-sky/30 dark:shadow-sky/20 dark:hover:shadow-sky/30", 
       earth: "shadow-earth/20 hover:shadow-earth/30 dark:shadow-earth/20 dark:hover:shadow-earth/30",
-      leaf: "shadow-leaf/20 hover:shadow-leaf/30 dark:shadow-leaf/20 dark:hover:shadow-leaf/30"
+      leaf: "shadow-leaf/20 hover:shadow-leaf/30 dark:shadow-leaf/20 dark:hover:shadow-leaf/30",
+      sun: "shadow-sun/20 hover:shadow-sun/30 dark:shadow-sun/20 dark:hover:shadow-sun/30"
     };
-    return colorMap[color as keyof typeof colorMap] || colorMap.ocean;
+    return colorMap[color as keyof typeof colorMap] || colorMap.earth;
   };
 
   const getProgressColor = (color: string) => {
@@ -108,9 +109,10 @@ const Statistics = () => {
       ocean: "bg-gradient-to-r from-ocean to-ocean/80",
       sky: "bg-gradient-to-r from-sky to-sky/80",
       earth: "bg-gradient-to-r from-earth to-earth/80", 
-      leaf: "bg-gradient-to-r from-leaf to-leaf/80"
+      leaf: "bg-gradient-to-r from-leaf to-leaf/80",
+      sun: "bg-gradient-to-r from-sun to-sun/80"
     };
-    return colorMap[color as keyof typeof colorMap] || colorMap.ocean;
+    return colorMap[color as keyof typeof colorMap] || colorMap.earth;
   };
 
   return (
@@ -128,7 +130,7 @@ const Statistics = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center rounded-full backdrop-blur-md bg-white/60 dark:bg-white/10 border border-white/40 dark:border-white/20 px-6 py-2 text-sm shadow-lg mb-6">
-            <span className="mr-2 h-2 w-2 rounded-full bg-sky animate-pulse"></span>
+            <span className="mr-2 h-2 w-2 rounded-full bg-earth animate-pulse"></span>
             <span className="text-gray-700 dark:text-white/90 font-medium">See our Data</span>
           </div>
           
@@ -195,7 +197,7 @@ const Statistics = () => {
                 <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-1 rounded-b-full ${getProgressColor(stat.color)} opacity-60`}></div>
                 
                 {/* Corner glow effect */}
-                <div className={`absolute -top-2 -right-2 w-4 h-4 rounded-full ${stat.color === 'ocean' ? 'bg-ocean' : stat.color === 'sky' ? 'bg-sky' : stat.color === 'earth' ? 'bg-earth' : 'bg-leaf'} opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm`}></div>
+                <div className={`absolute -top-2 -right-2 w-4 h-4 rounded-full ${stat.color === 'ocean' ? 'bg-ocean' : stat.color === 'sky' ? 'bg-sky' : stat.color === 'earth' ? 'bg-earth' : stat.color === 'sun' ? 'bg-sun' : 'bg-leaf'} opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm`}></div>
               </div>
             </div>
           ))}
@@ -204,9 +206,9 @@ const Statistics = () => {
         {/* Enhanced bottom section with glass effect */}
         <div className="mt-16 text-center">
           <div className="inline-flex items-center space-x-4 px-8 py-4 backdrop-blur-md bg-white/60 dark:bg-white/10 rounded-full border border-white/40 dark:border-white/20 shadow-xl">
-            <div className="w-2 h-2 bg-sky rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-earth rounded-full animate-pulse"></div>
             <span className="text-base font-medium text-gray-700 dark:text-white">Trusted by communities across NSW</span>
-            <div className="w-2 h-2 bg-ocean rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+            <div className="w-2 h-2 bg-sun rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
           </div>
         </div>
       </div>

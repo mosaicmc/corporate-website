@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Home, Heart, Users, Handshake, ArrowRight, CheckCircle } from 'lucide-react';
+import { GlowingEffect } from './ui/glowing-effect';
 
 const ServiceCards = () => {
   const services = [
@@ -89,6 +90,16 @@ const ServiceCards = () => {
               key={index} 
               className="group relative backdrop-blur-xl bg-white/70 dark:bg-white/10 rounded-2xl p-8 border border-white/50 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-white/80 dark:group-hover:bg-white/15"
             >
+              {/* GlowingEffect with custom parameters for service cards */}
+              <GlowingEffect
+                spread={30}
+                glow={true}
+                disabled={false}
+                proximity={100}
+                inactiveZone={0.05}
+                movementDuration={1.5}
+                borderWidth={2}
+              />
               
               {/* Gradient overlay for depth */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/20 dark:from-white/5 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

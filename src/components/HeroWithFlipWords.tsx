@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FlipWords } from './ui/flip-words';
 
-const Hero = () => {
+const HeroWithFlipWords = () => {
   const { t } = useTranslation();
   
-  // FlipWords animation
+  // FlipWords compatible word array
   const rotatingWords = ['Multicultural', 'Vibrant', 'Connected', 'Thriving', 'United', 'Diverse'];
   
   return (
@@ -41,26 +41,30 @@ const Hero = () => {
                 <span className="whitespace-nowrap">Communities Across NSW</span>
               </h1>
               
-              <p className="max-w-[600px] text-gray-600 md:text-xl dark:text-gray-300 leading-relaxed animate-fade-in-up-delay-200">
+              <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed animate-fade-in-up-delay-200 max-w-2xl">
                 {t('hero.description')}
               </p>
             </div>
             
-            <div className="flex flex-col gap-4 min-[400px]:flex-row animate-fade-in-up-delay-300">
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up-delay-300">
               <Link
                 to="/services"
-                className="group inline-flex h-12 items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 px-8 text-sm font-semibold text-white shadow-xl transition-all duration-300 hover:from-blue-700 hover:to-blue-800 hover:shadow-blue-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 backdrop-blur-sm dark:from-blue-500 dark:to-blue-600 hover:scale-105 active:scale-98 hover:shadow-2xl hover:shadow-blue-500/30 relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/10 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
+                className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-3 text-white font-semibold shadow-lg hover:from-blue-700 hover:to-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/25 backdrop-blur-sm dark:from-blue-500 dark:to-blue-600"
               >
-                Explore Our Services
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                <span className="relative z-10 flex items-center">
+                  {t('hero.primaryCTA')}
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-800 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </Link>
               
               <Link
-                to="/stories"
-                className="group inline-flex h-12 items-center justify-center rounded-xl backdrop-blur-md bg-white/20 border border-white/30 px-8 text-sm font-semibold shadow-lg transition-all duration-300 hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 dark:bg-slate-800/30 dark:border-slate-700/50 dark:text-gray-100 dark:hover:bg-slate-800/50 hover:scale-105 active:scale-98 hover:shadow-xl relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
+                to="/get-involved"
+                className="group inline-flex h-12 items-center justify-center rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white/80 dark:bg-slate-800/80 px-8 py-3 text-gray-900 dark:text-white font-semibold hover:bg-gray-50 dark:hover:bg-slate-700 hover:border-gray-400 dark:hover:border-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
               >
-                <Play className="mr-2 h-4 w-4" />
-                Watch Stories
+                <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                {t('hero.secondaryCTA')}
               </Link>
             </div>
             
@@ -88,43 +92,18 @@ const Hero = () => {
                 className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-1000 group-hover:brightness-110"
               />
               
-              {/* Floating cards with micro-interactions */}
-              <div className="absolute -bottom-4 -left-4 rounded-xl backdrop-blur-md bg-white/80 p-4 shadow-xl border border-white/20 dark:bg-slate-800/80 dark:border-slate-700/50 hover:scale-110 hover:-translate-y-2 transition-all duration-300 group/card cursor-pointer animate-fade-in-delay-200 hover:shadow-2xl">
-                <div className="flex items-center space-x-3">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center dark:from-blue-400 dark:to-blue-500 group-hover/card:animate-pulse">
-                    <span className="text-white font-semibold text-sm">4</span>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-sm text-gray-900 dark:text-gray-100">Office Locations</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400">Across NSW</div>
-                  </div>
-                </div>
-              </div>
+              {/* Subtle overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10 dark:from-blue-400/10 dark:to-purple-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               
-              <div className="absolute -top-4 -right-4 rounded-xl backdrop-blur-md bg-white/80 p-4 shadow-xl border border-white/20 dark:bg-slate-800/80 dark:border-slate-700/50 hover:scale-110 hover:-translate-y-2 transition-all duration-300 group/card cursor-pointer animate-fade-in-delay-300 hover:shadow-2xl">
-                <div className="flex items-center space-x-3">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center dark:from-green-400 dark:to-green-500 group-hover/card:animate-pulse">
-                    <span className="text-white font-semibold text-sm">95%</span>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-sm text-gray-900 dark:text-gray-100">Satisfaction Rate</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400">Client feedback</div>
-                  </div>
-                </div>
-              </div>
+              {/* Floating elements */}
+              <div className="absolute top-4 right-4 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-75"></div>
+              <div className="absolute bottom-4 left-4 w-2 h-2 bg-blue-400 rounded-full animate-pulse opacity-75"></div>
             </div>
-            
-            {/* Background elements */}
-            <div className="absolute -z-10 -top-8 -right-8 h-32 w-32 rounded-full bg-gradient-to-br from-blue-400/30 to-purple-400/30 blur-xl dark:from-blue-500/20 dark:to-purple-500/20 animate-float"></div>
-            <div className="absolute -z-10 -bottom-8 -left-8 h-24 w-24 rounded-full bg-gradient-to-br from-green-400/30 to-blue-400/30 blur-xl dark:from-green-500/20 dark:to-blue-500/20 animate-float-delayed"></div>
           </div>
         </div>
       </div>
-      
-      {/* Background pattern */}
-      <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem] opacity-20 dark:bg-[linear-gradient(to_right,#374151_1px,transparent_1px),linear-gradient(to_bottom,#374151_1px,transparent_1px)]"></div>
     </section>
   );
 };
 
-export default Hero;
+export default HeroWithFlipWords;

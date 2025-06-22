@@ -18,8 +18,8 @@ interface TestimonialSectionProps {
 }
 
 const TestimonialCard = ({ testimonial, name, role, origin, image }: TestimonialProps) => (
-  <div className="group w-80 flex-shrink-0 mx-4">
-    {/* Glass morphism card with enhanced effects */}
+  <div className="group w-80 flex-shrink-0 mx-4 pt-1 pr-1">
+    {/* Glass morphism card with enhanced effects - Added padding to prevent clipping */}
     <div className="relative h-full backdrop-blur-xl bg-white/70 dark:bg-white/10 rounded-2xl p-6 border border-white/50 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-white/80 dark:group-hover:bg-white/15">
       
       {/* Gradient overlay for depth */}
@@ -50,8 +50,8 @@ const TestimonialCard = ({ testimonial, name, role, origin, image }: Testimonial
       {/* Subtle top accent */}
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-1 rounded-b-full bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 opacity-60"></div>
       
-      {/* Corner glow effect */}
-      <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-blue-500 dark:bg-blue-400 opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm"></div>
+      {/* Corner glow effect - Adjusted position to prevent clipping */}
+      <div className="absolute top-1 right-1 w-3 h-3 rounded-full bg-blue-500 dark:bg-blue-400 opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm"></div>
     </div>
   </div>
 );
@@ -99,7 +99,7 @@ export function Testimonial04({
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-50/60 via-blue-50/40 to-transparent dark:from-slate-900/60 dark:via-slate-800/40 dark:to-transparent z-20 pointer-events-none"></div>
 
           {/* First row - scrolling left */}
-          <div className="mb-8 overflow-hidden">
+          <div className="mb-8 overflow-hidden py-1">
             <div className="flex animate-scroll-left hover:pause-animation">
               {/* Duplicate the testimonials for seamless loop */}
               {[...testimonials, ...testimonials].map((testimonial, index) => (
@@ -109,7 +109,7 @@ export function Testimonial04({
           </div>
 
           {/* Second row - scrolling right */}
-          <div className="overflow-hidden">
+          <div className="overflow-hidden py-1">
             <div className="flex animate-scroll-right hover:pause-animation">
               {/* Reverse and duplicate for opposite direction */}
               {[...testimonials.slice().reverse(), ...testimonials.slice().reverse()].map((testimonial, index) => (
