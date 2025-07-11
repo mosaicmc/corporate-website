@@ -8,12 +8,12 @@ const ServiceCards = () => {
     {
       icon: <Home className="h-8 w-8" />,
       title: "Settlement Support",
-      description: "Comprehensive support for new arrivals including housing assistance, employment guidance, and community orientation.",
+      description: "New to Australia? We can guide you to find housing, apply for jobs, and build your new life with confidence.",
       features: [
-        "Housing assistance",
-        "Employment support", 
-        "Community orientation",
-        "Language services"
+        "Housing assistance and navigation",
+        "Employment support and mentoring",
+        "Citizenship preparation and guidance",
+        "Pacific visa pathway support"
       ],
       link: "/services/settlement-support",
       color: "sky"
@@ -21,12 +21,12 @@ const ServiceCards = () => {
     {
       icon: <Heart className="h-8 w-8" />,
       title: "Aged Care Services",
-      description: "Culturally appropriate aged care services that respect traditions and provide comfort in familiar languages.",
+      description: "Need elderly care that respects your culture? We provide culturally informed in-home support and community connections",
       features: [
-        "Home care packages",
-        "Cultural activities",
-        "Multilingual staff",
-        "Family support"
+        "Personal care at home",
+        "Companionship and social support",
+        "Cultural activities and outings",
+        "Help navigating aged care"
       ],
       link: "/services/aged-care",
       color: "earth"
@@ -34,12 +34,12 @@ const ServiceCards = () => {
     {
       icon: <Users className="h-8 w-8" />,
       title: "Family Support",
-      description: "Programs designed to support families through challenges and build stronger community connections.",
+      description: "Looking for parenting help? We offer family counselling and community playgroups to help you, and your children thrive.",
       features: [
-        "Parenting programs",
-        "Youth services",
-        "Crisis support",
-        "Counseling services"
+        "One-on-one family counselling",
+        "Parenting skills workshops",
+        "Multicultural playgroups (0-6 years)",
+        "Crisis support and planning"
       ],
       link: "/services/family-support",
       color: "leaf"
@@ -47,12 +47,12 @@ const ServiceCards = () => {
     {
       icon: <Handshake className="h-8 w-8" />,
       title: "Community Engagement",
-      description: "Creating opportunities for community participation, cultural celebration, and social connection.",
+      description: "Struggling to cope with your new life in Australia? We help your children excel academically and connect your family with community support.",
       features: [
-        "Cultural events",
-        "Volunteer programs",
-        "Community groups",
-        "Advocacy support"
+        "Free academic tutoring programmes",
+        "Skill training with recognised certificates",
+        "Critical safety information workshops",
+        "Community connection Groups"
       ],
       link: "/services/community-engagement",
       color: "sun"
@@ -68,6 +68,83 @@ const ServiceCards = () => {
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-400/10 dark:bg-indigo-500/5 rounded-full blur-3xl"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Trusted Partner Section - Page Flow Optimized */}
+        <div className="relative mb-24 py-16">
+          {/* Subtle background gradient - different from glass morphism */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-50/50 to-transparent dark:via-slate-800/30"></div>
+          
+          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start max-w-7xl mx-auto relative">
+            {/* Left Column - Compelling Headline (2/5 width) */}
+            <div className="lg:col-span-2">
+              <div className="sticky top-32">
+                <div className="space-y-6">
+                  <div className="inline-block">
+                    <span className="text-sm font-medium text-earth uppercase tracking-wider">Since 1981</span>
+                  </div>
+                  
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
+                    Your{" "}
+                    <span className="bg-gradient-to-r from-sky via-ocean to-earth bg-clip-text text-transparent">
+                      Trusted
+                    </span>
+                    <br />
+                    Partner
+                  </h2>
+                  
+                  <div className="w-16 h-0.5 bg-gradient-to-r from-sky to-ocean"></div>
+                  
+                  <p className="text-xl text-gray-600 dark:text-white/70 font-light leading-relaxed">
+                    Building belonging, one family at a time
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right Column - Flowing Content (3/5 width) */}
+            <div className="lg:col-span-3 space-y-8">
+              <div className="prose prose-lg prose-gray dark:prose-invert max-w-none">
+                <p className="text-xl leading-relaxed text-gray-700 dark:text-white/80 font-light">
+                  Since <strong className="font-semibold text-ocean dark:text-sky">1981</strong>, Mosaic Multicultural Connections has been supporting people from migrant and refugee backgrounds throughout every stage of their Australian journey.
+                </p>
+                
+                <p className="text-lg leading-relaxed text-gray-600 dark:text-white/70">
+                  We understand that building a life in Australia brings both opportunities and challenges - whether you have just arrived or have been here for years, are raising a family, or are caring for elderly loved ones who deserve to live their best possible lives.
+                </p>
+                
+                <div className="border-l-4 border-sky/30 pl-6 my-8">
+                  <p className="text-lg leading-relaxed text-gray-700 dark:text-white/80 italic">
+                    Our approach is simple: we meet you where you are, respect your cultural background, and provide professional support that empowers you to achieve your goals.
+                  </p>
+                </div>
+                
+                <p className="text-xl leading-relaxed text-gray-800 dark:text-white font-medium">
+                  We are here as your{" "}
+                  <span className="bg-gradient-to-r from-ocean to-sky bg-clip-text text-transparent font-semibold">
+                    trusted partner
+                  </span>{" "}
+                  in creating the connected, confident life you want.
+                </p>
+              </div>
+              
+              {/* Trust indicators */}
+              <div className="flex flex-wrap gap-6 pt-6 border-t border-gray-200/50 dark:border-white/10">
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-white/70">
+                  <div className="w-2 h-2 bg-sky rounded-full"></div>
+                  <span>Professional Services</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-white/70">
+                  <div className="w-2 h-2 bg-ocean rounded-full"></div>
+                  <span>Culturally Responsive</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-white/70">
+                  <div className="w-2 h-2 bg-earth rounded-full"></div>
+                  <span>Community Focused</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Section Header with glass effect */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center rounded-full backdrop-blur-md bg-white/60 dark:bg-white/10 border border-white/40 dark:border-white/20 px-6 py-2 text-sm shadow-lg mb-6">
@@ -79,7 +156,7 @@ const ServiceCards = () => {
             Comprehensive Support Services
           </h2>
           <p className="text-xl text-gray-600 dark:text-white/70 max-w-3xl mx-auto">
-            Culturally appropriate services designed to meet the unique needs of multicultural communities across NSW
+            Culturally appropriate services designed to meet the unique needs of multicultural communities across NSW delivered by our qualified staff
           </p>
         </div>
 

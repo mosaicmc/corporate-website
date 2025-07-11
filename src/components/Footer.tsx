@@ -134,7 +134,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-sm leading-6 text-gray-600 dark:text-gray-300">
-              Supporting diverse communities across NSW for over 40 years through settlement support, 
+              Supporting diverse communities across NSW for over 43 years through settlement support, 
               aged care, family services, and community engagement.
             </p>
           </div>

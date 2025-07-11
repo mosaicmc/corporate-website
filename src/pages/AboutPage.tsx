@@ -26,14 +26,14 @@ const AboutPage = () => {
             </h1>
             
             <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-              For over <span className="font-bold text-ocean dark:text-sky">46 years</span>, we've been dedicated to supporting diverse communities across NSW, 
+              For over <span className="font-bold text-ocean dark:text-sky">43 years</span>, we've been dedicated to supporting diverse communities across NSW, 
               helping families build new lives while celebrating their cultural heritage.
             </p>
             
             {/* Statistics */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               {[
-                { number: "46", label: "Years of Service", suffix: "+" },
+                { number: "43", label: "Years of Service", suffix: "+" },
                 { number: "25", label: "Communities Served", suffix: "+" },
                 { number: "15,000", label: "Families Supported", suffix: "+" }
               ].map((stat, index) => (
@@ -52,7 +52,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Mission & Vision */}
+      {/* Mission */}
       <section className="relative py-20 bg-gradient-to-br from-sand/30 via-sky/10 to-ocean/5 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300 overflow-hidden">
         {/* Glass morphism background */}
         <div className="absolute inset-0 bg-gradient-to-br from-sand/30 via-sky/20 to-ocean/10 dark:from-ocean/20 dark:via-sky/10 dark:to-ocean/20"></div>
@@ -60,52 +60,77 @@ const AboutPage = () => {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-earth/20 dark:bg-earth/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
-                Our{" "}
-                <span className="bg-gradient-to-r from-ocean to-sky bg-clip-text text-transparent">
-                  Mission
-                </span>
-              </h2>
-              <div className="space-y-6">
-                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                  To empower multicultural communities across NSW by providing culturally appropriate support services 
-                  that promote independence, wellbeing, and social inclusion.
-                </p>
-                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                  We believe that diversity strengthens our communities, and every person deserves the opportunity 
-                  to thrive while maintaining their cultural identity.
-                </p>
-              </div>
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center rounded-full backdrop-blur-md bg-sand/60 dark:bg-white/10 border border-sky/40 dark:border-white/20 px-6 py-2 text-sm shadow-lg mb-6">
+              <span className="mr-2 h-2 w-2 rounded-full bg-ocean animate-pulse"></span>
+              <span className="text-gray-700 dark:text-white/90 font-medium">Our Mission</span>
             </div>
             
-            <div className="backdrop-blur-xl bg-sand/70 dark:bg-white/10 rounded-2xl p-8 border border-sky/30 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                Our Values
-              </h3>
-              <div className="space-y-4">
-                {[
-                  { color: "bg-sky", title: "Cultural Respect", desc: "Honoring and celebrating cultural diversity" },
-                  { color: "bg-earth", title: "Empowerment", desc: "Building capacity and independence" },
-                  { color: "bg-leaf", title: "Inclusion", desc: "Creating welcoming, accessible services" },
-                  { color: "bg-sun", title: "Excellence", desc: "Delivering high-quality, professional services" }
-                ].map((value, index) => (
-                  <div 
-                    key={index}
-                    className="flex items-start space-x-3 group cursor-pointer hover:translate-x-2 transition-transform duration-300"
-                  >
-                    <div className={`w-6 h-6 ${value.color} rounded-full flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300`}></div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-ocean dark:group-hover:text-sky transition-colors duration-300">
-                        {value.title}
-                      </h4>
-                      <p className="text-gray-600 dark:text-gray-300">{value.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
+              Empowering{" "}
+              <span className="bg-gradient-to-r from-ocean via-sky to-earth bg-clip-text text-transparent">
+                Multicultural Communities
+              </span>{" "}
+              Across NSW
+            </h2>
+            
+            <div className="space-y-6">
+              <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                To empower multicultural communities across NSW by providing culturally appropriate support services 
+                that promote independence, wellbeing, and social inclusion.
+              </p>
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                We believe that diversity strengthens our communities, and every person deserves the opportunity 
+                to thrive while maintaining their cultural identity.
+              </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="relative py-20 bg-gradient-to-br from-sand/30 via-sky/10 to-ocean/5 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300 overflow-hidden">
+        {/* Glass morphism background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-sand/30 via-sky/20 to-ocean/10 dark:from-ocean/20 dark:via-sky/10 dark:to-ocean/20"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-sky/20 dark:bg-sky/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-earth/20 dark:bg-earth/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center rounded-full backdrop-blur-md bg-sand/60 dark:bg-white/10 border border-sky/40 dark:border-white/20 px-6 py-2 text-sm shadow-lg mb-6">
+              <span className="mr-2 h-2 w-2 rounded-full bg-earth animate-pulse"></span>
+              <span className="text-gray-700 dark:text-white/90 font-medium">Our Values</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              What{" "}
+              <span className="bg-gradient-to-r from-ocean via-sky to-earth bg-clip-text text-transparent">
+                Guides
+              </span>{" "}
+              Our Work
+            </h2>
+            
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Our values are the foundation of every interaction, every service, and every relationship we build with the communities we serve.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: "🌍", title: "Cultural Respect", desc: "Honoring and celebrating cultural diversity" },
+              { icon: "💪", title: "Empowerment", desc: "Building capacity and independence" },
+              { icon: "🤝", title: "Inclusion", desc: "Creating welcoming, accessible services" },
+              { icon: "⭐", title: "Excellence", desc: "Delivering high-quality, professional services" }
+            ].map((value, index) => (
+              <div 
+                key={index}
+                className="backdrop-blur-xl bg-sand/70 dark:bg-white/10 rounded-2xl p-8 text-center border border-sky/30 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] hover:bg-sand/80 dark:hover:bg-white/15"
+              >
+                <div className="text-4xl mb-4">{value.icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{value.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{value.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -127,9 +152,9 @@ const AboutPage = () => {
           title: "1981",
           content: (
             <div>
-              <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Official Opening</h4>
+              <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Foundation Year</h4>
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                Migrant Resource Centre for Newcastle and Hunter officially opened, beginning our journey of community support.
+                Mosaic Multicultural Connections was founded as the Migrant Resource Centre for Newcastle and Hunter, beginning our journey of community support.
               </p>
             </div>
           ),

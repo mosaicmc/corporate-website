@@ -69,8 +69,8 @@ const Header = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
       isScrolled 
-        ? 'backdrop-blur-xl bg-white/95 dark:bg-slate-900/95 shadow-2xl border-b border-white/30 dark:border-slate-700/50' 
-        : 'backdrop-blur-md bg-white/85 dark:bg-slate-900/85 border-b border-white/20 dark:border-slate-700/30'
+        ? 'backdrop-blur-xl bg-white/90 dark:bg-slate-900/90 shadow-2xl border-b border-white/30 dark:border-slate-700/50' 
+        : 'backdrop-blur-md bg-white/75 dark:bg-slate-900/75 border-b border-white/20 dark:border-slate-700/30'
     } transition-all duration-500 ease-out`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 lg:h-24">
@@ -100,10 +100,10 @@ const Header = () => {
                   <>
                     <Link
                       to={item.href}
-                      className={`relative px-4 py-2 transition-all duration-300 font-medium text-base flex items-center rounded-lg hover:backdrop-blur-md ${
+                      className={`relative px-5 py-3 transition-all duration-300 font-semibold text-lg flex items-center rounded-xl hover:backdrop-blur-md hover:scale-105 ${
                         isActivePath(item.href, item.hasDropdown)
-                          ? 'text-ocean dark:text-sky bg-white/60 dark:bg-slate-800/60'
-                          : 'text-gray-700 dark:text-gray-300 hover:text-ocean dark:hover:text-sky hover:bg-white/40 dark:hover:bg-slate-800/40'
+                          ? 'text-ocean dark:text-sky bg-sand/70 dark:bg-slate-800/70 shadow-lg border border-ocean/20 dark:border-sky/20'
+                          : 'text-gray-800 dark:text-gray-200 hover:text-ocean dark:hover:text-sky hover:bg-sand/50 dark:hover:bg-slate-800/50 hover:shadow-md'
                       }`}
                       onMouseEnter={() => setIsServicesOpen(true)}
                       onMouseLeave={() => setIsServicesOpen(false)}
@@ -128,10 +128,10 @@ const Header = () => {
                           <Link
                             key={dropdownItem.name}
                             to={dropdownItem.href}
-                            className={`block px-4 py-3 transition-all duration-200 ${
+                            className={`block px-6 py-4 transition-all duration-200 font-medium text-base rounded-lg mx-2 mb-1 ${
                               location.pathname === dropdownItem.href
-                                ? 'text-ocean dark:text-sky bg-white/70 dark:bg-slate-800/70'
-                                : 'text-gray-700 dark:text-gray-300 hover:text-ocean dark:hover:text-sky hover:bg-white/50 dark:hover:bg-slate-800/50'
+                                ? 'text-ocean dark:text-sky bg-sand/80 dark:bg-slate-800/80 shadow-md border border-ocean/20 dark:border-sky/20'
+                                : 'text-gray-700 dark:text-gray-300 hover:text-ocean dark:hover:text-sky hover:bg-sand/60 dark:hover:bg-slate-800/60 hover:shadow-sm hover:scale-102'
                             }`}
                             onClick={handleLinkClick}
                           >
@@ -144,10 +144,10 @@ const Header = () => {
                 ) : (
                   <Link
                     to={item.href}
-                    className={`relative px-4 py-2 transition-all duration-300 font-medium text-base rounded-lg ${
+                    className={`relative px-5 py-3 transition-all duration-300 font-semibold text-lg rounded-xl hover:scale-105 ${
                       isActivePath(item.href)
-                        ? 'text-ocean dark:text-sky bg-white/60 dark:bg-slate-800/60'
-                        : 'text-gray-700 dark:text-gray-300 hover:text-ocean dark:hover:text-sky hover:bg-white/40 dark:hover:bg-slate-800/40'
+                        ? 'text-ocean dark:text-sky bg-sand/70 dark:bg-slate-800/70 shadow-lg border border-ocean/20 dark:border-sky/20'
+                        : 'text-gray-800 dark:text-gray-200 hover:text-ocean dark:hover:text-sky hover:bg-sand/50 dark:hover:bg-slate-800/50 hover:shadow-md'
                     }`}
                     onClick={() => handleLinkClick(item.href)}
                   >
@@ -164,17 +164,19 @@ const Header = () => {
             <ThemeToggle />
             <Link
               to="/get-involved"
-              className="relative px-6 py-2.5 bg-gradient-to-r from-leaf to-leaf/90 text-white rounded-lg font-semibold text-sm transition-all duration-300 hover:from-leaf/90 hover:to-leaf hover:shadow-lg hover:shadow-leaf/25 backdrop-blur-sm"
+              className="relative px-4 py-2.5 bg-gradient-to-r from-leaf to-leaf/90 text-white rounded-xl font-semibold text-sm transition-all duration-300 hover:from-leaf/90 hover:to-leaf hover:shadow-xl hover:shadow-leaf/30 hover:scale-105 active:scale-95 backdrop-blur-sm border border-leaf/20 overflow-hidden group"
               onClick={handleLinkClick}
             >
-              {t('nav.getInvolved')}
+              <span className="relative z-10">{t('nav.getInvolved')}</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
             </Link>
             <Link
               to="/get-involved"
-              className="relative px-6 py-2.5 bg-gradient-to-r from-sun to-sun/90 text-white rounded-lg font-semibold text-sm transition-all duration-300 hover:from-sun/90 hover:to-sun hover:shadow-lg hover:shadow-sun/25 backdrop-blur-sm"
+              className="relative px-4 py-2.5 bg-gradient-to-r from-sun to-earth text-white rounded-xl font-semibold text-sm transition-all duration-300 hover:from-sun/90 hover:to-earth/90 hover:shadow-xl hover:shadow-sun/30 hover:scale-105 active:scale-95 backdrop-blur-sm border border-sun/20 overflow-hidden group"
               onClick={handleLinkClick}
             >
-              {t('nav.donate')}
+              <span className="relative z-10">Donate</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
             </Link>
           </div>
 

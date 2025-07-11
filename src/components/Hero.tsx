@@ -8,7 +8,7 @@ const Hero = () => {
   const { t } = useTranslation();
   
   // FlipWords animation
-  const rotatingWords = ['Multicultural', 'Vibrant', 'Connected', 'Thriving', 'United', 'Diverse'];
+  const rotatingWords = ['Multicultural', 'Migrant', 'Refugee', 'Vibrant', 'Connected', 'Thriving', 'United', 'Diverse', 'Resilient', 'Empowered'];
   
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 pt-32 pb-24 lg:pt-40 lg:pb-32 transition-colors duration-300 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
@@ -31,14 +31,14 @@ const Hero = () => {
                 <span className="text-gray-700 dark:text-gray-300 font-medium group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">{t('hero.badge')}</span>
               </div>
               
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl lg:text-5xl xl:text-5xl leading-tight text-gray-900 dark:text-white animate-fade-in-up-delay-100 max-w-4xl">
-                <span className="whitespace-nowrap">Supporting{" "}</span>
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl lg:text-5xl xl:text-5xl leading-[1.1] text-gray-900 dark:text-white animate-fade-in-up-delay-100 max-w-4xl">
+                <span className="block sm:inline">Supporting{" "}</span>
                 <FlipWords 
                   words={rotatingWords}
                   duration={3000}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400 inline-block"
+                  className="bg-gradient-to-r from-sky via-ocean to-earth bg-clip-text text-transparent inline-block min-w-0"
                 />{" "}
-                <span className="whitespace-nowrap">Communities Across NSW</span>
+                <span className="block sm:inline mt-1 sm:mt-0">Communities Across NSW</span>
               </h1>
               
               <p className="max-w-[600px] text-gray-600 md:text-xl dark:text-gray-300 leading-relaxed animate-fade-in-up-delay-200">
@@ -67,7 +67,7 @@ const Hero = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 pt-8 animate-fade-in-up-delay-400">
               {[
-                { number: "40+", label: "Years of Service" },
+                { number: "43+", label: "Years of Service" },
                 { number: "2,500+", label: "Families Supported" },
                 { number: "25+", label: "Languages Spoken" }
               ].map((stat, index) => (

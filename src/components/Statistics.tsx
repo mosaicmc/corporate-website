@@ -7,10 +7,10 @@ const Statistics = () => {
 
   const stats = [
     { 
-      number: 40, 
+      number: 43, 
       suffix: "+", 
       label: "Years of Service",
-      description: "Serving communities since 1983",
+      description: "Serving communities since 1981",
       color: "earth"
     },
     { 
