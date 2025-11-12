@@ -1,37 +1,17 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { MapPin, Phone, Clock, Navigation, Users, Mail } from 'lucide-react';
 
 const LocationsPage = () => {
   const locations = [
     {
-      name: "Central Coast Office",
-      address: "123 Mann Street, Gosford NSW 2250",
-      phone: "(02) 4323 7333",
-      email: "centralcoast@mosaicmc.org.au",
+      name: "Charlestown (Head Office)",
+      address: "Level 3, 3 Hopetoun St, Charlestown NSW 2290",
+      phone: "1800 813 205",
+      email: "info@mosaicmc.org.au",
       hours: {
-        weekdays: "Monday - Friday: 9:00 AM - 5:00 PM",
+        weekdays: "Business Hours (Monday - Friday: 9:00 AM - 5:00 PM)",
         weekend: "Closed weekends"
-      },
-      services: ["Settlement Support", "Family Services", "Community Programs", "Youth Services"],
-      staff: [
-        { name: "Lisa Wong", role: "Office Manager", languages: ["English", "Mandarin", "Cantonese"] },
-        { name: "Carlos Rodriguez", role: "Settlement Worker", languages: ["English", "Spanish", "Portuguese"] }
-      ],
-      transport: [
-        "Gosford Train Station - 5 minute walk",
-        "Bus routes 21, 22, 23 stop nearby",
-        "Parking available on-site"
-      ],
-      image: "https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=600"
-    },
-    {
-      name: "Newcastle Office (Head Office)",
-      address: "456 Hunter Street, Newcastle NSW 2300",
-      phone: "(02) 4926 1300",
-      email: "newcastle@mosaicmc.org.au",
-      hours: {
-        weekdays: "Monday - Friday: 8:30 AM - 5:00 PM",
-        weekend: "Saturday: 9:00 AM - 1:00 PM (by appointment)"
       },
       services: ["All Services", "Aged Care", "Settlement Support", "Family Support", "Administration"],
       staff: [
@@ -40,50 +20,65 @@ const LocationsPage = () => {
         { name: "Maria Santos", role: "Aged Care Director", languages: ["English", "Tagalog", "Spanish"] }
       ],
       transport: [
-        "Newcastle Interchange - 10 minute walk",
-        "Light rail stop nearby",
-        "Multiple bus routes",
+        "Charlestown Square bus interchange",
+        "Local bus services",
         "Paid parking available"
       ],
       image: "https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-      name: "Lake Macquarie Office",
-      address: "789 Pacific Highway, Charlestown NSW 2290",
-      phone: "(02) 4943 8888",
-      email: "lakemacquarie@mosaicmc.org.au",
+      name: "Central Coast",
+      address: "Tuggerah Lakes Community Centre, 1 Bay Village Road, Bateau Bay NSW 2261",
+      phone: "1800 813 205",
+      email: "info@mosaicmc.org.au",
       hours: {
-        weekdays: "Monday - Friday: 9:00 AM - 4:30 PM",
+        weekdays: "Business Hours (Monday - Friday: 9:00 AM - 5:00 PM)",
         weekend: "Closed weekends"
       },
-      services: ["Family Support", "Community Engagement", "Counseling", "Youth Programs"],
+      services: ["Settlement Support", "Family Services", "Community Programs", "Youth Services"],
       staff: [
-        { name: "Jennifer Kim", role: "Family Support Coordinator", languages: ["English", "Korean", "Japanese"] },
-        { name: "Hassan Al-Rashid", role: "Community Worker", languages: ["English", "Arabic", "Kurdish"] }
+        { name: "Lisa Wong", role: "Office Manager", languages: ["English", "Mandarin", "Cantonese"] },
+        { name: "Carlos Rodriguez", role: "Settlement Worker", languages: ["English", "Spanish", "Portuguese"] }
       ],
       transport: [
-        "Charlestown Square bus interchange",
-        "Free parking available",
+        "Nearest bus routes and parking available",
         "Wheelchair accessible"
       ],
       image: "https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-      name: "Hunter Region Office",
-      address: "321 High Street, Maitland NSW 2320",
-      phone: "(02) 4933 6666",
-      email: "hunter@mosaicmc.org.au",
+      name: "Tamworth",
+      address: "3/345 Peel Street, Tamworth NSW 2340",
+      phone: "1800 813 205",
+      email: "info@mosaicmc.org.au",
       hours: {
-        weekdays: "Monday - Friday: 9:00 AM - 5:00 PM",
+        weekdays: "Business Hours (Monday - Friday: 9:00 AM - 5:00 PM)",
         weekend: "Closed weekends"
       },
-      services: ["Settlement Support", "Aged Care", "Employment Services", "Community Programs"],
+      services: ["Settlement Support", "Community Programs"],
       staff: [
-        { name: "David Thompson", role: "Regional Manager", languages: ["English"] },
+        { name: "David Thompson", role: "Regional Manager", languages: ["English"] }
+      ],
+      transport: [
+        "Local bus services",
+        "Street parking available"
+      ],
+      image: "https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      name: "Armidale",
+      address: "86 Beardy Street, Armidale NSW 2350",
+      phone: "1800 813 205",
+      email: "info@mosaicmc.org.au",
+      hours: {
+        weekdays: "Business Hours (Monday - Friday: 9:00 AM - 5:00 PM)",
+        weekend: "Closed weekends"
+      },
+      services: ["Settlement Support", "Community Programs"],
+      staff: [
         { name: "Fatima Al-Zahra", role: "Settlement Worker", languages: ["English", "Arabic", "Farsi"] }
       ],
       transport: [
-        "Maitland Train Station - 8 minute walk",
         "Local bus services",
         "Street parking available"
       ],
@@ -93,6 +88,10 @@ const LocationsPage = () => {
 
   return (
     <div className="animate-fade-in">
+      <Helmet>
+        <title>Mosaic Multicultural - Our Locations</title>
+        <meta name="description" content="Find Mosaic offices across NSW with addresses, hours, services, and contact details for your nearest location." />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative py-32 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 transition-colors duration-300 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden">
         {/* Glass morphism background elements */}
@@ -116,7 +115,8 @@ const LocationsPage = () => {
       </section>
 
       {/* Locations Grid */}
-      <section className="py-20 bg-white dark:bg-dark-bg transition-colors duration-300">
+      <section className="relative py-20 bg-background transition-colors duration-300 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent dark:from-white/5 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-16">
             {locations.map((location, index) => (
@@ -126,7 +126,9 @@ const LocationsPage = () => {
                   <div className="relative">
                     <img
                       src={location.image}
-                      alt={location.name}
+                      alt={`${location.name} exterior`}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-64 lg:h-full object-cover"
                     />
                     <div className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-full font-semibold shadow-lg">
@@ -238,10 +240,10 @@ const LocationsPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:0249261300"
+                href="tel:1800813205"
                 className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
               >
-                Call (02) 4926 1300
+                Call 1800 813 205
               </a>
               <a
                 href="mailto:info@mosaicmc.org.au"

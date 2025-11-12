@@ -1,9 +1,16 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import AnimatedBackground from '../components/ui/AnimatedBackground';
 import { Timeline } from '../components/ui/timeline';
+import GooglePlaceReviews from '../components/GooglePlaceReviews';
 
 const AboutPage = () => {
   return (
     <div className="animate-fade-in">
+      <Helmet>
+        <title>About Mosaic Multicultural Connections</title>
+        <meta name="description" content="Learn about Mosaic Multicultural Connections — our mission, values, and history supporting multicultural communities across NSW." />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative py-32 bg-gradient-to-br from-sand via-sky/20 to-ocean/10 transition-colors duration-300 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden">
         {/* Glass morphism background elements */}
@@ -20,20 +27,20 @@ const AboutPage = () => {
             
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
               About{" "}
-              <span className="bg-gradient-to-r from-ocean via-sky to-ocean bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-ocean via-sky to-ocean bg-clip-text text-transparent dark:text-white dark:bg-clip-text dark:bg-gradient-to-r dark:from-ocean dark:via-sky dark:to-ocean">
                 Mosaic Multicultural Connections
               </span>
             </h1>
             
             <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-              For over <span className="font-bold text-ocean dark:text-sky">43 years</span>, we've been dedicated to supporting diverse communities across NSW, 
+              For nearly <span className="font-bold text-ocean dark:text-sky">45 years</span>, we've been dedicated to supporting diverse communities across NSW,
               helping families build new lives while celebrating their cultural heritage.
             </p>
             
             {/* Statistics */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               {[
-                { number: "43", label: "Years of Service", suffix: "+" },
+                { number: "45", label: "Years of Service", suffix: "+" },
                 { number: "25", label: "Communities Served", suffix: "+" },
                 { number: "15,000", label: "Families Supported", suffix: "+" }
               ].map((stat, index) => (
@@ -54,10 +61,8 @@ const AboutPage = () => {
 
       {/* Mission */}
       <section className="relative py-20 bg-gradient-to-br from-sand/30 via-sky/10 to-ocean/5 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300 overflow-hidden">
-        {/* Glass morphism background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-sand/30 via-sky/20 to-ocean/10 dark:from-ocean/20 dark:via-sky/10 dark:to-ocean/20"></div>
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-sky/20 dark:bg-sky/10 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-earth/20 dark:bg-earth/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+        {/* Using the reusable AnimatedBackground component */}
+        <AnimatedBackground variant="subtle" className="opacity-70" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
@@ -68,7 +73,7 @@ const AboutPage = () => {
             
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
               Empowering{" "}
-              <span className="bg-gradient-to-r from-ocean via-sky to-earth bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-ocean via-sky to-earth bg-clip-text text-transparent dark:text-white dark:bg-clip-text dark:bg-gradient-to-r dark:from-ocean dark:via-sky dark:to-earth">
                 Multicultural Communities
               </span>{" "}
               Across NSW
@@ -104,7 +109,7 @@ const AboutPage = () => {
             
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               What{" "}
-              <span className="bg-gradient-to-r from-ocean via-sky to-earth bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-ocean via-sky to-earth bg-clip-text text-transparent dark:text-white dark:bg-clip-text dark:bg-gradient-to-r dark:from-ocean dark:via-sky dark:to-earth">
                 Guides
               </span>{" "}
               Our Work
@@ -134,6 +139,9 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Google Reviews (authentic via Google Places API when available) */}
+      <GooglePlaceReviews />
 
       {/* History - Scroll-Based Timeline */}
       <Timeline data={[
@@ -253,7 +261,7 @@ const AboutPage = () => {
             
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               Our{" "}
-              <span className="bg-gradient-to-r from-ocean via-sky to-leaf bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-ocean via-sky to-leaf bg-clip-text text-transparent dark:text-white dark:bg-clip-text dark:bg-gradient-to-r dark:from-ocean dark:via-sky dark:to-leaf">
                 Leadership Team
               </span>
             </h2>

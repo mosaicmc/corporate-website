@@ -60,7 +60,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
             />
           ) : (
             <Moon 
-              className="w-4 h-4 text-black" 
+            className="w-4 h-4 text-foreground"
               strokeWidth={1.5}
             />
           )}

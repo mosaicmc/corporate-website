@@ -92,6 +92,98 @@
     "quickLinks": "Quick Links",
     "contactInfo": "Contact Information",
     "followUs": "Follow Us",
-    "copyright": "© 2024 Mosaic Multicultural Connections. All rights reserved."
+    "copyright": "© 2024 Mosaic Multicultural Connections. All rights reserved.",
+    "sections": {
+      "overview": "Overview",
+      "services": "Services",
+      "getInvolved": "Get Involved",
+      "help": "Help",
+      "aboutMosaic": "About Mosaic"
+    },
+    "links": {
+      "allServices": "All Services",
+      "emergencyTranslation": "Emergency & Translation",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "knowledgeBase": "Knowledge Base",
+      "annualReports": "Annual Reports"
+    },
+    "newsletter": {
+      "title": "Stay up to date",
+      "description": "Get updates on our programs and community events",
+      "subscribe": "Subscribe",
+      "placeholder": "Enter your email"
+    },
+    "translateLabel": "Translate This Page"
+  },
+  "getInvolved": {
+    "badge": "Join Our Mission",
+    "title": "Get Involved",
+    "description": "Join us in supporting multicultural communities across NSW. There are many ways to make a meaningful difference.",
+    "volunteerSpotlight": "Volunteer Spotlight",
+    "impactTitle": "Your Impact",
+    "actions": {
+      "apply": "Apply to Volunteer",
+      "donate": "Donate Now"
+    }
+  }
+  ,
+  "contact": {
+    "badge": "Get in Touch",
+    "title": "Contact Us",
+    "description": "Get in touch with our multilingual team. We're here to help you access the support and services you need.",
+    "form": {
+      "title": "Send Us a Message",
+      "fields": {
+        "name": "Full Name",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "language": "Preferred Language",
+        "service": "Service Interest",
+        "location": "Preferred Office",
+        "message": "Message",
+        "placeholders": {
+          "message": "Please describe how we can help you..."
+        },
+        "languageOptions": {
+          "select": "Select a language",
+          "english": "English",
+          "arabic": "Arabic",
+          "mandarin": "Mandarin",
+          "spanish": "Spanish",
+          "vietnamese": "Vietnamese",
+          "tagalog": "Tagalog",
+          "hindi": "Hindi",
+          "korean": "Korean",
+          "other": "Other"
+        },
+        "serviceOptions": {
+          "select": "Select a service",
+          "settlement": "Settlement Support",
+          "agedCare": "Aged Care Services",
+          "familySupport": "Family Support",
+          "communityEngagement": "Community Engagement",
+          "volunteer": "Volunteer Opportunities",
+          "general": "General Inquiry"
+        },
+        "locationOptions": {
+          "select": "Select an office",
+          "newcastle": "Newcastle",
+          "centralCoast": "Central Coast",
+          "lakeMacquarie": "Lake Macquarie",
+          "hunterRegion": "Hunter Region"
+        }
+      },
+      "submit": "Send Message",
+      "note": "* Required fields. We'll respond within 24 hours during business days."
+    },
+    "success": {
+      "title": "Message Sent Successfully!",
+      "message": "Thank you for contacting us. We'll get back to you within 24 hours during business days.",
+      "urgentNote": "For urgent matters during business hours, please call us directly at 1800 813 205."
+    }
+  },
+  "common": {
+    "translateThisPage": "Translate This Page"
   }
 }

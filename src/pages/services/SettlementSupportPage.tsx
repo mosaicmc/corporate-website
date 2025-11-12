@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Home, Phone, AlertTriangle, ArrowRight, CheckCircle, Users, MapPin, Clock, ChevronDown, ChevronUp, Mail, Globe, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Team05 from '../../components/ui/team-05';
+import RelatedServices from '../../components/RelatedServices';
 
 const SettlementSupportPage = () => {
   // Two separate states for each accordion column
@@ -148,6 +150,10 @@ const SettlementSupportPage = () => {
 
   return (
     <div className="animate-fade-in">
+      <Helmet>
+        <title>Mosaic Multicultural - Settlement Support</title>
+        <meta name="description" content="Comprehensive settlement services: housing, employment, government navigation, language support, and community orientation for new arrivals." />
+      </Helmet>
       {/* Crisis Banner with subtle animation */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 animate-fade-in-down">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -158,7 +164,7 @@ const SettlementSupportPage = () => {
             </div>
             <div className="flex flex-wrap gap-4 text-sm">
               <a href="tel:000" className="hover:underline font-medium transition-all duration-300 hover:scale-105">Emergency: Call 000</a>
-              <a href="tel:0249261300" className="hover:underline font-medium transition-all duration-300 hover:scale-105">Settlement Support: (02) 4926 1300</a>
+              <a href="tel:1800813205" className="hover:underline font-medium transition-all duration-300 hover:scale-105">Settlement Support: 1800 813 205</a>
               <a href="tel:131450" className="hover:underline font-medium transition-all duration-300 hover:scale-105">Interpreter: 131 450</a>
             </div>
           </div>
@@ -169,6 +175,7 @@ const SettlementSupportPage = () => {
       <section className="relative py-32 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 transition-colors duration-300 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-blue-500/20 dark:from-slate-900/50 dark:to-blue-900/30"></div>
+        <div className="absolute inset-0 bg-sky/10 dark:bg-sky/15 mix-blend-multiply pointer-events-none"></div>
         
         <div className="absolute top-0 left-0 w-96 h-96 bg-blue-400/30 rounded-full blur-3xl dark:bg-blue-500/20 animate-blob"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-400/30 rounded-full blur-3xl dark:bg-purple-500/20 animate-blob-delayed"></div>
@@ -191,11 +198,11 @@ const SettlementSupportPage = () => {
                 Explore Settlement Services
               </Link>
               <a
-                href="tel:0249261300"
+                href="tel:1800813205"
                 className="border-2 border-sky text-sky hover:bg-sky hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
               >
                 <Phone className="h-5 w-5 mr-2" />
-                Get Support Today - (02) 4926 1300
+                Get Support Today - 1800 813 205
               </a>
             </div>
           </div>
@@ -210,9 +217,9 @@ const SettlementSupportPage = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center rounded-full backdrop-blur-md bg-white/60 dark:bg-white/10 border border-white/40 dark:border-white/20 px-6 py-2 text-sm shadow-lg mb-6 animate-fade-in-down">
               <span className="mr-2 h-2 w-2 rounded-full bg-sky animate-pulse"></span>
-              <span className="text-gray-700 dark:text-white/90 font-medium">Comprehensive Support</span>
+              <span className="text-gray-700 dark:text-white/90 font-medium">Our Programs</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 animate-fade-in-up">Complete Settlement Support Services</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 animate-fade-in-up">Comprehensive Settlement Support Programs</h2>
             <p className="text-xl text-gray-600 dark:text-white/70 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '200ms' }}>
               Our settlement support program addresses every aspect of establishing life in Australia. From immediate practical needs to long-term integration goals, we provide culturally appropriate assistance that respects your background while helping you navigate Australian systems with confidence.
             </p>
@@ -244,7 +251,7 @@ const SettlementSupportPage = () => {
                   "Career development and training referrals"
                 ],
                 icon: <Users className="h-8 w-8" />,
-                color: "earth"
+                color: "sky"
               },
               {
                 title: "Government Services Navigation",
@@ -257,7 +264,7 @@ const SettlementSupportPage = () => {
                   "Legal services and advocacy support"
                 ],
                 icon: <FileText className="h-8 w-8" />,
-                color: "leaf"
+                color: "sky"
               },
               {
                 title: "Community Orientation & Integration",
@@ -270,7 +277,7 @@ const SettlementSupportPage = () => {
                   "Community group referrals and participation"
                 ],
                 icon: <Globe className="h-8 w-8" />,
-                color: "sun"
+                color: "sky"
               }
             ].map((service, index) => (
               <div key={index} className="group backdrop-blur-xl bg-white/70 dark:bg-white/10 rounded-3xl p-8 border border-white/50 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] hover:bg-white/80 dark:hover:bg-white/15 animate-fade-in-up" style={{ animationDelay: `${index * 200}ms` }}>
@@ -391,11 +398,11 @@ const SettlementSupportPage = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="tel:0249261300"
+                  href="tel:1800813205"
                   className="bg-gradient-to-r from-sky to-sky/90 hover:from-sky/90 hover:to-sky text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-sky/25"
                 >
                   <Phone className="h-5 w-5 mr-2" />
-                  Call (02) 4926 1300
+                  Call 1800 813 205
                 </a>
                 <Link
                   to="/contact"
@@ -410,6 +417,9 @@ const SettlementSupportPage = () => {
         </div>
       </section>
 
+      {/* Related Services cross-sell */}
+      <RelatedServices current="settlement-support" />
+
       {/* Contact CTA with enhanced animations */}
       <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-blue-500/20 dark:from-slate-900/50 dark:to-blue-900/30"></div>
@@ -423,11 +433,11 @@ const SettlementSupportPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:0249261300"
+                href="tel:1800813205"
                 className="bg-gradient-to-r from-sky to-sky/90 hover:from-sky/90 hover:to-sky text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-sky/25"
               >
                 <Phone className="h-5 w-5 mr-2" />
-                Call (02) 4926 1300
+                Call 1800 813 205
               </a>
               <Link
                 to="/contact"

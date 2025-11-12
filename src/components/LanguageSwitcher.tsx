@@ -43,6 +43,27 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+
+  // Map app language codes to Google Translate codes where necessary
+  const gtLangMap: Record<string, string> = {
+    'zh': 'zh-CN',
+    'zh-tw': 'zh-TW',
+  };
+
+  const setGoogTransCookie = (targetLang: string) => {
+    const lang = gtLangMap[targetLang] || targetLang;
+    const cookieVal = `/auto/${lang}`;
+    const hostname = window.location.hostname;
+    const expires = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
+    document.cookie = `googtrans=${cookieVal}; expires=${expires}; path=/;`;
+    document.cookie = `googtrans=${cookieVal}; expires=${expires}; domain=.${hostname}; path=/;`;
+  };
+
+  const clearGoogTransCookie = () => {
+    const hostname = window.location.hostname;
+    document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
+    document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=.${hostname}; path=/;`;
+  };
   
   const changeLanguage = (langCode: string) => {
     const selectedLang = languages.find(lang => lang.code === langCode);
@@ -55,6 +76,19 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
       
       // Save to localStorage
       localStorage.setItem('preferred-language', langCode);
+
+      // Apply machine translation for full-page content via Google Translate.
+      // When switching to English, clear translation; otherwise set target language.
+      if (langCode === 'en') {
+        clearGoogTransCookie();
+      } else {
+        setGoogTransCookie(langCode);
+      }
+      // Reload to ensure Google Translate applies consistently across the page.
+      // This is necessary because the Google widget reads the cookie on load.
+      setTimeout(() => {
+        window.location.reload();
+      }, 50);
     }
     setIsOpen(false);
   };

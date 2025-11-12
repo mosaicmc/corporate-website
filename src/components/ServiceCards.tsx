@@ -29,7 +29,7 @@ const ServiceCards = () => {
         "Help navigating aged care"
       ],
       link: "/services/aged-care",
-      color: "earth"
+      color: "care"
     },
     {
       icon: <Users className="h-8 w-8" />,
@@ -42,7 +42,7 @@ const ServiceCards = () => {
         "Crisis support and planning"
       ],
       link: "/services/family-support",
-      color: "leaf"
+      color: "sun"
     },
     {
       icon: <Handshake className="h-8 w-8" />,
@@ -55,7 +55,7 @@ const ServiceCards = () => {
         "Community connection Groups"
       ],
       link: "/services/community-engagement",
-      color: "sun"
+      color: "leaf"
     }
   ];
 
@@ -79,12 +79,12 @@ const ServiceCards = () => {
               <div className="sticky top-32">
                 <div className="space-y-6">
                   <div className="inline-block">
-                    <span className="text-sm font-medium text-earth uppercase tracking-wider">Since 1981</span>
+                    <span className="text-sm font-medium text-earth dark:text-earth/90 uppercase tracking-wider">Since 1981</span>
                   </div>
                   
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
                     Your{" "}
-                    <span className="bg-gradient-to-r from-sky via-ocean to-earth bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-sky via-ocean to-earth bg-clip-text text-transparent dark:text-white dark:bg-clip-text dark:bg-gradient-to-r dark:from-sky dark:via-ocean dark:to-earth">
                       Trusted
                     </span>
                     <br />
@@ -104,7 +104,7 @@ const ServiceCards = () => {
             <div className="lg:col-span-3 space-y-8">
               <div className="prose prose-lg prose-gray dark:prose-invert max-w-none">
                 <p className="text-xl leading-relaxed text-gray-700 dark:text-white/80 font-light">
-                  Since <strong className="font-semibold text-ocean dark:text-sky">1981</strong>, Mosaic Multicultural Connections has been supporting people from migrant and refugee backgrounds throughout every stage of their Australian journey.
+                  Since <strong className="font-semibold text-ocean dark:text-sky/90">1981</strong>, Mosaic Multicultural Connections has been supporting people from migrant and refugee backgrounds throughout every stage of their Australian journey.
                 </p>
                 
                 <p className="text-lg leading-relaxed text-gray-600 dark:text-white/70">
@@ -119,7 +119,7 @@ const ServiceCards = () => {
                 
                 <p className="text-xl leading-relaxed text-gray-800 dark:text-white font-medium">
                   We are here as your{" "}
-                  <span className="bg-gradient-to-r from-ocean to-sky bg-clip-text text-transparent font-semibold">
+                  <span className="bg-gradient-to-r from-ocean to-sky bg-clip-text text-transparent font-semibold dark:text-white dark:bg-clip-text dark:bg-gradient-to-r dark:from-ocean dark:to-sky">
                     trusted partner
                   </span>{" "}
                   in creating the connected, confident life you want.
@@ -188,6 +188,7 @@ const ServiceCards = () => {
                     <div className={`flex h-16 w-16 items-center justify-center rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 ${
                       service.color === 'sky' ? 'bg-gradient-to-br from-sky to-sky/80' :
                       service.color === 'earth' ? 'bg-gradient-to-br from-earth to-earth/80' :
+                      service.color === 'care' ? 'bg-gradient-to-br from-care to-care/80' :
                       service.color === 'leaf' ? 'bg-gradient-to-br from-leaf to-leaf/80' :
                       'bg-gradient-to-br from-sun to-sun/80'
                     }`}>
@@ -211,6 +212,7 @@ const ServiceCards = () => {
                           <CheckCircle className={`h-4 w-4 mr-3 flex-shrink-0 ${
                             service.color === 'sky' ? 'text-sky' :
                             service.color === 'earth' ? 'text-earth' :
+                            service.color === 'care' ? 'text-care' :
                             service.color === 'leaf' ? 'text-leaf' :
                             'text-sun'
                           }`} />
@@ -224,6 +226,7 @@ const ServiceCards = () => {
                       className={`inline-flex items-center px-6 py-3 rounded-full text-white font-medium min-w-40 text-[15px] transition-all duration-300 hover:shadow-lg ${
                         service.color === 'sky' ? 'bg-sky hover:bg-sky/90 hover:shadow-sky/25' :
                         service.color === 'earth' ? 'bg-earth hover:bg-earth/90 hover:shadow-earth/25' :
+                        service.color === 'care' ? 'bg-care hover:bg-care/90 hover:shadow-care/25' :
                         service.color === 'leaf' ? 'bg-leaf hover:bg-leaf/90 hover:shadow-leaf/25' :
                         'bg-sun hover:bg-sun/90 hover:shadow-sun/25'
                       }`}
@@ -239,6 +242,7 @@ const ServiceCards = () => {
               <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-1 rounded-b-full ${
                 service.color === 'sky' ? 'bg-gradient-to-r from-sky to-sky/80' :
                 service.color === 'earth' ? 'bg-gradient-to-r from-earth to-earth/80' :
+                service.color === 'care' ? 'bg-gradient-to-r from-care to-care/80' :
                 service.color === 'leaf' ? 'bg-gradient-to-r from-leaf to-leaf/80' :
                 'bg-gradient-to-r from-sun to-sun/80'
               } opacity-60`}></div>
@@ -247,6 +251,7 @@ const ServiceCards = () => {
               <div className={`absolute -top-2 -right-2 w-4 h-4 rounded-full ${
                 service.color === 'sky' ? 'bg-sky' :
                 service.color === 'earth' ? 'bg-earth' :
+                service.color === 'care' ? 'bg-care' :
                 service.color === 'leaf' ? 'bg-leaf' :
                 'bg-sun'
               } opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm`}></div>

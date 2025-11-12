@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Users, Phone, AlertTriangle, ArrowRight, CheckCircle, Heart, Home, Shield, Clock, MapPin, Mail, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Team05 from '../../components/ui/team-05';
+import AnimatedBackground from '../../components/ui/AnimatedBackground';
+import RelatedServices from '../../components/RelatedServices';
 
 const FamilySupportPage = () => {
   // Two separate states for each accordion column
@@ -149,6 +152,10 @@ const FamilySupportPage = () => {
 
   return (
     <div className="animate-fade-in">
+      <Helmet>
+        <title>Mosaic Multicultural - Family Support</title>
+        <meta name="description" content="Free multicultural family support including TEI casework and PAW playgroups, with interpreters and culturally safe programs." />
+      </Helmet>
       {/* Crisis Banner with subtle animation */}
       <section className="bg-gradient-to-r from-red-600 to-red-700 text-white py-4 animate-fade-in-down">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -168,16 +175,15 @@ const FamilySupportPage = () => {
 
       {/* Hero Section with enhanced animations */}
       <section className="relative py-32 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 transition-colors duration-300 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-blue-500/20 dark:from-slate-900/50 dark:to-blue-900/30"></div>
-        
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-400/30 rounded-full blur-3xl dark:bg-blue-500/20 animate-blob"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-400/30 rounded-full blur-3xl dark:bg-purple-500/20 animate-blob-delayed"></div>
+        {/* Using the reusable AnimatedBackground component */}
+        <AnimatedBackground variant="vibrant" />
+        {/* Accent tint overlay to differentiate page */}
+        <div className="absolute inset-0 bg-sun/10 dark:bg-sun/15 mix-blend-multiply pointer-events-none"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center rounded-full backdrop-blur-md bg-white/60 dark:bg-white/10 border border-white/40 dark:border-white/20 px-6 py-2 text-sm shadow-lg mb-6 animate-fade-in-down">
-              <Users className="mr-2 h-4 w-4 text-leaf" />
+              <Users className="mr-2 h-4 w-4 text-sun" />
               <span className="text-gray-700 dark:text-white/90 font-medium">Family Support</span>
             </div>
             <h1 className="text-5xl font-bold mb-6 text-gray-900 dark:text-white animate-fade-in-up">Every Family Deserves Support That Understands Their Journey</h1>
@@ -187,13 +193,13 @@ const FamilySupportPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '400ms' }}>
               <Link
                 to="#programs"
-                className="bg-gradient-to-r from-leaf to-leaf/90 hover:from-leaf/90 hover:to-leaf text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-leaf/25"
+                className="bg-gradient-to-r from-sun to-sun/90 hover:from-sun/90 hover:to-sun text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-sun/25"
               >
                 Explore Our Family Programs
               </Link>
               <a
                 href="tel:0249608400"
-                className="border-2 border-leaf text-leaf hover:bg-leaf hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
+                className="border-2 border-sun text-sun hover:bg-sun hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
               >
                 <Phone className="h-5 w-5 mr-2" />
                 Talk to Us Today - (02) 4960 8400
@@ -214,10 +220,10 @@ const FamilySupportPage = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center rounded-full backdrop-blur-md bg-white/60 dark:bg-white/10 border border-white/40 dark:border-white/20 px-6 py-2 text-sm shadow-lg mb-6 animate-fade-in-down">
-              <span className="mr-2 h-2 w-2 rounded-full bg-leaf animate-pulse"></span>
-              <span className="text-gray-700 dark:text-white/90 font-medium">Choose Your Path</span>
+              <span className="mr-2 h-2 w-2 rounded-full bg-sun animate-pulse"></span>
+              <span className="text-gray-700 dark:text-white/90 font-medium">Our Programs</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 animate-fade-in-up">Which Type of Family Support Is Right for You?</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 animate-fade-in-up">Comprehensive Family Support Programs</h2>
           </div>
 
           {/* Features Grid - Inspired by shadcn features-03 */}
@@ -233,13 +239,13 @@ const FamilySupportPage = () => {
                 {/* Header with Icon */}
                 <div className="flex items-start space-x-4 mb-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-sky to-sky/80 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-sky/25 transition-all duration-300 group-hover:scale-110">
+                    <div className="w-16 h-16 bg-gradient-to-br from-sun to-sun/80 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-sun/25 transition-all duration-300 group-hover:scale-110">
                       <Shield className="h-8 w-8 text-white" />
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-gray-700 dark:group-hover:text-gray-100 transition-colors">TEI Family Support Program</h3>
-                    <p className="text-lg text-sky font-semibold">Professional Parenting Support & Casework</p>
+                    <p className="text-lg text-sun font-semibold">Professional Parenting Support & Casework</p>
                   </div>
                 </div>
 
@@ -256,7 +262,7 @@ const FamilySupportPage = () => {
                 {/* Service Highlights */}
                 <div className="mb-8">
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
-                    <CheckCircle className="h-5 w-5 text-sky mr-2" />
+                    <CheckCircle className="h-5 w-5 text-sun mr-2" />
                     Service Highlights:
                   </h4>
                   <ul className="space-y-3">
@@ -268,7 +274,7 @@ const FamilySupportPage = () => {
                       "Available to any multicultural parent with children under 18"
                     ].map((item, idx) => (
                       <li key={idx} className="flex items-start space-x-3">
-                        <div className="w-2 h-2 rounded-full bg-sky mt-2 flex-shrink-0"></div>
+                        <div className="w-2 h-2 rounded-full bg-sun mt-2 flex-shrink-0"></div>
                         <span className="text-gray-600 dark:text-white/80 text-sm">{item}</span>
                       </li>
                     ))}
@@ -278,7 +284,7 @@ const FamilySupportPage = () => {
                 {/* CTA Button */}
                 <a
                   href="tel:0249608400"
-                  className="w-full bg-gradient-to-r from-sky to-sky/90 hover:from-sky/90 hover:to-sky text-white px-6 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center group shadow-lg hover:shadow-sky/25 hover:scale-105"
+                  className="w-full bg-gradient-to-r from-sun to-sun/90 hover:from-sun/90 hover:to-sun text-white px-6 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center group shadow-lg hover:shadow-sun/25 hover:scale-105"
                 >
                   Get Professional Family Support
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -286,8 +292,8 @@ const FamilySupportPage = () => {
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-1 rounded-b-full bg-gradient-to-r from-sky to-sky/80 opacity-60"></div>
-              <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-sky opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm"></div>
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-1 rounded-b-full bg-gradient-to-r from-sun to-sun/80 opacity-60"></div>
+              <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-sun opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm"></div>
             </div>
 
             {/* PAW Playgroup */}
@@ -301,13 +307,13 @@ const FamilySupportPage = () => {
                 {/* Header with Icon */}
                 <div className="flex items-start space-x-4 mb-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-earth to-earth/80 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-earth/25 transition-all duration-300 group-hover:scale-110">
+                    <div className="w-16 h-16 bg-gradient-to-br from-sun to-sun/80 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-sun/25 transition-all duration-300 group-hover:scale-110">
                       <Heart className="h-8 w-8 text-white" />
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-gray-700 dark:group-hover:text-gray-100 transition-colors">Playing Around the World (PAW)</h3>
-                    <p className="text-lg text-earth font-semibold">Cultural Playgroup & Community Connection</p>
+                    <p className="text-lg text-sun font-semibold">Cultural Playgroup & Community Connection</p>
                   </div>
                 </div>
 
@@ -323,8 +329,8 @@ const FamilySupportPage = () => {
 
                 {/* Service Highlights */}
                 <div className="mb-8">
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
-                    <CheckCircle className="h-5 w-5 text-earth mr-2" />
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                    <CheckCircle className="h-5 w-5 text-sun mr-2" />
                     Service Highlights:
                   </h4>
                   <ul className="space-y-3">
@@ -336,7 +342,7 @@ const FamilySupportPage = () => {
                       "Open to all families with children 0-6 years"
                     ].map((item, idx) => (
                       <li key={idx} className="flex items-start space-x-3">
-                        <div className="w-2 h-2 rounded-full bg-earth mt-2 flex-shrink-0"></div>
+                        <div className="w-2 h-2 rounded-full bg-sun mt-2 flex-shrink-0"></div>
                         <span className="text-gray-600 dark:text-white/80 text-sm">{item}</span>
                       </li>
                     ))}
@@ -346,7 +352,7 @@ const FamilySupportPage = () => {
                 {/* CTA Button */}
                 <a
                   href="tel:0243343877"
-                  className="w-full bg-gradient-to-r from-earth to-earth/90 hover:from-earth/90 hover:to-earth text-white px-6 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center group shadow-lg hover:shadow-earth/25 hover:scale-105"
+                  className="w-full bg-gradient-to-r from-sun to-sun/90 hover:from-sun/90 hover:to-sun text-white px-6 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center group shadow-lg hover:shadow-sun/25 hover:scale-105"
                 >
                   Join Cultural Playgroup
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -354,8 +360,8 @@ const FamilySupportPage = () => {
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-1 rounded-b-full bg-gradient-to-r from-earth to-earth/80 opacity-60"></div>
-              <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-earth opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm"></div>
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-1 rounded-b-full bg-gradient-to-r from-sun to-sun/80 opacity-60"></div>
+              <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-sun opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm"></div>
             </div>
           </div>
         </div>
@@ -366,7 +372,7 @@ const FamilySupportPage = () => {
         title="Meet Your Complete Family Support Team"
         description="Our family support programs are led by university-qualified professionals with specialized training in multicultural family support, early childhood development, trauma-informed care, and evidence-based parenting interventions. Our team represents diverse cultural backgrounds and understands both professional best practices and the lived experience of multicultural families."
         teamMembers={teamMembers}
-        accentColor="leaf"
+        accentColor="sun"
         bottomSection={{
           title: "Integrated Support Approach",
           description: "Both programs work together to provide families with seamless support. TEI workers can recommend PAW for ongoing community connection, while PAW facilitators can identify families who might benefit from professional family support. This integrated approach ensures your family gets the right level of support at the right time."
@@ -433,15 +439,15 @@ const FamilySupportPage = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="tel:0249608400"
-                  className="bg-gradient-to-r from-leaf to-leaf/90 hover:from-leaf/90 hover:to-leaf text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-leaf/25"
+                  href="tel:1800813205"
+                  className="bg-gradient-to-r from-sun to-sun/90 hover:from-sun/90 hover:to-sun text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-sun/25"
                 >
                   <Phone className="h-5 w-5 mr-2" />
-                  Call (02) 4960 8400
+                  1800 813 205
                 </a>
                 <Link
-                  to="/contact"
-                  className="border-2 border-leaf text-leaf hover:bg-leaf hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
+                to="/contact"
+                className="border-2 border-sun text-sun hover:bg-sun hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
                 >
                   Contact Us Online
                   <ArrowRight className="h-5 w-5 ml-2" />
@@ -451,6 +457,9 @@ const FamilySupportPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Related Services cross-sell */}
+      <RelatedServices current="family-support" />
 
       {/* Contact CTA with enhanced animations */}
       <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300 overflow-hidden">
@@ -467,28 +476,28 @@ const FamilySupportPage = () => {
               <div className="text-center">
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-2">TEI Family Support</h3>
                 <a
-                  href="tel:0249608400"
-                  className="w-full bg-gradient-to-r from-sky to-sky/90 hover:from-sky/90 hover:to-sky text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-sky/25"
+                  href="tel:1800813205"
+                  className="w-full bg-gradient-to-r from-sun to-sun/90 hover:from-sun/90 hover:to-sun text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-sun/25"
                 >
                   <Phone className="h-5 w-5 mr-2" />
-                  (02) 4960 8400
+                  1800 813 205
                 </a>
               </div>
               <div className="text-center">
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-2">PAW Playgroups</h3>
                 <a
-                  href="tel:0243343877"
-                  className="w-full bg-gradient-to-r from-earth to-earth/90 hover:from-earth/90 hover:to-earth text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-earth/25"
+                  href="tel:1800813205"
+                  className="w-full bg-gradient-to-r from-sun to-sun/90 hover:from-sun/90 hover:to-sun text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-sun/25"
                 >
                   <Phone className="h-5 w-5 mr-2" />
-                  (02) 4334 3877
+                  1800 813 205
                 </a>
               </div>
             </div>
             <div className="mt-6">
               <Link
                 to="/contact"
-                className="border-2 border-leaf text-leaf hover:bg-leaf hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center hover:scale-105"
+                className="border-2 border-sun text-sun hover:bg-sun hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center hover:scale-105"
               >
                 Contact Us Online
                 <ArrowRight className="h-5 w-5 ml-2" />

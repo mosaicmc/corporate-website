@@ -19,7 +19,7 @@ const SimpleCTA = () => {
           
           <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-8 leading-tight tracking-tight">
             Ready to Take Your{" "}
-            <span className="bg-gradient-to-r from-sand via-white to-sand bg-clip-text text-transparent drop-shadow-lg">
+            <span className="bg-gradient-to-r from-sand via-white to-sand bg-clip-text text-transparent drop-shadow-lg dark:text-white dark:bg-clip-text dark:bg-gradient-to-r dark:from-sand dark:via-white dark:to-sand">
               Next Step?
             </span>
           </h2>

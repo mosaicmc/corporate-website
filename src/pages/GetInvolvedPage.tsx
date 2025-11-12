@@ -1,6 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import { Heart, Users, Briefcase, Handshake, ArrowRight, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Section } from '@/components/ui/Section';
+import { GlassCard } from '@/components/ui/GlassCard';
 
 const GetInvolvedPage = () => {
   const opportunities = [
@@ -76,8 +80,13 @@ const GetInvolvedPage = () => {
     return colorMap[color as keyof typeof colorMap] || colorMap.sky;
   };
 
+  const { t } = useTranslation();
   return (
     <div className="animate-fade-in">
+      <Helmet>
+        <title>Mosaic Multicultural - Get Involved</title>
+        <meta name="description" content="Donate, volunteer, join our team, or partner with Mosaic Multicultural to support multicultural communities across NSW." />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative py-32 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 transition-colors duration-300 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden">
         {/* Glass morphism background elements */}
@@ -89,117 +98,118 @@ const GetInvolvedPage = () => {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center rounded-full backdrop-blur-md bg-white/60 dark:bg-white/10 border border-white/40 dark:border-white/20 px-6 py-2 text-sm shadow-lg mb-6">
               <span className="mr-2 h-2 w-2 rounded-full bg-sky animate-pulse"></span>
-              <span className="text-gray-700 dark:text-white/90 font-medium">Join Our Mission</span>
+              <span className="text-muted-foreground font-medium">{t('getInvolved.badge')}</span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 text-gray-900 dark:text-white">Get Involved</h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-              Join us in supporting multicultural communities across NSW. There are many ways to make a meaningful difference.
+            <h1 className="text-5xl font-bold mb-6 text-foreground">{t('getInvolved.title')}</h1>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              {t('getInvolved.description')}
             </p>
           </div>
         </div>
       </section>
 
       {/* Opportunities Grid */}
-      <section className="py-20 bg-white dark:bg-dark-bg transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            {opportunities.map((opportunity, index) => (
-              <div key={index} className="backdrop-blur-md bg-white/70 dark:bg-slate-800/70 rounded-2xl shadow-xl overflow-hidden border border-white/20 dark:border-slate-700/50 hover:shadow-2xl transition-all duration-300">
-                <div className={`bg-gradient-to-br ${getColorClasses(opportunity.color)} p-8 border-b border-white/20 dark:border-slate-700/50`}>
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-lg">
-                      <div className={opportunity.color === 'sky' ? 'text-sky' : opportunity.color === 'earth' ? 'text-earth' : opportunity.color === 'leaf' ? 'text-leaf' : 'text-sun'}>
-                        {opportunity.icon}
-                      </div>
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{opportunity.title}</h2>
+      <Section overlay>
+        <div className="grid md:grid-cols-2 gap-8">
+          {opportunities.map((opportunity, index) => (
+            <GlassCard
+              key={index}
+              padding="none"
+              className="rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300"
+            >
+              <div className={`bg-gradient-to-br ${getColorClasses(opportunity.color)} p-8 border-b border-white/20 dark:border-slate-700/50`}>
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-lg">
+                    <div className={opportunity.color === 'sky' ? 'text-sky' : opportunity.color === 'earth' ? 'text-earth' : opportunity.color === 'leaf' ? 'text-leaf' : 'text-sun'}>
+                      {opportunity.icon}
                     </div>
                   </div>
-                </div>
-
-                <div className="p-8">
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">{opportunity.description}</p>
-                  
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Benefits & Impact</h3>
-                  <ul className="space-y-3 mb-8">
-                    {opportunity.benefits.map((benefit, idx) => (
-                      <li key={idx} className="flex items-start space-x-3">
-                        <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${opportunity.color === 'sky' ? 'bg-sky' : opportunity.color === 'earth' ? 'bg-earth' : opportunity.color === 'leaf' ? 'bg-leaf' : 'bg-sun'}`}></div>
-                        <span className="text-gray-600 dark:text-gray-300">{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {opportunity.external ? (
-                    <a
-                      href={opportunity.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-4 rounded-lg font-semibold flex items-center justify-center transition-colors group"
-                    >
-                      {opportunity.action}
-                      <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    </a>
-                  ) : (
-                    <Link
-                      to={opportunity.link}
-                      className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-4 rounded-lg font-semibold flex items-center justify-center transition-colors group"
-                    >
-                      {opportunity.action}
-                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  )}
+                  <div>
+                    <h2 className="text-2xl font-bold text-foreground">{opportunity.title}</h2>
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+
+              <div className="p-8">
+                <p className="text-muted-foreground leading-relaxed mb-6">{opportunity.description}</p>
+
+                <h3 className="text-lg font-bold text-foreground mb-4">Benefits & Impact</h3>
+                <ul className="space-y-3 mb-8">
+                  {opportunity.benefits.map((benefit, idx) => (
+                    <li key={idx} className="flex items-start space-x-3">
+                      <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${opportunity.color === 'sky' ? 'bg-sky' : opportunity.color === 'earth' ? 'bg-earth' : opportunity.color === 'leaf' ? 'bg-leaf' : 'bg-sun'}`}></div>
+                      <span className="text-muted-foreground">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {opportunity.external ? (
+                  <a
+                    href={opportunity.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-4 rounded-lg font-semibold flex items-center justify-center transition-colors group"
+                  >
+                    {opportunity.action}
+                    <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                ) : (
+                  <Link
+                    to={opportunity.link}
+                    className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-4 rounded-lg font-semibold flex items-center justify-center transition-colors group"
+                  >
+                    {opportunity.action}
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                )}
+              </div>
+            </GlassCard>
+          ))}
         </div>
-      </section>
+      </Section>
 
       {/* Volunteer Spotlight */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Volunteer Spotlight</h2>
-              <div className="backdrop-blur-md bg-white/70 dark:bg-slate-800/70 rounded-2xl p-8 shadow-lg border border-white/20 dark:border-slate-700/50">
-                <div className="flex items-center space-x-4 mb-6">
+      <Section padding="md" overlay>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-4xl font-bold text-foreground mb-6">{t('getInvolved.volunteerSpotlight')}</h2>
+            <GlassCard className="rounded-2xl p-8 shadow-lg">
+              <div className="flex items-center space-x-4 mb-6">
                   <img
                     src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=150"
                     alt="Jennifer Chen"
                     className="w-16 h-16 rounded-full object-cover border-2 border-white dark:border-slate-700"
                   />
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">Jennifer Chen</h3>
-                    <p className="text-gray-600 dark:text-gray-300">Volunteer Settlement Worker</p>
+                    <h3 className="text-xl font-bold text-foreground">Jennifer Chen</h3>
+                    <p className="text-muted-foreground">Volunteer Settlement Worker</p>
                     <p className="text-sm text-sky">3 years with Mosaic</p>
                   </div>
                 </div>
-                <blockquote className="text-gray-600 dark:text-gray-300 leading-relaxed italic">
+                <blockquote className="text-muted-foreground leading-relaxed italic">
                   "Volunteering with Mosaic has been incredibly rewarding. I've helped families navigate their first 
                   months in Australia, and seeing their confidence grow is amazing. The training and support from 
                   staff makes it easy to contribute meaningfully."
                 </blockquote>
-              </div>
-            </div>
+            </GlassCard>
+          </div>
 
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Volunteer Opportunities</h3>
-              <div className="space-y-4">
+          <div className="space-y-8">
+            <h3 className="text-2xl font-bold text-foreground">Volunteer Opportunities</h3>
+            <div className="space-y-4">
                 {[
                   { role: "Settlement Support Assistant", commitment: "4 hours/week", training: "2 days" },
                   { role: "Community Event Coordinator", commitment: "Flexible", training: "1 day" },
                   { role: "Language Support Volunteer", commitment: "2 hours/week", training: "Half day" },
                   { role: "Administrative Support", commitment: "3 hours/week", training: "1 day" }
                 ].map((role, index) => (
-                  <div key={index} className="backdrop-blur-md bg-white/70 dark:bg-slate-800/70 rounded-lg p-6 shadow-sm border-l-4 border-sky border border-white/20 dark:border-slate-700/50">
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{role.role}</h4>
-                    <div className="flex space-x-6 text-sm text-gray-600 dark:text-gray-300">
+                  <GlassCard key={index} padding="sm" className="rounded-lg shadow-sm border-l-4 border-sky">
+                    <h4 className="font-semibold text-foreground mb-2">{role.role}</h4>
+                    <div className="flex space-x-6 text-sm text-muted-foreground">
                       <span>Commitment: {role.commitment}</span>
                       <span>Training: {role.training}</span>
                     </div>
-                  </div>
+                  </GlassCard>
                 ))}
               </div>
               <a
@@ -208,19 +218,18 @@ const GetInvolvedPage = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center bg-gradient-to-r from-sky to-sky/90 hover:from-sky/90 hover:to-sky text-white px-6 py-3 rounded-lg font-semibold transition-colors"
               >
-                Apply to Volunteer
+                {t('getInvolved.actions.apply')}
                 <ExternalLink className="ml-2 h-5 w-5" />
               </a>
             </div>
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Impact Stats */}
       <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-700 dark:from-blue-800 dark:to-purple-900 text-white transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Your Impact</h2>
+            <h2 className="text-4xl font-bold mb-4">{t('getInvolved.impactTitle')}</h2>
             <p className="text-xl text-blue-200 dark:text-blue-300 max-w-3xl mx-auto">
               See how community support translates into real change for multicultural families.
             </p>

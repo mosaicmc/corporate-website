@@ -74,8 +74,8 @@ const Newsletter = () => {
                   <Phone className="h-7 w-6 text-gray-400" aria-hidden="true" />
                 </dt>
                 <dd>
-                  <a className="hover:text-gray-900" href="tel:+61249261300">
-                    (02) 4926 1300
+                  <a className="hover:text-gray-900" href="tel:1800813205">
+                    1800 813 205
                   </a>
                 </dd>
               </div>

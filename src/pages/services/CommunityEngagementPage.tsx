@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Handshake, Phone, ArrowRight, CheckCircle, Users, Calendar, Globe, ChevronDown, ChevronUp, Mail, Heart, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Team05 from '../../components/ui/team-05';
+import RelatedServices from '../../components/RelatedServices';
 
 const CommunityEngagementPage = () => {
   // Two separate states for each accordion column
@@ -116,9 +118,9 @@ const CommunityEngagementPage = () => {
           </h3>
           <div className="flex-shrink-0">
             {isOpen ? (
-              <ChevronUp className="h-6 w-6 text-sun transition-transform duration-300" />
+              <ChevronUp className="h-6 w-6 text-leaf transition-transform duration-300" />
             ) : (
-              <ChevronDown className="h-6 w-6 text-sun transition-transform duration-300 group-hover:scale-110" />
+              <ChevronDown className="h-6 w-6 text-leaf transition-transform duration-300 group-hover:scale-110" />
             )}
           </div>
         </button>
@@ -139,7 +141,7 @@ const CommunityEngagementPage = () => {
         </div>
 
         {/* Subtle accent line */}
-        <div className={`h-1 bg-gradient-to-r from-sun to-sun/80 transition-all duration-500 ${
+        <div className={`h-1 bg-gradient-to-r from-leaf to-leaf/80 transition-all duration-500 ${
           isOpen ? 'opacity-100' : 'opacity-0'
         }`}></div>
       </div>
@@ -148,10 +150,16 @@ const CommunityEngagementPage = () => {
 
   return (
     <div className="animate-fade-in">
+      <Helmet>
+        <title>Mosaic Multicultural - Community Engagement</title>
+        <meta name="description" content="Community engagement programs including cultural festivals, leadership development, volunteering, and advocacy to build inclusive communities." />
+      </Helmet>
       {/* Hero Section with enhanced animations */}
       <section className="relative py-32 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 transition-colors duration-300 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-blue-500/20 dark:from-slate-900/50 dark:to-blue-900/30"></div>
+        {/* Accent tint overlay to differentiate page */}
+        <div className="absolute inset-0 bg-leaf/10 dark:bg-leaf/15 mix-blend-multiply pointer-events-none"></div>
         
         <div className="absolute top-0 left-0 w-96 h-96 bg-blue-400/30 rounded-full blur-3xl dark:bg-blue-500/20 animate-blob"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-400/30 rounded-full blur-3xl dark:bg-purple-500/20 animate-blob-delayed"></div>
@@ -159,7 +167,7 @@ const CommunityEngagementPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center rounded-full backdrop-blur-md bg-white/60 dark:bg-white/10 border border-white/40 dark:border-white/20 px-6 py-2 text-sm shadow-lg mb-6 animate-fade-in-down">
-              <Handshake className="mr-2 h-4 w-4 text-sun" />
+              <Handshake className="mr-2 h-4 w-4 text-leaf" />
               <span className="text-gray-700 dark:text-white/90 font-medium">Community Engagement</span>
             </div>
             <h1 className="text-5xl font-bold mb-6 text-gray-900 dark:text-white animate-fade-in-up">Building Stronger, More Inclusive Communities Together</h1>
@@ -169,16 +177,16 @@ const CommunityEngagementPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '400ms' }}>
               <Link
                 to="#programs"
-                className="bg-gradient-to-r from-sun to-sun/90 hover:from-sun/90 hover:to-sun text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-sun/25"
+                className="bg-gradient-to-r from-leaf to-leaf/90 hover:from-leaf/90 hover:to-leaf text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-leaf/25"
               >
                 Explore Community Programs
               </Link>
               <a
-                href="tel:0249261300"
-                className="border-2 border-sun text-sun hover:bg-sun hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
+                href="tel:1800813205"
+                className="border-2 border-leaf text-leaf hover:bg-leaf hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
               >
                 <Phone className="h-5 w-5 mr-2" />
-                Get Involved Today - (02) 4926 1300
+                Get Involved Today - 1800 813 205
               </a>
             </div>
           </div>
@@ -192,7 +200,7 @@ const CommunityEngagementPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center rounded-full backdrop-blur-md bg-white/60 dark:bg-white/10 border border-white/40 dark:border-white/20 px-6 py-2 text-sm shadow-lg mb-6 animate-fade-in-down">
-              <span className="mr-2 h-2 w-2 rounded-full bg-sun animate-pulse"></span>
+              <span className="mr-2 h-2 w-2 rounded-full bg-leaf animate-pulse"></span>
               <span className="text-gray-700 dark:text-white/90 font-medium">Our Programs</span>
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 animate-fade-in-up">Comprehensive Community Engagement Programs</h2>
@@ -214,7 +222,7 @@ const CommunityEngagementPage = () => {
                   "Community promotion and media coverage"
                 ],
                 icon: <Calendar className="h-8 w-8" />,
-                color: "sun"
+                color: "leaf"
               },
               {
                 title: "Leadership Development Programs",
@@ -227,7 +235,7 @@ const CommunityEngagementPage = () => {
                   "Community advisory group participation opportunities"
                 ],
                 icon: <Award className="h-8 w-8" />,
-                color: "sky"
+                color: "leaf"
               },
               {
                 title: "Volunteer Coordination & Training",
@@ -240,7 +248,7 @@ const CommunityEngagementPage = () => {
                   "Community impact and volunteer appreciation events"
                 ],
                 icon: <Heart className="h-8 w-8" />,
-                color: "earth"
+                color: "leaf"
               },
               {
                 title: "Advocacy & Community Representation",
@@ -313,7 +321,7 @@ const CommunityEngagementPage = () => {
         title="Meet Your Community Engagement Team"
         description="Our community engagement team brings together expertise in event management, community development, volunteer coordination, and advocacy. Each team member is passionate about celebrating cultural diversity and creating opportunities for meaningful community participation and leadership development."
         teamMembers={teamMembers}
-        accentColor="sun"
+        accentColor="leaf"
         bottomSection={{
           title: "Collaborative Community Approach",
           description: "Our community engagement team works collaboratively with community leaders, cultural organizations, government agencies, and local businesses to create inclusive programs that celebrate diversity and build stronger communities. We believe that the best community engagement happens when everyone has a voice and an opportunity to contribute their unique perspectives and talents."
@@ -375,14 +383,14 @@ const CommunityEngagementPage = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="tel:0249261300"
-                  className="bg-gradient-to-r from-sun to-sun/90 hover:from-sun/90 hover:to-sun text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-sun/25"
+                  className="bg-gradient-to-r from-leaf to-leaf/90 hover:from-leaf/90 hover:to-leaf text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-leaf/25"
                 >
                   <Phone className="h-5 w-5 mr-2" />
                   Call (02) 4926 1300
                 </a>
                 <Link
                   to="/contact"
-                  className="border-2 border-sun text-sun hover:bg-sun hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
+                  className="border-2 border-leaf text-leaf hover:bg-leaf hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
                 >
                   Contact Us Online
                   <ArrowRight className="h-5 w-5 ml-2" />
@@ -392,6 +400,9 @@ const CommunityEngagementPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Related Services cross-sell */}
+      <RelatedServices current="community-engagement" />
 
       {/* Contact CTA with enhanced animations */}
       <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300 overflow-hidden">
@@ -406,15 +417,15 @@ const CommunityEngagementPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:0249261300"
-                className="bg-gradient-to-r from-sun to-sun/90 hover:from-sun/90 hover:to-sun text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-sun/25"
+                href="tel:1800813205"
+                className="bg-gradient-to-r from-leaf to-leaf/90 hover:from-leaf/90 hover:to-leaf text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-leaf/25"
               >
                 <Phone className="h-5 w-5 mr-2" />
-                Call (02) 4926 1300
+                Call 1800 813 205
               </a>
               <Link
                 to="/contact"
-                className="border-2 border-sun text-sun hover:bg-sun hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
+                className="border-2 border-leaf text-leaf hover:bg-leaf hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
               >
                 Contact Us Online
                 <ArrowRight className="h-5 w-5 ml-2" />

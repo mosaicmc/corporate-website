@@ -1,10 +1,18 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import ServicesList from '../components/features-06/features-06';
 
 const ServicesPage = () => {
 
   return (
     <div className="animate-fade-in">
+      <Helmet>
+        <title>Services | Mosaic Multicultural Connections</title>
+        <meta
+          name="description"
+          content="Explore culturally appropriate services including settlement support, aged care, family support, and community engagement across NSW."
+        />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative py-32 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 transition-colors duration-300 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden">
         {/* Subtle background elements */}

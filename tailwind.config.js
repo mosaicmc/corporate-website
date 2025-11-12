@@ -5,21 +5,41 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: 'hsl(0 0% 100%)',
-        foreground: 'hsl(222.2 84% 4.9%)',
-        border: 'hsl(214.3 31.8% 91.4%)',
-        // Primary Corporate Colors
+        // Map Tailwind tokens to CSS variables for dynamic theming
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: 'hsl(var(--card))',
+        'card-foreground': 'hsl(var(--card-foreground))',
+        popover: 'hsl(var(--popover))',
+        'popover-foreground': 'hsl(var(--popover-foreground))',
+        primary: 'hsl(var(--primary))',
+        'primary-foreground': 'hsl(var(--primary-foreground))',
+        secondary: 'hsl(var(--secondary))',
+        'secondary-foreground': 'hsl(var(--secondary-foreground))',
+        muted: 'hsl(var(--muted))',
+        'muted-foreground': 'hsl(var(--muted-foreground))',
+        accent: 'hsl(var(--accent))',
+        'accent-foreground': 'hsl(var(--accent-foreground))',
+        destructive: 'hsl(var(--destructive))',
+        'destructive-foreground': 'hsl(var(--destructive-foreground))',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+
+        // Brand Colors (static)
         ocean: '#28367f',
         sky: '#60c7cc',
         sand: '#f3ede7',
-        // Secondary Corporate Colors
         sun: '#fcb73d',
         earth: '#f37a60',
         leaf: '#b4d785',
-        // Text Colors
+        care: '#F16B83',
+
+        // Legacy text helpers (consider phasing out in favor of `foreground`/`muted-foreground`)
         'text-primary': '#2c3e50',
         'text-secondary': '#6c757d',
-        // Dark mode colors
+
+        // Dark palette helpers (optional; tokens above should handle most scenarios)
         'dark-bg': '#0f172a',
         'dark-surface': '#1e293b',
         'dark-card': '#334155',

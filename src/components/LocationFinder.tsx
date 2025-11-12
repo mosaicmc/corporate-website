@@ -4,24 +4,24 @@ import { MapPin, Phone } from 'lucide-react';
 const LocationFinder = () => {
   const locations = [
     {
+      name: "Charlestown (Head Office)",
+      address: "Level 3, 3 Hopetoun St, Charlestown NSW 2290",
+      phone: "1800 813 205"
+    },
+    {
       name: "Central Coast",
-      address: "123 Mann Street, Gosford NSW 2250",
-      phone: "(02) 4323 7333"
+      address: "Tuggerah Lakes Community Centre, 1 Bay Village Road, Bateau Bay NSW 2261",
+      phone: "1800 813 205"
     },
     {
-      name: "Newcastle",
-      address: "456 Hunter Street, Newcastle NSW 2300",
-      phone: "(02) 4926 1300"
+      name: "Tamworth",
+      address: "3/345 Peel Street, Tamworth NSW 2340",
+      phone: "1800 813 205"
     },
     {
-      name: "Lake Macquarie",
-      address: "789 Pacific Highway, Charlestown NSW 2290",
-      phone: "(02) 4943 8888"
-    },
-    {
-      name: "Hunter Region",
-      address: "321 High Street, Maitland NSW 2320",
-      phone: "(02) 4933 6666"
+      name: "Armidale",
+      address: "86 Beardy Street, Armidale NSW 2350",
+      phone: "1800 813 205"
     }
   ];
 

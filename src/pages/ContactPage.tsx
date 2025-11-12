@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import { Section } from '@/components/ui/Section';
 
 const ContactPage = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -40,37 +44,41 @@ const ContactPage = () => {
 
   const offices = [
     {
-      name: "Newcastle (Head Office)",
-      address: "456 Hunter Street, Newcastle NSW 2300",
-      phone: "(02) 4926 1300",
-      email: "newcastle@mosaicmc.org.au",
-      hours: "Mon-Fri: 8:30 AM - 5:00 PM"
+      name: "Charlestown (Head Office)",
+      address: "Level 3, 3 Hopetoun St, Charlestown NSW 2290",
+      phone: "1800 813 205",
+      email: "info@mosaicmc.org.au",
+      hours: "Business Hours (Monday - Friday: 9:00 AM - 5:00 PM)"
     },
     {
       name: "Central Coast",
-      address: "123 Mann Street, Gosford NSW 2250",
-      phone: "(02) 4323 7333",
-      email: "centralcoast@mosaicmc.org.au",
-      hours: "Mon-Fri: 9:00 AM - 5:00 PM"
+      address: "Tuggerah Lakes Community Centre, 1 Bay Village Road, Bateau Bay NSW 2261",
+      phone: "1800 813 205",
+      email: "info@mosaicmc.org.au",
+      hours: "Business Hours (Monday - Friday: 9:00 AM - 5:00 PM)"
     },
     {
-      name: "Lake Macquarie",
-      address: "789 Pacific Highway, Charlestown NSW 2290",
-      phone: "(02) 4943 8888",
-      email: "lakemacquarie@mosaicmc.org.au",
-      hours: "Mon-Fri: 9:00 AM - 4:30 PM"
+      name: "Tamworth",
+      address: "3/345 Peel Street, Tamworth NSW 2340",
+      phone: "1800 813 205",
+      email: "info@mosaicmc.org.au",
+      hours: "Business Hours (Monday - Friday: 9:00 AM - 5:00 PM)"
     },
     {
-      name: "Hunter Region",
-      address: "321 High Street, Maitland NSW 2320",
-      phone: "(02) 4933 6666",
-      email: "hunter@mosaicmc.org.au",
-      hours: "Mon-Fri: 9:00 AM - 5:00 PM"
+      name: "Armidale",
+      address: "86 Beardy Street, Armidale NSW 2350",
+      phone: "1800 813 205",
+      email: "info@mosaicmc.org.au",
+      hours: "Business Hours (Monday - Friday: 9:00 AM - 5:00 PM)"
     }
   ];
 
   return (
     <div className="animate-fade-in">
+      <Helmet>
+        <title>{t('contact.title')} - Mosaic Multicultural Connections</title>
+        <meta name="description" content={t('contact.description')} />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative py-32 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 transition-colors duration-300 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden">
         {/* Glass morphism background elements */}
@@ -82,30 +90,29 @@ const ContactPage = () => {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center rounded-full backdrop-blur-md bg-white/60 dark:bg-white/10 border border-white/40 dark:border-white/20 px-6 py-2 text-sm shadow-lg mb-6">
               <span className="mr-2 h-2 w-2 rounded-full bg-sky animate-pulse"></span>
-              <span className="text-gray-700 dark:text-white/90 font-medium">Get in Touch</span>
+              <span className="text-gray-700 dark:text-white/90 font-medium">{t('contact.badge')}</span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 text-gray-900 dark:text-white">Contact Us</h1>
+            <h1 className="text-5xl font-bold mb-6 text-gray-900 dark:text-white">{t('contact.title')}</h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-              Get in touch with our multilingual team. We're here to help you access the support and services you need.
+              {t('contact.description')}
             </p>
           </div>
         </div>
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-20 bg-white dark:bg-dark-bg transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16">
+      <Section overlay>
+        <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Send Us a Message</h2>
+              <h2 className="text-3xl font-bold text-foreground mb-8">{t('contact.form.title')}</h2>
               
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                        Full Name *
+                        {t('contact.form.fields.name')} *
                       </label>
                       <input
                         type="text"
@@ -120,7 +127,7 @@ const ContactPage = () => {
                     
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                        Email Address *
+                        {t('contact.form.fields.email')} *
                       </label>
                       <input
                         type="email"
@@ -137,7 +144,7 @@ const ContactPage = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                        Phone Number
+                        {t('contact.form.fields.phone')}
                       </label>
                       <input
                         type="tel"
@@ -151,7 +158,7 @@ const ContactPage = () => {
                     
                     <div>
                       <label htmlFor="language" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                        Preferred Language
+                        {t('contact.form.fields.language')}
                       </label>
                       <select
                         id="language"
@@ -160,16 +167,16 @@ const ContactPage = () => {
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
                       >
-                        <option value="">Select a language</option>
-                        <option value="english">English</option>
-                        <option value="arabic">Arabic</option>
-                        <option value="mandarin">Mandarin</option>
-                        <option value="spanish">Spanish</option>
-                        <option value="vietnamese">Vietnamese</option>
-                        <option value="tagalog">Tagalog</option>
-                        <option value="hindi">Hindi</option>
-                        <option value="korean">Korean</option>
-                        <option value="other">Other</option>
+                        <option value="">{t('contact.form.fields.languageOptions.select')}</option>
+                        <option value="english">{t('contact.form.fields.languageOptions.english')}</option>
+                        <option value="arabic">{t('contact.form.fields.languageOptions.arabic')}</option>
+                        <option value="mandarin">{t('contact.form.fields.languageOptions.mandarin')}</option>
+                        <option value="spanish">{t('contact.form.fields.languageOptions.spanish')}</option>
+                        <option value="vietnamese">{t('contact.form.fields.languageOptions.vietnamese')}</option>
+                        <option value="tagalog">{t('contact.form.fields.languageOptions.tagalog')}</option>
+                        <option value="hindi">{t('contact.form.fields.languageOptions.hindi')}</option>
+                        <option value="korean">{t('contact.form.fields.languageOptions.korean')}</option>
+                        <option value="other">{t('contact.form.fields.languageOptions.other')}</option>
                       </select>
                     </div>
                   </div>
@@ -177,7 +184,7 @@ const ContactPage = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="service" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                        Service Interest
+                        {t('contact.form.fields.service')}
                       </label>
                       <select
                         id="service"
@@ -186,19 +193,19 @@ const ContactPage = () => {
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
                       >
-                        <option value="">Select a service</option>
-                        <option value="settlement">Settlement Support</option>
-                        <option value="aged-care">Aged Care Services</option>
-                        <option value="family">Family Support</option>
-                        <option value="community">Community Engagement</option>
-                        <option value="volunteer">Volunteer Opportunities</option>
-                        <option value="general">General Inquiry</option>
+                        <option value="">{t('contact.form.fields.serviceOptions.select')}</option>
+                        <option value="settlement">{t('contact.form.fields.serviceOptions.settlement')}</option>
+                        <option value="aged-care">{t('contact.form.fields.serviceOptions.agedCare')}</option>
+                        <option value="family">{t('contact.form.fields.serviceOptions.familySupport')}</option>
+                        <option value="community">{t('contact.form.fields.serviceOptions.communityEngagement')}</option>
+                        <option value="volunteer">{t('contact.form.fields.serviceOptions.volunteer')}</option>
+                        <option value="general">{t('contact.form.fields.serviceOptions.general')}</option>
                       </select>
                     </div>
                     
                     <div>
                       <label htmlFor="location" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                        Preferred Office
+                        {t('contact.form.fields.location')}
                       </label>
                       <select
                         id="location"
@@ -207,18 +214,18 @@ const ContactPage = () => {
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
                       >
-                        <option value="">Select an office</option>
-                        <option value="newcastle">Newcastle</option>
-                        <option value="central-coast">Central Coast</option>
-                        <option value="lake-macquarie">Lake Macquarie</option>
-                        <option value="hunter">Hunter Region</option>
+                        <option value="">{t('contact.form.fields.locationOptions.select')}</option>
+                        <option value="newcastle">{t('contact.form.fields.locationOptions.newcastle')}</option>
+                        <option value="central-coast">{t('contact.form.fields.locationOptions.centralCoast')}</option>
+                        <option value="lake-macquarie">{t('contact.form.fields.locationOptions.lakeMacquarie')}</option>
+                        <option value="hunter">{t('contact.form.fields.locationOptions.hunterRegion')}</option>
                       </select>
                     </div>
                   </div>
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                      Message *
+                      {t('contact.form.fields.message')} *
                     </label>
                     <textarea
                       id="message"
@@ -228,7 +235,7 @@ const ContactPage = () => {
                       required
                       rows={6}
                       className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
-                      placeholder="Please describe how we can help you..."
+                      placeholder={t('contact.form.fields.placeholders.message')}
                     ></textarea>
                   </div>
 
@@ -237,22 +244,22 @@ const ContactPage = () => {
                     className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-colors group"
                   >
                     <Send className="h-5 w-5 mr-2 group-hover:translate-x-1 transition-transform" />
-                    Send Message
+                    {t('contact.form.submit')}
                   </button>
 
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
-                    * Required fields. We'll respond within 24 hours during business days.
+                  <p className="text-sm text-muted-foreground">
+                    {t('contact.form.note')}
                   </p>
                 </form>
               ) : (
                 <div className="backdrop-blur-md bg-leaf/10 dark:bg-leaf/5 border border-leaf/20 dark:border-leaf/10 rounded-lg p-8 text-center">
                   <CheckCircle className="h-16 w-16 text-leaf mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Message Sent Successfully!</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6">
-                    Thank you for contacting us. We'll get back to you within 24 hours during business days.
+                  <h3 className="text-2xl font-bold text-foreground mb-4">{t('contact.success.title')}</h3>
+                  <p className="text-muted-foreground mb-6">
+                    {t('contact.success.message')}
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
-                    For urgent matters, please call us directly at (02) 4926 1300.
+                  <p className="text-sm text-muted-foreground">
+                    {t('contact.success.urgentNote')}
                   </p>
                 </div>
               )}
@@ -260,7 +267,7 @@ const ContactPage = () => {
 
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Get in Touch</h2>
+              <h2 className="text-3xl font-bold text-foreground mb-8">Get in Touch</h2>
               
               <div className="space-y-8">
                 {/* Quick Contact */}
@@ -271,8 +278,8 @@ const ContactPage = () => {
                       <Phone className="h-5 w-5 text-sky" />
                       <div>
                         <div className="font-semibold text-gray-900 dark:text-white">Main Line</div>
-                        <a href="tel:0249261300" className="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors">
-                          (02) 4926 1300
+                        <a href="tel:1800813205" className="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors">
+                          1800 813 205
                         </a>
                       </div>
                     </div>
@@ -292,23 +299,23 @@ const ContactPage = () => {
                       <div>
                         <div className="font-semibold text-gray-900 dark:text-white">Business Hours</div>
                         <div className="text-gray-600 dark:text-gray-300">
-                          Monday - Friday: 8:30 AM - 5:00 PM<br />
-                          Saturday: By appointment only
+                          Business Hours (Monday - Friday: 9:00 AM - 5:00 PM)
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Emergency Support */}
+                {/* Emergency Services */}
                 <div className="backdrop-blur-md bg-sun/10 dark:bg-sun/5 border border-sun/20 dark:border-sun/10 rounded-lg p-6">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Emergency Support</h3>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Emergency Services</h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    For urgent matters outside business hours, please contact:
+                    We do not provide 24/7 emergency support. For crisis services and emergency contacts, please visit our resources.
                   </p>
                   <div className="space-y-2">
-                    <div className="font-semibold text-gray-900 dark:text-white">Emergency Line: 1800 123 456</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Available 24/7 for crisis support</div>
+                    <a href="/resources" className="inline-flex items-center px-4 py-2 rounded-lg bg-sun text-white font-medium hover:bg-sun/90 transition-colors">
+                      View Emergency Services
+                    </a>
                   </div>
                 </div>
 
@@ -335,8 +342,7 @@ const ContactPage = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Office Locations */}
       <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">

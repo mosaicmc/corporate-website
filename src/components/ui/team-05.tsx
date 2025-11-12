@@ -33,6 +33,7 @@ const Team05: React.FC<Team05Props> = ({
     const colorMap = {
       sky: "border-sky",
       earth: "border-earth",
+      care: "border-care",
       leaf: "border-leaf",
       sun: "border-sun"
     };
@@ -43,6 +44,7 @@ const Team05: React.FC<Team05Props> = ({
     const colorMap = {
       sky: "text-sky hover:bg-sky",
       earth: "text-earth hover:bg-earth",
+      care: "text-care hover:bg-care",
       leaf: "text-leaf hover:bg-leaf",
       sun: "text-sun hover:bg-sun"
     };
@@ -53,6 +55,7 @@ const Team05: React.FC<Team05Props> = ({
     const colorMap = {
       sky: "from-sky/20 via-sky/10 to-transparent",
       earth: "from-earth/20 via-earth/10 to-transparent",
+      care: "from-care/20 via-care/10 to-transparent",
       leaf: "from-leaf/20 via-leaf/10 to-transparent",
       sun: "from-sun/20 via-sun/10 to-transparent"
     };
@@ -63,6 +66,7 @@ const Team05: React.FC<Team05Props> = ({
     const colorMap = {
       sky: "ring-sky/30",
       earth: "ring-earth/30",
+      care: "ring-care/30",
       leaf: "ring-leaf/30",
       sun: "ring-sun/30"
     };
@@ -86,6 +90,14 @@ const Team05: React.FC<Team05Props> = ({
         "from-yellow-400 via-orange-300 to-red-400",
         "from-orange-300 via-pink-300 to-red-300",
         "from-red-300 via-yellow-300 to-orange-300"
+      ],
+      care: [
+        "from-pink-400 via-rose-300 to-fuchsia-400",
+        "from-rose-400 via-pink-300 to-red-400",
+        "from-fuchsia-400 via-pink-300 to-rose-400",
+        "from-red-400 via-rose-300 to-pink-400",
+        "from-pink-300 via-fuchsia-300 to-rose-300",
+        "from-rose-300 via-red-300 to-pink-300"
       ],
       leaf: [
         "from-green-400 via-emerald-300 to-teal-400",
@@ -258,6 +270,7 @@ const Team05: React.FC<Team05Props> = ({
                     <p className={`text-base font-semibold ${
                       accentColor === 'sky' ? 'text-sky' :
                       accentColor === 'earth' ? 'text-earth' :
+                      accentColor === 'care' ? 'text-care' :
                       accentColor === 'leaf' ? 'text-leaf' :
                       'text-sun'
                     } group-hover:brightness-110 transition-all`}>
@@ -294,6 +307,7 @@ const Team05: React.FC<Team05Props> = ({
                 <div className={`absolute -top-3 -right-3 w-6 h-6 rounded-full ${
                   accentColor === 'sky' ? 'bg-sky' :
                   accentColor === 'earth' ? 'bg-earth' :
+                  accentColor === 'care' ? 'bg-care' :
                   accentColor === 'leaf' ? 'bg-leaf' :
                   'bg-sun'
                 } opacity-0 group-hover:opacity-80 transition-all duration-500 blur-sm animate-pulse`}></div>
