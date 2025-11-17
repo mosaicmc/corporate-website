@@ -13,8 +13,8 @@ type Lang = {
 // Uses emojis for simplicity (no external assets). Maps to Google Translate via cookies.
 const languages: Lang[] = [
   { code: 'ar', label: 'AR', flag: '🇸🇦', direction: 'rtl' },
-  { code: 'zh', label: 'ZH-CN', flag: '🇨🇳', direction: 'ltr' },
-  { code: 'zh-tw', label: 'ZH-TW', flag: '🇹🇼', direction: 'ltr' },
+  { code: 'zh', label: 'ZH', flag: '🇨🇳', direction: 'ltr' },
+  { code: 'zh-tw', label: 'ZH', flag: '🇹🇼', direction: 'ltr' },
   { code: 'en', label: 'EN', flag: '🇦🇺', direction: 'ltr' },
   { code: 'tl', label: 'TL', flag: '🇵🇭', direction: 'ltr' },
   { code: 'hi', label: 'HI', flag: '🇮🇳', direction: 'ltr' },
@@ -72,7 +72,7 @@ export const FooterLanguageBar: React.FC<{ className?: string }> = ({ className 
   return (
     <div
       className={cn(
-        'w-full bg-muted text-foreground dark:text-white',
+        'w-full bg-transparent text-foreground dark:text-white',
         className
       )}
       aria-label="Language selection"

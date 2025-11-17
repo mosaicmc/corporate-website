@@ -199,7 +199,7 @@ const Footer = () => {
       <FooterLanguageBar />
 
       {/* Bottom Section */}
-      <div className="border-t border-border bg-muted transition-colors duration-300">
+      <div className="bg-transparent transition-colors duration-300">
         <div className="mx-auto max-w-7xl px-6 py-6 md:flex md:items-center md:justify-between lg:px-8">
           <div className="md:order-1">
             <p className="text-center text-xs leading-5 text-muted-foreground md:text-left">

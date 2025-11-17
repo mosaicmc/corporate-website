@@ -1,0 +1,16 @@
+import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+  // Restrict to Playwright UI tests only
+  testDir: './tests/ui',
+  testMatch: /.*\.spec\.ts/,
+  timeout: 30_000,
+  use: {
+    baseURL: 'http://localhost:4173',
+  },
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
+    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
+  ],
+});

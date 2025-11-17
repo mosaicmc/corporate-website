@@ -1,0 +1,682 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#main"
+    - generic [ref=e6]:
+      - combobox [ref=e8]
+      - text: Powered by
+      - link [ref=e10] [cursor=pointer]:
+        - /url: https://translate.google.com
+        - text: Translate
+    - navigation [ref=e11]:
+      - generic [ref=e13]:
+        - link "Mosaic Multicultural Connections" [ref=e14] [cursor=pointer]:
+          - /url: /
+          - img "Mosaic Multicultural Connections" [ref=e15]
+        - generic [ref=e16]:
+          - button "common.changeLanguage" [ref=e18] [cursor=pointer]:
+            - img [ref=e19]
+          - button "Toggle menu" [ref=e22] [cursor=pointer]:
+            - img
+            - generic [ref=e23]: Toggle menu
+    - main [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - generic [ref=e38] [cursor=pointer]: Serving NSW communities for 43+ years
+              - heading "Supporting M i g r a n t Communities Across NSW" [level=1] [ref=e39]:
+                - generic [ref=e40]: Supporting
+                - generic [ref=e42]:
+                  - generic [ref=e43]: M
+                  - generic [ref=e44]: i
+                  - generic [ref=e45]: g
+                  - generic [ref=e46]: r
+                  - generic [ref=e47]: a
+                  - generic [ref=e48]: "n"
+                  - generic [ref=e49]: t
+                - generic [ref=e51]: Communities Across NSW
+              - paragraph [ref=e52]: Empowering multicultural communities through settlement support, aged care, family services, and community engagement programs tailored to your needs.
+            - generic [ref=e53]:
+              - link "Explore Our Services" [ref=e54] [cursor=pointer]:
+                - /url: /services
+                - text: Explore Our Services
+                - img [ref=e55]
+              - link "Watch Stories" [ref=e57] [cursor=pointer]:
+                - /url: /stories
+                - img [ref=e58]
+                - text: Watch Stories
+            - generic [ref=e60]:
+              - generic [ref=e61] [cursor=pointer]:
+                - generic [ref=e62]: 43+
+                - generic [ref=e63]: Years of Service
+              - generic [ref=e64] [cursor=pointer]:
+                - generic [ref=e65]: 2,500+
+                - generic [ref=e66]: Families Supported
+              - generic [ref=e67] [cursor=pointer]:
+                - generic [ref=e68]: 25+
+                - generic [ref=e69]: Languages Spoken
+          - generic [ref=e71]:
+            - img "Diverse group of young people celebrating together in a library setting" [ref=e72]
+            - generic [ref=e74] [cursor=pointer]:
+              - generic [ref=e76]: "4"
+              - generic [ref=e77]:
+                - generic [ref=e78]: Office Locations
+                - generic [ref=e79]: Across NSW
+            - generic [ref=e81] [cursor=pointer]:
+              - generic [ref=e83]: 95%
+              - generic [ref=e84]:
+                - generic [ref=e85]: Satisfaction Rate
+                - generic [ref=e86]: Client feedback
+        - generic [ref=e95]:
+          - generic [ref=e98]:
+            - generic [ref=e101]:
+              - generic [ref=e102]: Since 1981
+              - heading "Your Trusted Partner" [level=2] [ref=e103]:
+                - text: Your Trusted
+                - text: Partner
+              - paragraph [ref=e105]: Building belonging, one family at a time
+            - generic [ref=e106]:
+              - generic [ref=e107]:
+                - paragraph [ref=e108]:
+                  - text: Since
+                  - strong [ref=e109]: "1981"
+                  - text: ", Mosaic Multicultural Connections has been supporting people from migrant and refugee backgrounds throughout every stage of their Australian journey."
+                - paragraph [ref=e110]: We understand that building a life in Australia brings both opportunities and challenges - whether you have just arrived or have been here for years, are raising a family, or are caring for elderly loved ones who deserve to live their best possible lives.
+                - paragraph [ref=e112]: "Our approach is simple: we meet you where you are, respect your cultural background, and provide professional support that empowers you to achieve your goals."
+                - paragraph [ref=e113]: We are here as your trusted partner in creating the connected, confident life you want.
+              - generic [ref=e114]:
+                - generic [ref=e117]: Professional Services
+                - generic [ref=e120]: Culturally Responsive
+                - generic [ref=e123]: Community Focused
+          - generic [ref=e124]:
+            - generic [ref=e127]: Our Services
+            - heading "Comprehensive Support Services" [level=2] [ref=e128]
+            - paragraph [ref=e129]: Culturally appropriate services designed to meet the unique needs of multicultural communities across NSW delivered by our qualified staff
+          - generic [ref=e130]:
+            - generic [ref=e134]:
+              - img [ref=e138]
+              - generic [ref=e141]:
+                - heading "Settlement Support" [level=3] [ref=e142]
+                - paragraph [ref=e143]: New to Australia? We can guide you to find housing, apply for jobs, and build your new life with confidence.
+                - list [ref=e144]:
+                  - listitem [ref=e145]:
+                    - img [ref=e146]
+                    - text: Housing assistance and navigation
+                  - listitem [ref=e149]:
+                    - img [ref=e150]
+                    - text: Employment support and mentoring
+                  - listitem [ref=e153]:
+                    - img [ref=e154]
+                    - text: Citizenship preparation and guidance
+                  - listitem [ref=e157]:
+                    - img [ref=e158]
+                    - text: Pacific visa pathway support
+                - link "Learn More" [ref=e161] [cursor=pointer]:
+                  - /url: /services/settlement-support
+                  - text: Learn More
+                  - img [ref=e162]
+            - generic [ref=e169]:
+              - img [ref=e173]
+              - generic [ref=e175]:
+                - heading "Aged Care Services" [level=3] [ref=e176]
+                - paragraph [ref=e177]: Need elderly care that respects your culture? We provide culturally informed in-home support and community connections
+                - list [ref=e178]:
+                  - listitem [ref=e179]:
+                    - img [ref=e180]
+                    - text: Personal care at home
+                  - listitem [ref=e183]:
+                    - img [ref=e184]
+                    - text: Companionship and social support
+                  - listitem [ref=e187]:
+                    - img [ref=e188]
+                    - text: Cultural activities and outings
+                  - listitem [ref=e191]:
+                    - img [ref=e192]
+                    - text: Help navigating aged care
+                - link "Learn More" [ref=e195] [cursor=pointer]:
+                  - /url: /services/aged-care
+                  - text: Learn More
+                  - img [ref=e196]
+            - generic [ref=e203]:
+              - img [ref=e207]
+              - generic [ref=e212]:
+                - heading "Family Support" [level=3] [ref=e213]
+                - paragraph [ref=e214]: Looking for parenting help? We offer family counselling and community playgroups to help you, and your children thrive.
+                - list [ref=e215]:
+                  - listitem [ref=e216]:
+                    - img [ref=e217]
+                    - text: One-on-one family counselling
+                  - listitem [ref=e220]:
+                    - img [ref=e221]
+                    - text: Parenting skills workshops
+                  - listitem [ref=e224]:
+                    - img [ref=e225]
+                    - text: Multicultural playgroups (0-6 years)
+                  - listitem [ref=e228]:
+                    - img [ref=e229]
+                    - text: Crisis support and planning
+                - link "Learn More" [ref=e232] [cursor=pointer]:
+                  - /url: /services/family-support
+                  - text: Learn More
+                  - img [ref=e233]
+            - generic [ref=e240]:
+              - img [ref=e244]
+              - generic [ref=e249]:
+                - heading "Community Engagement" [level=3] [ref=e250]
+                - paragraph [ref=e251]: Struggling to cope with your new life in Australia? We help your children excel academically and connect your family with community support.
+                - list [ref=e252]:
+                  - listitem [ref=e253]:
+                    - img [ref=e254]
+                    - text: Free academic tutoring programmes
+                  - listitem [ref=e257]:
+                    - img [ref=e258]
+                    - text: Skill training with recognised certificates
+                  - listitem [ref=e261]:
+                    - img [ref=e262]
+                    - text: Critical safety information workshops
+                  - listitem [ref=e265]:
+                    - img [ref=e266]
+                    - text: Community connection Groups
+                - link "Learn More" [ref=e269] [cursor=pointer]:
+                  - /url: /services/community-engagement
+                  - text: Learn More
+                  - img [ref=e270]
+          - link "View All Services" [ref=e275] [cursor=pointer]:
+            - /url: /services
+            - text: View All Services
+            - img [ref=e276]
+        - generic [ref=e282]:
+          - generic [ref=e283]:
+            - generic [ref=e286]: See our Data
+            - heading "Our Impact by the Numbers" [level=2] [ref=e287]
+            - paragraph [ref=e288]: Four decades of measurable impact supporting multicultural communities across New South Wales
+          - generic [ref=e289]:
+            - generic [ref=e293]:
+              - generic [ref=e295]: 43+
+              - generic [ref=e298]: Years of Service
+              - generic [ref=e299]: Serving communities since 1981
+            - generic [ref=e305]:
+              - generic [ref=e307]: "4"
+              - generic [ref=e310]: Office Locations
+              - generic [ref=e311]: Across NSW regions
+            - generic [ref=e317]:
+              - generic [ref=e319]: 2,500+
+              - generic [ref=e322]: Families Supported
+              - generic [ref=e323]: Lives transformed annually
+            - generic [ref=e329]:
+              - generic [ref=e331]: 25+
+              - generic [ref=e334]: Languages Spoken
+              - generic [ref=e335]: Cultural diversity embraced
+          - generic [ref=e341]: Trusted by communities across NSW
+        - generic [ref=e347]:
+          - generic [ref=e348]:
+            - generic [ref=e351]: Testimonials
+            - heading "What Our Community Says" [level=2] [ref=e352]
+            - paragraph [ref=e353]: Real stories from families and individuals whose lives have been transformed through our services
+          - generic [ref=e354]:
+            - generic [ref=e356]:
+              - generic [ref=e360]:
+                - blockquote [ref=e361]: "\"Mosaic helped my family settle into our new life in Australia. The staff understood our cultural needs and provided support in Tagalog. We couldn't have done it without them.\""
+                - generic [ref=e362]:
+                  - img "Maria Santos" [ref=e363]
+                  - generic [ref=e364]:
+                    - generic [ref=e365]: Maria Santos
+                    - generic [ref=e366]: Settlement Support Client
+                    - generic [ref=e367]: Originally from Philippines
+              - generic [ref=e373]:
+                - blockquote [ref=e374]: "\"The family support programs helped us navigate the challenges of raising children in a new country while maintaining our cultural identity. The counselors were incredibly understanding.\""
+                - generic [ref=e375]:
+                  - img "Ahmed Hassan" [ref=e376]
+                  - generic [ref=e377]:
+                    - generic [ref=e378]: Ahmed Hassan
+                    - generic [ref=e379]: Family Support Client
+                    - generic [ref=e380]: Originally from Sudan
+              - generic [ref=e386]:
+                - blockquote [ref=e387]: "\"My elderly mother receives wonderful care that respects our Chinese traditions. The staff speak Mandarin and understand the importance of family in our culture.\""
+                - generic [ref=e388]:
+                  - img "Li Wei Chen" [ref=e389]
+                  - generic [ref=e390]:
+                    - generic [ref=e391]: Li Wei Chen
+                    - generic [ref=e392]: Aged Care Family Member
+                    - generic [ref=e393]: Originally from China
+              - generic [ref=e399]:
+                - blockquote [ref=e400]: "\"The community engagement programs helped me connect with other families and feel truly part of the Australian community.\""
+                - generic [ref=e401]:
+                  - img "Jennifer Kim" [ref=e402]
+                  - generic [ref=e403]:
+                    - generic [ref=e404]: Jennifer Kim
+                    - generic [ref=e405]: Community Member
+                    - generic [ref=e406]: Originally from Korea
+              - generic [ref=e412]:
+                - blockquote [ref=e413]: "\"Volunteering with Mosaic has been incredibly rewarding. I've helped families navigate their first months in Australia, and seeing their confidence grow is amazing.\""
+                - generic [ref=e414]:
+                  - img "Sarah Wilson" [ref=e415]
+                  - generic [ref=e416]:
+                    - generic [ref=e417]: Sarah Wilson
+                    - generic [ref=e418]: Volunteer
+                    - generic [ref=e419]: Local community member
+              - generic [ref=e425]:
+                - blockquote [ref=e426]: "\"The aged care services provided by Mosaic allowed my father to maintain his dignity while receiving the care he needed in his final years.\""
+                - generic [ref=e427]:
+                  - img "David Chen" [ref=e428]
+                  - generic [ref=e429]:
+                    - generic [ref=e430]: David Chen
+                    - generic [ref=e431]: Family Member
+                    - generic [ref=e432]: Originally from Taiwan
+              - generic [ref=e438]:
+                - blockquote [ref=e439]: "\"Mosaic helped my family settle into our new life in Australia. The staff understood our cultural needs and provided support in Tagalog. We couldn't have done it without them.\""
+                - generic [ref=e440]:
+                  - img "Maria Santos" [ref=e441]
+                  - generic [ref=e442]:
+                    - generic [ref=e443]: Maria Santos
+                    - generic [ref=e444]: Settlement Support Client
+                    - generic [ref=e445]: Originally from Philippines
+              - generic [ref=e451]:
+                - blockquote [ref=e452]: "\"The family support programs helped us navigate the challenges of raising children in a new country while maintaining our cultural identity. The counselors were incredibly understanding.\""
+                - generic [ref=e453]:
+                  - img "Ahmed Hassan" [ref=e454]
+                  - generic [ref=e455]:
+                    - generic [ref=e456]: Ahmed Hassan
+                    - generic [ref=e457]: Family Support Client
+                    - generic [ref=e458]: Originally from Sudan
+              - generic [ref=e464]:
+                - blockquote [ref=e465]: "\"My elderly mother receives wonderful care that respects our Chinese traditions. The staff speak Mandarin and understand the importance of family in our culture.\""
+                - generic [ref=e466]:
+                  - img "Li Wei Chen" [ref=e467]
+                  - generic [ref=e468]:
+                    - generic [ref=e469]: Li Wei Chen
+                    - generic [ref=e470]: Aged Care Family Member
+                    - generic [ref=e471]: Originally from China
+              - generic [ref=e477]:
+                - blockquote [ref=e478]: "\"The community engagement programs helped me connect with other families and feel truly part of the Australian community.\""
+                - generic [ref=e479]:
+                  - img "Jennifer Kim" [ref=e480]
+                  - generic [ref=e481]:
+                    - generic [ref=e482]: Jennifer Kim
+                    - generic [ref=e483]: Community Member
+                    - generic [ref=e484]: Originally from Korea
+              - generic [ref=e490]:
+                - blockquote [ref=e491]: "\"Volunteering with Mosaic has been incredibly rewarding. I've helped families navigate their first months in Australia, and seeing their confidence grow is amazing.\""
+                - generic [ref=e492]:
+                  - img "Sarah Wilson" [ref=e493]
+                  - generic [ref=e494]:
+                    - generic [ref=e495]: Sarah Wilson
+                    - generic [ref=e496]: Volunteer
+                    - generic [ref=e497]: Local community member
+              - generic [ref=e503]:
+                - blockquote [ref=e504]: "\"The aged care services provided by Mosaic allowed my father to maintain his dignity while receiving the care he needed in his final years.\""
+                - generic [ref=e505]:
+                  - img "David Chen" [ref=e506]
+                  - generic [ref=e507]:
+                    - generic [ref=e508]: David Chen
+                    - generic [ref=e509]: Family Member
+                    - generic [ref=e510]: Originally from Taiwan
+            - generic [ref=e514]:
+              - generic [ref=e518]:
+                - blockquote [ref=e519]: "\"The aged care services provided by Mosaic allowed my father to maintain his dignity while receiving the care he needed in his final years.\""
+                - generic [ref=e520]:
+                  - img "David Chen" [ref=e521]
+                  - generic [ref=e522]:
+                    - generic [ref=e523]: David Chen
+                    - generic [ref=e524]: Family Member
+                    - generic [ref=e525]: Originally from Taiwan
+              - generic [ref=e531]:
+                - blockquote [ref=e532]: "\"Volunteering with Mosaic has been incredibly rewarding. I've helped families navigate their first months in Australia, and seeing their confidence grow is amazing.\""
+                - generic [ref=e533]:
+                  - img "Sarah Wilson" [ref=e534]
+                  - generic [ref=e535]:
+                    - generic [ref=e536]: Sarah Wilson
+                    - generic [ref=e537]: Volunteer
+                    - generic [ref=e538]: Local community member
+              - generic [ref=e544]:
+                - blockquote [ref=e545]: "\"The community engagement programs helped me connect with other families and feel truly part of the Australian community.\""
+                - generic [ref=e546]:
+                  - img "Jennifer Kim" [ref=e547]
+                  - generic [ref=e548]:
+                    - generic [ref=e549]: Jennifer Kim
+                    - generic [ref=e550]: Community Member
+                    - generic [ref=e551]: Originally from Korea
+              - generic [ref=e557]:
+                - blockquote [ref=e558]: "\"My elderly mother receives wonderful care that respects our Chinese traditions. The staff speak Mandarin and understand the importance of family in our culture.\""
+                - generic [ref=e559]:
+                  - img "Li Wei Chen" [ref=e560]
+                  - generic [ref=e561]:
+                    - generic [ref=e562]: Li Wei Chen
+                    - generic [ref=e563]: Aged Care Family Member
+                    - generic [ref=e564]: Originally from China
+              - generic [ref=e570]:
+                - blockquote [ref=e571]: "\"The family support programs helped us navigate the challenges of raising children in a new country while maintaining our cultural identity. The counselors were incredibly understanding.\""
+                - generic [ref=e572]:
+                  - img "Ahmed Hassan" [ref=e573]
+                  - generic [ref=e574]:
+                    - generic [ref=e575]: Ahmed Hassan
+                    - generic [ref=e576]: Family Support Client
+                    - generic [ref=e577]: Originally from Sudan
+              - generic [ref=e583]:
+                - blockquote [ref=e584]: "\"Mosaic helped my family settle into our new life in Australia. The staff understood our cultural needs and provided support in Tagalog. We couldn't have done it without them.\""
+                - generic [ref=e585]:
+                  - img "Maria Santos" [ref=e586]
+                  - generic [ref=e587]:
+                    - generic [ref=e588]: Maria Santos
+                    - generic [ref=e589]: Settlement Support Client
+                    - generic [ref=e590]: Originally from Philippines
+              - generic [ref=e596]:
+                - blockquote [ref=e597]: "\"The aged care services provided by Mosaic allowed my father to maintain his dignity while receiving the care he needed in his final years.\""
+                - generic [ref=e598]:
+                  - img "David Chen" [ref=e599]
+                  - generic [ref=e600]:
+                    - generic [ref=e601]: David Chen
+                    - generic [ref=e602]: Family Member
+                    - generic [ref=e603]: Originally from Taiwan
+              - generic [ref=e609]:
+                - blockquote [ref=e610]: "\"Volunteering with Mosaic has been incredibly rewarding. I've helped families navigate their first months in Australia, and seeing their confidence grow is amazing.\""
+                - generic [ref=e611]:
+                  - img "Sarah Wilson" [ref=e612]
+                  - generic [ref=e613]:
+                    - generic [ref=e614]: Sarah Wilson
+                    - generic [ref=e615]: Volunteer
+                    - generic [ref=e616]: Local community member
+              - generic [ref=e622]:
+                - blockquote [ref=e623]: "\"The community engagement programs helped me connect with other families and feel truly part of the Australian community.\""
+                - generic [ref=e624]:
+                  - img "Jennifer Kim" [ref=e625]
+                  - generic [ref=e626]:
+                    - generic [ref=e627]: Jennifer Kim
+                    - generic [ref=e628]: Community Member
+                    - generic [ref=e629]: Originally from Korea
+              - generic [ref=e635]:
+                - blockquote [ref=e636]: "\"My elderly mother receives wonderful care that respects our Chinese traditions. The staff speak Mandarin and understand the importance of family in our culture.\""
+                - generic [ref=e637]:
+                  - img "Li Wei Chen" [ref=e638]
+                  - generic [ref=e639]:
+                    - generic [ref=e640]: Li Wei Chen
+                    - generic [ref=e641]: Aged Care Family Member
+                    - generic [ref=e642]: Originally from China
+              - generic [ref=e648]:
+                - blockquote [ref=e649]: "\"The family support programs helped us navigate the challenges of raising children in a new country while maintaining our cultural identity. The counselors were incredibly understanding.\""
+                - generic [ref=e650]:
+                  - img "Ahmed Hassan" [ref=e651]
+                  - generic [ref=e652]:
+                    - generic [ref=e653]: Ahmed Hassan
+                    - generic [ref=e654]: Family Support Client
+                    - generic [ref=e655]: Originally from Sudan
+              - generic [ref=e661]:
+                - blockquote [ref=e662]: "\"Mosaic helped my family settle into our new life in Australia. The staff understood our cultural needs and provided support in Tagalog. We couldn't have done it without them.\""
+                - generic [ref=e663]:
+                  - img "Maria Santos" [ref=e664]
+                  - generic [ref=e665]:
+                    - generic [ref=e666]: Maria Santos
+                    - generic [ref=e667]: Settlement Support Client
+                    - generic [ref=e668]: Originally from Philippines
+          - generic [ref=e674]: 95% client satisfaction rate
+        - region "Google Reviews" [ref=e676]:
+          - generic [ref=e680]:
+            - generic [ref=e681]:
+              - generic [ref=e684]: Google Reviews
+              - heading "What People Are Saying" [level=2] [ref=e685]
+              - paragraph [ref=e686]: Verified quotes from our public Google Reviews. Read more on Google for full context.
+            - generic [ref=e687]:
+              - generic [ref=e688]:
+                - generic [ref=e689]:
+                  - generic [ref=e690]:
+                    - generic "Avatar for Jane Doe" [ref=e691]:
+                      - generic [ref=e692]: JD
+                    - generic [ref=e693]:
+                      - generic [ref=e694]: Jane Doe
+                      - generic [ref=e695]: 2 weeks ago
+                  - img "5 out of 5 stars" [ref=e696]:
+                    - img [ref=e697]
+                    - img [ref=e699]
+                    - img [ref=e701]
+                    - img [ref=e703]
+                    - img [ref=e705]
+                - blockquote [ref=e708]: “Excellent service and devoted staff. Highly recommend.”
+                - generic [ref=e709]:
+                  - generic [ref=e710]: "Source: Google Reviews"
+                  - link "View review on Google" [ref=e711] [cursor=pointer]:
+                    - /url: https://maps.app.goo.gl/mYc8i3DawKk6PsPc9
+                    - text: View on Google
+                    - img [ref=e712]
+              - generic [ref=e716]:
+                - generic [ref=e717]:
+                  - generic [ref=e718]:
+                    - generic "Avatar for John Smith" [ref=e719]:
+                      - generic [ref=e720]: JS
+                    - generic [ref=e721]:
+                      - generic [ref=e722]: John Smith
+                      - generic [ref=e723]: 1 month ago
+                  - img "4 out of 5 stars" [ref=e724]:
+                    - img [ref=e725]
+                    - img [ref=e727]
+                    - img [ref=e729]
+                    - img [ref=e731]
+                    - img [ref=e733]
+                - blockquote [ref=e736]: “Friendly team and culturally appropriate activities for seniors.”
+                - generic [ref=e737]:
+                  - generic [ref=e738]: "Source: Google Reviews"
+                  - link "View review on Google" [ref=e739] [cursor=pointer]:
+                    - /url: https://maps.app.goo.gl/mYc8i3DawKk6PsPc9
+                    - text: View on Google
+                    - img [ref=e740]
+              - generic [ref=e744]:
+                - generic [ref=e745]:
+                  - generic [ref=e746]:
+                    - generic "Avatar for Aisha" [ref=e747]:
+                      - generic [ref=e748]: A
+                    - generic [ref=e749]:
+                      - generic [ref=e750]: Aisha
+                      - generic [ref=e751]: 3 months ago
+                  - img "5 out of 5 stars" [ref=e752]:
+                    - img [ref=e753]
+                    - img [ref=e755]
+                    - img [ref=e757]
+                    - img [ref=e759]
+                    - img [ref=e761]
+                - blockquote [ref=e764]: “Professional, kind, and dedicated to the community.”
+                - generic [ref=e765]:
+                  - generic [ref=e766]: "Source: Google Reviews"
+                  - link "View review on Google" [ref=e767] [cursor=pointer]:
+                    - /url: https://maps.app.goo.gl/mYc8i3DawKk6PsPc9
+                    - text: View on Google
+                    - img [ref=e768]
+            - button "Load more reviews" [ref=e773] [cursor=pointer]
+            - link "Read all reviews on Google" [ref=e775] [cursor=pointer]:
+              - /url: https://maps.app.goo.gl/mYc8i3DawKk6PsPc9
+              - text: Read all reviews on Google
+              - img [ref=e776]
+        - generic [ref=e786]:
+          - generic [ref=e789]: TAKE ACTION TODAY
+          - heading "Ready to Take Your Next Step?" [level=2] [ref=e790]
+          - paragraph [ref=e791]: Whether you're seeking settlement support, family assistance, aged care services, or community connections, our qualified team is here to help. All consultations are free and available in your preferred language.
+          - generic [ref=e792]:
+            - link "Explore Our Services" [ref=e793] [cursor=pointer]:
+              - /url: /services
+              - generic [ref=e794]: Explore Our Services
+              - img [ref=e795]
+            - link "Get Support Now" [ref=e798] [cursor=pointer]:
+              - /url: /contact
+              - img [ref=e799]
+              - generic [ref=e801]: Get Support Now
+          - paragraph [ref=e804]:
+            - text: "*Service Areas: Our services may vary by location. Please"
+            - link "Contact us" [ref=e805] [cursor=pointer]:
+              - /url: /contact
+            - text: to confirm availability.
+      - complementary [ref=e806]:
+        - generic [ref=e807]:
+          - heading "You may also be interested in…" [level=2] [ref=e808]
+          - generic [ref=e809]:
+            - link "Services" [ref=e810] [cursor=pointer]:
+              - /url: /services
+            - link "Resources" [ref=e811] [cursor=pointer]:
+              - /url: /resources
+            - link "Get Involved" [ref=e812] [cursor=pointer]:
+              - /url: /get-involved
+            - link "Contact" [ref=e813] [cursor=pointer]:
+              - /url: /contact
+    - contentinfo [ref=e814]:
+      - generic [ref=e815]:
+        - generic [ref=e816]:
+          - generic [ref=e817]:
+            - heading "Overview" [level=3] [ref=e818]
+            - list [ref=e819]:
+              - listitem [ref=e820]:
+                - link "About" [ref=e821] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e822]:
+                - link "All Services" [ref=e823] [cursor=pointer]:
+                  - /url: /services
+              - listitem [ref=e824]:
+                - link "Locations" [ref=e825] [cursor=pointer]:
+                  - /url: /locations
+              - listitem [ref=e826]:
+                - link "Stories" [ref=e827] [cursor=pointer]:
+                  - /url: /stories
+          - generic [ref=e828]:
+            - heading "Services" [level=3] [ref=e829]
+            - list [ref=e830]:
+              - listitem [ref=e831]:
+                - link "Settlement Support" [ref=e832] [cursor=pointer]:
+                  - /url: /services/settlement-support
+              - listitem [ref=e833]:
+                - link "Aged Care Services" [ref=e834] [cursor=pointer]:
+                  - /url: /services/aged-care
+              - listitem [ref=e835]:
+                - link "Family Support" [ref=e836] [cursor=pointer]:
+                  - /url: /services/family-support
+              - listitem [ref=e837]:
+                - link "Community Engagement" [ref=e838] [cursor=pointer]:
+                  - /url: /services/community-engagement
+          - generic [ref=e839]:
+            - heading "Get Involved" [level=3] [ref=e840]
+            - list [ref=e841]:
+              - listitem [ref=e842]:
+                - link "Get Involved" [ref=e843] [cursor=pointer]:
+                  - /url: /get-involved
+              - listitem [ref=e844]:
+                - link "Get Involved" [ref=e845] [cursor=pointer]:
+                  - /url: /get-involved
+              - listitem [ref=e846]:
+                - link "Donate" [ref=e847] [cursor=pointer]:
+                  - /url: /get-involved
+              - listitem [ref=e848]:
+                - link "Contact" [ref=e849] [cursor=pointer]:
+                  - /url: /contact
+          - generic [ref=e850]:
+            - heading "Help" [level=3] [ref=e851]
+            - list [ref=e852]:
+              - listitem [ref=e853]:
+                - link "Resources" [ref=e854] [cursor=pointer]:
+                  - /url: /resources
+              - listitem [ref=e855]:
+                - link "Emergency & Translation" [ref=e856] [cursor=pointer]:
+                  - /url: /resources/emergency-translation
+              - listitem [ref=e857]:
+                - link "Privacy" [ref=e858] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e859]:
+                - link "Terms" [ref=e860] [cursor=pointer]:
+                  - /url: "#"
+          - generic [ref=e861]:
+            - heading "About Mosaic" [level=3] [ref=e862]
+            - list [ref=e863]:
+              - listitem [ref=e864]:
+                - link "Knowledge Base" [ref=e865] [cursor=pointer]:
+                  - /url: /company/knowledge-base
+              - listitem [ref=e866]:
+                - link "Annual Reports" [ref=e867] [cursor=pointer]:
+                  - /url: /resources/annual-reports
+        - generic [ref=e868]:
+          - generic [ref=e869]:
+            - link "Mosaic Multicultural Connections" [ref=e870] [cursor=pointer]:
+              - /url: /
+              - img "Mosaic Multicultural Connections" [ref=e871]
+            - paragraph [ref=e872]: Supporting multicultural communities across NSW with culturally appropriate services and programs.
+          - generic [ref=e873]:
+            - heading "Stay up to date" [level=3] [ref=e874]
+            - paragraph [ref=e875]: Get updates on our programs and community events
+            - generic [ref=e877]:
+              - textbox "Enter your email" [ref=e878]
+              - button "Subscribe" [ref=e879] [cursor=pointer]
+      - generic "Language selection" [ref=e880]:
+        - generic [ref=e882]:
+          - button "Change language to AR" [ref=e883] [cursor=pointer]:
+            - generic [ref=e884]: 🇸🇦
+            - generic [ref=e885]: AR
+          - button "Change language to ZH" [ref=e886] [cursor=pointer]:
+            - generic [ref=e887]: 🇨🇳
+            - generic [ref=e888]: ZH
+          - button "Change language to ZH" [ref=e889] [cursor=pointer]:
+            - generic [ref=e890]: 🇹🇼
+            - generic [ref=e891]: ZH
+          - button "Change language to EN" [ref=e892] [cursor=pointer]:
+            - generic [ref=e893]: 🇦🇺
+            - generic [ref=e894]: EN
+          - button "Change language to TL" [ref=e895] [cursor=pointer]:
+            - generic [ref=e896]: 🇵🇭
+            - generic [ref=e897]: TL
+          - button "Change language to HI" [ref=e898] [cursor=pointer]:
+            - generic [ref=e899]: 🇮🇳
+            - generic [ref=e900]: HI
+          - button "Change language to IT" [ref=e901] [cursor=pointer]:
+            - generic [ref=e902]: 🇮🇹
+            - generic [ref=e903]: IT
+          - button "Change language to RU" [ref=e904] [cursor=pointer]:
+            - generic [ref=e905]: 🇷🇺
+            - generic [ref=e906]: RU
+          - button "Change language to KU" [ref=e907] [cursor=pointer]:
+            - generic [ref=e908]: 🏳️
+            - generic [ref=e909]: KU
+          - button "Change language to FA" [ref=e910] [cursor=pointer]:
+            - generic [ref=e911]: 🇮🇷
+            - generic [ref=e912]: FA
+          - button "Change language to PT" [ref=e913] [cursor=pointer]:
+            - generic [ref=e914]: 🇵🇹
+            - generic [ref=e915]: PT
+          - button "Change language to SM" [ref=e916] [cursor=pointer]:
+            - generic [ref=e917]: 🇼🇸
+            - generic [ref=e918]: SM
+          - button "Change language to ES" [ref=e919] [cursor=pointer]:
+            - generic [ref=e920]: 🇪🇸
+            - generic [ref=e921]: ES
+          - button "Change language to SW" [ref=e922] [cursor=pointer]:
+            - generic [ref=e923]: 🇰🇪
+            - generic [ref=e924]: SW
+          - button "Change language to TH" [ref=e925] [cursor=pointer]:
+            - generic [ref=e926]: 🇹🇭
+            - generic [ref=e927]: TH
+          - button "Change language to UK" [ref=e928] [cursor=pointer]:
+            - generic [ref=e929]: 🇺🇦
+            - generic [ref=e930]: UK
+          - button "Change language to VI" [ref=e931] [cursor=pointer]:
+            - generic [ref=e932]: 🇻🇳
+            - generic [ref=e933]: VI
+      - generic [ref=e935]:
+        - paragraph [ref=e937]: © 2024 Mosaic Multicultural Connections. All rights reserved.
+        - generic [ref=e938]:
+          - link "Facebook" [ref=e939] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e940]: Facebook
+            - img [ref=e941]
+          - link "Instagram" [ref=e943] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e944]: Instagram
+            - img [ref=e945]
+          - link "Twitter" [ref=e947] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e948]: Twitter
+            - img [ref=e949]
+          - link "GitHub" [ref=e951] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e952]: GitHub
+            - img [ref=e953]
+          - link "YouTube" [ref=e955] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e956]: YouTube
+            - img [ref=e957]
+  - img [ref=e961]
+```

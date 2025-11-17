@@ -7,7 +7,14 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "scrape:reviews": "ts-node --transpile-only scripts/scrape-google-reviews.ts",
+    "scrape:reviews:xpath": "ts-node --transpile-only scripts/scrape-google-reviews-xpath.ts",
+    "scrape:reviews:custom": "ts-node --transpile-only scripts/scrape-google-reviews-custom.ts",
+    "verify:reviews": "ts-node --transpile-only scripts/verify-google-reviews.ts",
+    "ingest:testimonials:md": "ts-node --transpile-only scripts/ingest-testimonials-from-md.ts",
+    "test": "vitest",
+    "test:ui": "playwright test"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
@@ -34,6 +41,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^20.19.25",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
@@ -42,11 +51,18 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.11",
     "globals": "^15.9.0",
+    "jsdom": "^27.2.0",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
-    "vite": "^5.4.2"
+    "vite": "^5.4.2",
+    "vitest": "^1.6.1"
+  },
+  "optionalDependencies": {
+    "puppeteer": "^22.15.0",
+    "sanitize-html": "^2.17.0"
   },
   "engines": {
     "node": ">=20"

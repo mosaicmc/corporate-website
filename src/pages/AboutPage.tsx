@@ -2,7 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
 import { Timeline } from '../components/ui/timeline';
-import GooglePlaceReviews from '../components/GooglePlaceReviews';
+import { Card, CardContent } from '../components/ui/card';
+import { Avatar } from '../components/ui/avatar';
 
 const AboutPage = () => {
   return (
@@ -127,21 +128,22 @@ const AboutPage = () => {
               { icon: "🤝", title: "Inclusion", desc: "Creating welcoming, accessible services" },
               { icon: "⭐", title: "Excellence", desc: "Delivering high-quality, professional services" }
             ].map((value, index) => (
-              <div 
+              <Card
                 key={index}
-                className="backdrop-blur-xl bg-sand/70 dark:bg-white/10 rounded-2xl p-8 text-center border border-sky/30 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] hover:bg-sand/80 dark:hover:bg-white/15"
+                className="p-8 text-center hover:scale-[1.02]"
               >
-                <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{value.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{value.desc}</p>
-              </div>
+                <CardContent className="text-center">
+                  <div className="text-4xl mb-4">{value.icon}</div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{value.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300">{value.desc}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Google Reviews (authentic via Google Places API when available) */}
-      <GooglePlaceReviews />
+      {/* Leadership */}
 
       {/* History - Scroll-Based Timeline */}
       <Timeline data={[
@@ -292,30 +294,24 @@ const AboutPage = () => {
                 image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=300"
               }
             ].map((member, index) => (
-              <div 
-                key={index} 
-                className="group backdrop-blur-xl bg-sand/70 dark:bg-white/10 rounded-2xl p-8 text-center border border-sky/30 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] hover:bg-sand/80 dark:hover:bg-white/15"
+              <Card
+                key={index}
+                className="group relative p-8 text-center hover:scale-[1.02]"
               >
-                {/* Gradient overlay for depth */}
-                <div className="absolute inset-0 bg-gradient-to-br from-sand/30 dark:from-white/5 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div className="relative z-10">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-24 h-24 rounded-full object-cover mx-auto mb-6 border-4 border-white dark:border-slate-700 shadow-lg"
-                  />
+                <CardContent className="relative z-10">
+                  <div className="mx-auto mb-6">
+                    <Avatar src={member.image} alt={member.name} name={member.name} size={96} className="border-4 border-white dark:border-slate-700 shadow-lg" />
+                  </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{member.name}</h3>
                   <p className="text-sky font-semibold mb-3">{member.role}</p>
                   <p className="text-gray-600 dark:text-gray-300">{member.background}</p>
-                </div>
+                </CardContent>
 
-                {/* Subtle top accent */}
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-1 rounded-b-full bg-gradient-to-r from-sky to-sky/80 opacity-60"></div>
-                
-                {/* Corner glow effect */}
+                {/* Decorative accents */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-sand/30 dark:from-white/5 via-transparent to-transparent"></div>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 rounded-b-full bg-gradient-to-r from-sky to-sky/80 opacity-60"></div>
                 <div className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-sky opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm"></div>
-              </div>
+              </Card>
             ))}
           </div>
         </div>

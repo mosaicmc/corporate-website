@@ -5,6 +5,7 @@ import ServiceCards from '../components/ServiceCards';
 import Statistics from '../components/Statistics';
 import Testimonials from '../components/Testimonials';
 import SimpleCTA from '../components/SimpleCTA';
+import GoogleReviews from '../components/GoogleReviews';
 
 const HomePage = () => {
   return (
@@ -20,6 +21,7 @@ const HomePage = () => {
       <ServiceCards />
       <Statistics />
       <Testimonials />
+      <GoogleReviews />
       <SimpleCTA />
     </div>
   );

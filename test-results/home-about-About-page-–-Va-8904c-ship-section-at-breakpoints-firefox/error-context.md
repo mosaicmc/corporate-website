@@ -1,0 +1,325 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#main"
+    - generic [ref=e6]:
+      - combobox [ref=e8]
+      - text: Powered by
+      - link [ref=e10] [cursor=pointer]:
+        - /url: https://translate.google.com
+        - text: Translate
+    - navigation [ref=e11]:
+      - generic [ref=e13]:
+        - link "Mosaic Multicultural Connections" [ref=e14] [cursor=pointer]:
+          - /url: /
+          - img "Mosaic Multicultural Connections" [ref=e15]
+        - generic [ref=e16]:
+          - button "common.changeLanguage" [ref=e18] [cursor=pointer]:
+            - img [ref=e19]
+          - button "Toggle menu" [ref=e23] [cursor=pointer]:
+            - img
+            - generic [ref=e24]: Toggle menu
+    - main [ref=e25]:
+      - navigation "Breadcrumb" [ref=e26]:
+        - list [ref=e28]:
+          - listitem [ref=e29]:
+            - link "Home" [ref=e30] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e31]:
+            - generic [ref=e32]: /
+            - generic [ref=e33]: About
+      - generic [ref=e34]:
+        - generic [ref=e40]:
+          - generic [ref=e43]: Our Story
+          - heading "About Mosaic Multicultural Connections" [level=1] [ref=e44]
+          - paragraph [ref=e45]: For nearly 45 years, we've been dedicated to supporting diverse communities across NSW, helping families build new lives while celebrating their cultural heritage.
+          - generic [ref=e46]:
+            - generic [ref=e47]:
+              - generic [ref=e48]: 45+
+              - generic [ref=e49]: Years of Service
+            - generic [ref=e50]:
+              - generic [ref=e51]: 25+
+              - generic [ref=e52]: Communities Served
+            - generic [ref=e53]:
+              - generic [ref=e54]: 15,000+
+              - generic [ref=e55]: Families Supported
+        - generic [ref=e63]:
+          - generic [ref=e66]: Our Mission
+          - heading "Empowering Multicultural Communities Across NSW" [level=2] [ref=e67]
+          - generic [ref=e68]:
+            - paragraph [ref=e69]: To empower multicultural communities across NSW by providing culturally appropriate support services that promote independence, wellbeing, and social inclusion.
+            - paragraph [ref=e70]: We believe that diversity strengthens our communities, and every person deserves the opportunity to thrive while maintaining their cultural identity.
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - generic [ref=e79]: Our Values
+            - heading "What Guides Our Work" [level=2] [ref=e80]
+            - paragraph [ref=e81]: Our values are the foundation of every interaction, every service, and every relationship we build with the communities we serve.
+          - generic [ref=e82]:
+            - generic [ref=e84]:
+              - generic [ref=e85]: 🌍
+              - heading "Cultural Respect" [level=3] [ref=e86]
+              - paragraph [ref=e87]: Honoring and celebrating cultural diversity
+            - generic [ref=e89]:
+              - generic [ref=e90]: 💪
+              - heading "Empowerment" [level=3] [ref=e91]
+              - paragraph [ref=e92]: Building capacity and independence
+            - generic [ref=e94]:
+              - generic [ref=e95]: 🤝
+              - heading "Inclusion" [level=3] [ref=e96]
+              - paragraph [ref=e97]: Creating welcoming, accessible services
+            - generic [ref=e99]:
+              - generic [ref=e100]: ⭐
+              - heading "Excellence" [level=3] [ref=e101]
+              - paragraph [ref=e102]: Delivering high-quality, professional services
+        - generic [ref=e103]:
+          - generic [ref=e107]:
+            - generic [ref=e110]: Our Journey
+            - heading "Our History" [level=2] [ref=e111]
+            - paragraph [ref=e112]: From government initiative to community cornerstone - four decades of multicultural support
+          - generic [ref=e115]:
+            - generic [ref=e119]:
+              - heading "1978" [level=3] [ref=e120]
+              - generic [ref=e122]:
+                - heading "Government Initiative" [level=4] [ref=e123]
+                - paragraph [ref=e124]: Australian government established Migrant Resource Centres around Australia to support growing multicultural communities.
+            - generic [ref=e128]:
+              - heading "1981" [level=3] [ref=e129]
+              - generic [ref=e131]:
+                - heading "Foundation Year" [level=4] [ref=e132]
+                - paragraph [ref=e133]: Mosaic Multicultural Connections was founded as the Migrant Resource Centre for Newcastle and Hunter, beginning our journey of community support.
+            - generic [ref=e137]:
+              - heading "1984" [level=3] [ref=e138]
+              - generic [ref=e140]:
+                - heading "Leadership Growth" [level=4] [ref=e141]
+                - paragraph [ref=e142]: The work and reach of the Centre grew under CEO Violetta Walsh's leadership, expanding services and community connections.
+            - generic [ref=e146]:
+              - heading "1985" [level=3] [ref=e147]
+              - generic [ref=e149]:
+                - heading "Hamilton Relocation" [level=4] [ref=e150]
+                - paragraph [ref=e151]: The Newcastle and Hunter Centre moved to Hamilton, establishing a more central location to better serve the community.
+            - generic [ref=e155]:
+              - heading "2007" [level=3] [ref=e156]
+              - generic [ref=e158]:
+                - heading "Rebranding" [level=4] [ref=e159]
+                - paragraph [ref=e160]: Our name changed to Northern Settlement Services Limited, reflecting our expanded scope and professional growth.
+            - generic [ref=e164]:
+              - heading "2012" [level=3] [ref=e165]
+              - generic [ref=e167]:
+                - heading "New Leadership" [level=4] [ref=e168]
+                - paragraph [ref=e169]: Lulu Tantos became the new CEO, bringing fresh vision and continued commitment to multicultural support.
+            - generic [ref=e173]:
+              - heading "2019" [level=3] [ref=e174]
+              - generic [ref=e176]:
+                - heading "New Chapter" [level=4] [ref=e177]
+                - paragraph [ref=e178]: Sharon Daishe became CEO, ready to take the organisation into a new chapter of innovation and expanded services.
+            - generic [ref=e182]:
+              - heading "2022" [level=3] [ref=e183]
+              - generic [ref=e185]:
+                - heading "Mosaic Identity" [level=4] [ref=e186]
+                - paragraph [ref=e187]: Commenced trading under the new name Mosaic Multicultural Connections (Mosaic), reflecting our diverse, interconnected community approach.
+            - generic [ref=e191]:
+              - heading "2024" [level=3] [ref=e192]
+              - generic [ref=e194]:
+                - heading "Charlestown Move" [level=4] [ref=e195]
+                - paragraph [ref=e196]: The Newcastle and Hunter Centre moved to Charlestown, continuing our commitment to accessible, community-centered services.
+        - generic [ref=e202]:
+          - generic [ref=e203]:
+            - generic [ref=e206]: Leadership
+            - heading "Our Leadership Team" [level=2] [ref=e207]
+            - paragraph [ref=e208]: Experienced professionals committed to serving multicultural communities with passion and expertise.
+          - generic [ref=e209]:
+            - generic [ref=e211]:
+              - generic "Avatar for Sarah Chen" [ref=e213]:
+                - img "Sarah Chen" [ref=e214]
+              - heading "Sarah Chen" [level=3] [ref=e215]
+              - paragraph [ref=e216]: Chief Executive Officer
+              - paragraph [ref=e217]: 20+ years in multicultural services
+            - generic [ref=e222]:
+              - generic "Avatar for Ahmed Hassan" [ref=e224]:
+                - img "Ahmed Hassan" [ref=e225]
+              - heading "Ahmed Hassan" [level=3] [ref=e226]
+              - paragraph [ref=e227]: Director of Settlement Services
+              - paragraph [ref=e228]: Former refugee, community advocate
+            - generic [ref=e233]:
+              - generic "Avatar for Maria Santos" [ref=e235]:
+                - img "Maria Santos" [ref=e236]
+              - heading "Maria Santos" [level=3] [ref=e237]
+              - paragraph [ref=e238]: Director of Aged Care
+              - paragraph [ref=e239]: Registered nurse, cultural competency expert
+      - complementary [ref=e243]:
+        - generic [ref=e244]:
+          - heading "You may also be interested in…" [level=2] [ref=e245]
+          - generic [ref=e246]:
+            - link "Services" [ref=e247] [cursor=pointer]:
+              - /url: /services
+            - link "Resources" [ref=e248] [cursor=pointer]:
+              - /url: /resources
+            - link "Get Involved" [ref=e249] [cursor=pointer]:
+              - /url: /get-involved
+            - link "Contact" [ref=e250] [cursor=pointer]:
+              - /url: /contact
+    - contentinfo [ref=e251]:
+      - generic [ref=e252]:
+        - generic [ref=e253]:
+          - generic [ref=e254]:
+            - heading "Overview" [level=3] [ref=e255]
+            - list [ref=e256]:
+              - listitem [ref=e257]:
+                - link "About" [ref=e258] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e259]:
+                - link "All Services" [ref=e260] [cursor=pointer]:
+                  - /url: /services
+              - listitem [ref=e261]:
+                - link "Locations" [ref=e262] [cursor=pointer]:
+                  - /url: /locations
+              - listitem [ref=e263]:
+                - link "Stories" [ref=e264] [cursor=pointer]:
+                  - /url: /stories
+          - generic [ref=e265]:
+            - heading "Services" [level=3] [ref=e266]
+            - list [ref=e267]:
+              - listitem [ref=e268]:
+                - link "Settlement Support" [ref=e269] [cursor=pointer]:
+                  - /url: /services/settlement-support
+              - listitem [ref=e270]:
+                - link "Aged Care Services" [ref=e271] [cursor=pointer]:
+                  - /url: /services/aged-care
+              - listitem [ref=e272]:
+                - link "Family Support" [ref=e273] [cursor=pointer]:
+                  - /url: /services/family-support
+              - listitem [ref=e274]:
+                - link "Community Engagement" [ref=e275] [cursor=pointer]:
+                  - /url: /services/community-engagement
+          - generic [ref=e276]:
+            - heading "Get Involved" [level=3] [ref=e277]
+            - list [ref=e278]:
+              - listitem [ref=e279]:
+                - link "Get Involved" [ref=e280] [cursor=pointer]:
+                  - /url: /get-involved
+              - listitem [ref=e281]:
+                - link "Get Involved" [ref=e282] [cursor=pointer]:
+                  - /url: /get-involved
+              - listitem [ref=e283]:
+                - link "Donate" [ref=e284] [cursor=pointer]:
+                  - /url: /get-involved
+              - listitem [ref=e285]:
+                - link "Contact" [ref=e286] [cursor=pointer]:
+                  - /url: /contact
+          - generic [ref=e287]:
+            - heading "Help" [level=3] [ref=e288]
+            - list [ref=e289]:
+              - listitem [ref=e290]:
+                - link "Resources" [ref=e291] [cursor=pointer]:
+                  - /url: /resources
+              - listitem [ref=e292]:
+                - link "Emergency & Translation" [ref=e293] [cursor=pointer]:
+                  - /url: /resources/emergency-translation
+              - listitem [ref=e294]:
+                - link "Privacy" [ref=e295] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=e296]:
+                - link "Terms" [ref=e297] [cursor=pointer]:
+                  - /url: "#"
+          - generic [ref=e298]:
+            - heading "About Mosaic" [level=3] [ref=e299]
+            - list [ref=e300]:
+              - listitem [ref=e301]:
+                - link "Knowledge Base" [ref=e302] [cursor=pointer]:
+                  - /url: /company/knowledge-base
+              - listitem [ref=e303]:
+                - link "Annual Reports" [ref=e304] [cursor=pointer]:
+                  - /url: /resources/annual-reports
+        - generic [ref=e305]:
+          - generic [ref=e306]:
+            - link "Mosaic Multicultural Connections" [ref=e307] [cursor=pointer]:
+              - /url: /
+              - img "Mosaic Multicultural Connections" [ref=e308]
+            - paragraph [ref=e309]: Supporting multicultural communities across NSW with culturally appropriate services and programs.
+          - generic [ref=e310]:
+            - heading "Stay up to date" [level=3] [ref=e311]
+            - paragraph [ref=e312]: Get updates on our programs and community events
+            - generic [ref=e314]:
+              - textbox "Enter your email" [ref=e315]
+              - button "Subscribe" [ref=e316] [cursor=pointer]
+      - generic "Language selection" [ref=e317]:
+        - generic [ref=e319]:
+          - button "Change language to AR" [ref=e320] [cursor=pointer]:
+            - generic [ref=e321]: 🇸🇦
+            - generic [ref=e322]: AR
+          - button "Change language to ZH" [ref=e323] [cursor=pointer]:
+            - generic [ref=e324]: 🇨🇳
+            - generic [ref=e325]: ZH
+          - button "Change language to ZH" [ref=e326] [cursor=pointer]:
+            - generic [ref=e327]: 🇹🇼
+            - generic [ref=e328]: ZH
+          - button "Change language to EN" [ref=e329] [cursor=pointer]:
+            - generic [ref=e330]: 🇦🇺
+            - generic [ref=e331]: EN
+          - button "Change language to TL" [ref=e332] [cursor=pointer]:
+            - generic [ref=e333]: 🇵🇭
+            - generic [ref=e334]: TL
+          - button "Change language to HI" [ref=e335] [cursor=pointer]:
+            - generic [ref=e336]: 🇮🇳
+            - generic [ref=e337]: HI
+          - button "Change language to IT" [ref=e338] [cursor=pointer]:
+            - generic [ref=e339]: 🇮🇹
+            - generic [ref=e340]: IT
+          - button "Change language to RU" [ref=e341] [cursor=pointer]:
+            - generic [ref=e342]: 🇷🇺
+            - generic [ref=e343]: RU
+          - button "Change language to KU" [ref=e344] [cursor=pointer]:
+            - generic [ref=e345]: 🏳️
+            - generic [ref=e346]: KU
+          - button "Change language to FA" [ref=e347] [cursor=pointer]:
+            - generic [ref=e348]: 🇮🇷
+            - generic [ref=e349]: FA
+          - button "Change language to PT" [ref=e350] [cursor=pointer]:
+            - generic [ref=e351]: 🇵🇹
+            - generic [ref=e352]: PT
+          - button "Change language to SM" [ref=e353] [cursor=pointer]:
+            - generic [ref=e354]: 🇼🇸
+            - generic [ref=e355]: SM
+          - button "Change language to ES" [ref=e356] [cursor=pointer]:
+            - generic [ref=e357]: 🇪🇸
+            - generic [ref=e358]: ES
+          - button "Change language to SW" [ref=e359] [cursor=pointer]:
+            - generic [ref=e360]: 🇰🇪
+            - generic [ref=e361]: SW
+          - button "Change language to TH" [ref=e362] [cursor=pointer]:
+            - generic [ref=e363]: 🇹🇭
+            - generic [ref=e364]: TH
+          - button "Change language to UK" [ref=e365] [cursor=pointer]:
+            - generic [ref=e366]: 🇺🇦
+            - generic [ref=e367]: UK
+          - button "Change language to VI" [ref=e368] [cursor=pointer]:
+            - generic [ref=e369]: 🇻🇳
+            - generic [ref=e370]: VI
+      - generic [ref=e372]:
+        - paragraph [ref=e374]: © 2024 Mosaic Multicultural Connections. All rights reserved.
+        - generic [ref=e375]:
+          - link "Facebook" [ref=e376] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e377]: Facebook
+            - img [ref=e378]
+          - link "Instagram" [ref=e380] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e381]: Instagram
+            - img [ref=e382]
+          - link "Twitter" [ref=e384] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e385]: Twitter
+            - img [ref=e386]
+          - link "GitHub" [ref=e388] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e389]: GitHub
+            - img [ref=e390]
+          - link "YouTube" [ref=e392] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e393]: YouTube
+            - img [ref=e394]
+  - img [ref=e398]
+```
