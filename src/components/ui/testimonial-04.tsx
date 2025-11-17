@@ -1,12 +1,14 @@
 import React from 'react';
+import { HeartPulse, UsersRound, Home, ClipboardList, HandHeart, GraduationCap, UserRound, Handshake } from 'lucide-react';
+
 import { cn } from '@/lib/utils';
 
 interface TestimonialProps {
   testimonial: string;
-  name: string;
-  role: string;
-  origin: string;
-  image: string;
+  name?: string;
+  role?: string;
+  origin?: string;
+  image?: string;
 }
 
 interface TestimonialSectionProps {
@@ -18,105 +20,127 @@ interface TestimonialSectionProps {
   className?: string;
 }
 
-// Determine a simple role category based on role text
-function getRoleType(role: string): 'agedCare' | 'settlement' | 'volunteer' | 'generic' {
-  const r = (role || '').toLowerCase();
-  if (r.includes('aged care')) return 'agedCare';
-  if (r.includes('settlement')) return 'settlement';
-  if (r.includes('volunteer')) return 'volunteer';
+type RoleCategory =
+  | 'agedCare'
+  | 'agedCareFamily'
+  | 'settlement'
+  | 'admin'
+  | 'volunteer'
+  | 'community'
+  | 'generic';
+
+const ROLE_CATEGORY_STYLES: Record<RoleCategory, { bg: string; ring: string; Icon: React.ComponentType<React.SVGProps<SVGSVGElement>> }> = {
+  agedCare: { bg: 'bg-rose-500', ring: 'border-rose-100 dark:border-rose-400/40', Icon: HeartPulse },
+  agedCareFamily: { bg: 'bg-rose-400', ring: 'border-rose-100 dark:border-rose-300/40', Icon: UsersRound },
+  settlement: { bg: 'bg-indigo-500', ring: 'border-indigo-100 dark:border-indigo-400/40', Icon: Home },
+  admin: { bg: 'bg-amber-500', ring: 'border-amber-100 dark:border-amber-300/40', Icon: ClipboardList },
+  volunteer: { bg: 'bg-emerald-600', ring: 'border-emerald-100 dark:border-emerald-300/40', Icon: HandHeart },
+  community: { bg: 'bg-sky-500', ring: 'border-sky-100 dark:border-sky-300/40', Icon: Handshake },
+  generic: { bg: 'bg-slate-500', ring: 'border-slate-100 dark:border-slate-400/40', Icon: UserRound },
+};
+
+const ROLE_CATEGORY_KEYWORDS: { type: RoleCategory; keywords: string[] }[] = [
+  { type: 'agedCareFamily', keywords: ['aged care family', 'family member'] },
+  { type: 'agedCare', keywords: ['aged care', 'care support', 'home care', 'scheduler'] },
+  { type: 'volunteer', keywords: ['volunteer', 'acvvs', 'mentor', 'tutor', 'citizenship', 'homework centre'] },
+  { type: 'settlement', keywords: ['settlement', 'families communities', 'housing', 'caseworker'] },
+  { type: 'admin', keywords: ['admin services', 'reception', 'front desk'] },
+  { type: 'community', keywords: ['community member', 'community'] },
+];
+
+function normalizeRole(role?: string): string {
+  return (role || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getRoleCategory(role?: string): RoleCategory {
+  const normalized = normalizeRole(role);
+  if (!normalized) return 'generic';
+  for (const matcher of ROLE_CATEGORY_KEYWORDS) {
+    if (matcher.keywords.some((keyword) => normalized.includes(keyword))) {
+      return matcher.type;
+    }
+  }
   return 'generic';
 }
 
-// Inline SVG avatar that adapts to role category
-const RoleAvatar = ({ role, name }: { role: string; name: string }) => {
-  const type = getRoleType(role);
-  const bg =
-    type === 'agedCare' ? 'bg-pink-500' :
-    type === 'settlement' ? 'bg-sky-500' :
-    type === 'volunteer' ? 'bg-emerald-500' :
-    'bg-gray-400';
-  const fg = 'text-white';
+const RoleAvatar = ({ role, name }: { role?: string; name?: string }) => {
+  const category = getRoleCategory(role);
+  const { bg, ring, Icon } = ROLE_CATEGORY_STYLES[category];
+
   return (
-    <div className={`w-12 h-12 rounded-full ${bg} border-2 border-gray-200 dark:border-white/20 flex items-center justify-center`} aria-label={name || role || 'Community Member'}>
-      {/* Accessible title for screen readers */}
-      <svg aria-hidden="true" className={`w-7 h-7 ${fg}`} viewBox="0 0 24 24" fill="currentColor">
-        {type === 'agedCare' && (
-          // Heart icon
-          <path d="M12 21s-6.716-4.06-9.023-7.07C1.072 12.912 1 10.6 2.586 9.014a4.5 4.5 0 0 1 6.364 0L12 11.07l3.05-3.056a4.5 4.5 0 0 1 6.364 6.364C18.716 16.94 12 21 12 21z" />
-        )}
-        {type === 'settlement' && (
-          // User group icon
-          <>
-            <circle cx="8" cy="8" r="3" />
-            <circle cx="16" cy="10" r="2.5" />
-            <path d="M4 20c0-3 2.5-5 6-5s6 2 6 5" />
-          </>
-        )}
-        {type === 'volunteer' && (
-          // Hand + heart icon
-          <>
-            <path d="M6 14l4 2c1 .5 2 .5 3-.2l3-2.3" />
-            <path d="M16.5 7.5c1-1 2.6-1 3.6 0 1 1 .9 2.6 0 3.6L18 13l-2.1-1.9c-1-1-1-2.6.6-3.6z" />
-          </>
-        )}
-        {type === 'generic' && (
-          // Single user icon
-          <>
-            <circle cx="12" cy="8" r="3.2" />
-            <path d="M5 20c0-3.2 3.6-5 7-5s7 1.8 7 5" />
-          </>
-        )}
-      </svg>
+    <div
+      className={cn(
+        'w-12 h-12 rounded-full flex items-center justify-center border-2 text-white shadow-lg shadow-black/10 dark:shadow-black/40',
+        bg,
+        ring
+      )}
+      aria-label={name || role || 'Community Member'}
+    >
+      <span className="sr-only">{role || 'Community Member'}</span>
+      <Icon className="w-6 h-6" aria-hidden="true" />
     </div>
   );
 };
 
-const TestimonialCard = ({ testimonial, name, role, origin, image }: TestimonialProps) => (
-  <div className="group w-80 flex-shrink-0 mx-4 pt-1 pr-1">
-    {/* Glass morphism card with enhanced effects - Added padding to prevent clipping */}
-    <div className="relative h-full backdrop-blur-xl bg-white/70 dark:bg-white/10 rounded-2xl p-6 border border-white/50 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-white/80 dark:group-hover:bg-white/15">
-      
-      {/* Gradient overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/20 dark:from-white/5 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-      
-      {/* Content with enhanced readability */}
-      <div className="relative z-10 h-full flex flex-col">
-        {/* Quote */}
-        <blockquote className="text-gray-700 dark:text-white/90 leading-relaxed mb-6 text-base flex-1">
-          "{testimonial}"
-        </blockquote>
+const TestimonialCard = ({ testimonial, name, role, origin, image }: TestimonialProps) => {
+  const [imageError, setImageError] = React.useState(false);
+  const showImage = Boolean(image && !imageError);
+
+  return (
+    <div className="group w-80 flex-shrink-0 mx-4 pt-1 pr-1">
+      {/* Glass morphism card with enhanced effects - Added padding to prevent clipping */}
+      <div className="relative h-full backdrop-blur-xl bg-white/70 dark:bg-white/10 rounded-2xl p-6 border border-white/50 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-white/80 dark:group-hover:bg-white/15">
         
-        {/* Author info */}
-        <div className="flex items-center space-x-4 mt-auto">
-          {image ? (
-            <img
-              src={image}
-              alt={name || role || 'Community Member'}
-              className="w-12 h-12 rounded-full object-cover border-2 border-gray-200 dark:border-white/20"
-            />
-          ) : (
-            <RoleAvatar role={role} name={name} />
-          )}
-          <div>
-            {name ? (
-              <div className="font-semibold text-gray-900 dark:text-white text-sm">{name}</div>
-            ) : null}
-            <div className="text-gray-600 dark:text-white/70 text-xs">{role}</div>
-            {origin ? (
-              <div className="text-gray-500 dark:text-white/60 text-xs">{origin}</div>
-            ) : null}
+        {/* Gradient overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/20 dark:from-white/5 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        
+        {/* Content with enhanced readability */}
+        <div className="relative z-10 h-full flex flex-col">
+          {/* Quote */}
+          <blockquote className="text-gray-700 dark:text-white/90 leading-relaxed mb-6 text-base flex-1">
+            "{testimonial}"
+          </blockquote>
+          
+          {/* Author info */}
+          <div className="flex items-center space-x-4 mt-auto">
+            {showImage ? (
+              <img
+                src={image}
+                alt={name || role || 'Community Member'}
+                className="w-12 h-12 rounded-full object-cover border-2 border-gray-200 dark:border-white/20"
+                loading="lazy"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <RoleAvatar role={role} name={name} />
+            )}
+            <div>
+              {name ? (
+                <div className="font-semibold text-gray-900 dark:text-white text-sm">{name}</div>
+              ) : null}
+              <div className="text-gray-600 dark:text-white/70 text-xs">{role}</div>
+              {origin ? (
+                <div className="text-gray-500 dark:text-white/60 text-xs">{origin}</div>
+              ) : null}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Subtle top accent */}
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-1 rounded-b-full bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 opacity-60"></div>
-      
-      {/* Corner glow effect - Adjusted position to prevent clipping */}
-      <div className="absolute top-1 right-1 w-3 h-3 rounded-full bg-blue-500 dark:bg-blue-400 opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm"></div>
+        {/* Subtle top accent */}
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-1 rounded-b-full bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 opacity-60"></div>
+        
+        {/* Corner glow effect - Adjusted position to prevent clipping */}
+        <div className="absolute top-1 right-1 w-3 h-3 rounded-full bg-blue-500 dark:bg-blue-400 opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm"></div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export function Testimonial04({ 
   title = "What Our Community Says",

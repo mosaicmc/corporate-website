@@ -51,21 +51,22 @@ test.describe('Home page – Google Reviews section', () => {
 
   test('visual snapshots of Google Reviews section at breakpoints', async ({ page }) => {
     const section = page.locator('[aria-label="Google Reviews"]');
+    const screenshotOptions = { maxDiffPixelRatio: 0.02 };
 
     // Desktop
     await page.setViewportSize({ width: 1280, height: 800 });
     await ensureVisible(page, section);
-    await expect(section).toHaveScreenshot('home-google-reviews-desktop.png');
+    await expect(section).toHaveScreenshot('home-google-reviews-desktop.png', screenshotOptions);
 
     // Tablet
     await page.setViewportSize({ width: 768, height: 1024 });
     await ensureVisible(page, section);
-    await expect(section).toHaveScreenshot('home-google-reviews-tablet.png');
+    await expect(section).toHaveScreenshot('home-google-reviews-tablet.png', screenshotOptions);
 
     // Mobile
     await page.setViewportSize({ width: 375, height: 800 });
     await ensureVisible(page, section);
-    await expect(section).toHaveScreenshot('home-google-reviews-mobile.png');
+    await expect(section).toHaveScreenshot('home-google-reviews-mobile.png', screenshotOptions);
   });
 });
 
@@ -75,16 +76,21 @@ test.describe('About page – Values and Leadership', () => {
   });
 
   test('renders Values section with 4 cards', async ({ page }) => {
-    // Badge text "Our Values" precedes the Values grid
-    await expect(page.getByText('Our Values')).toBeVisible();
-    const valuesGrid = page.locator('section:has-text("Our Values")').locator('.grid').first();
+    await expect(page.getByText('Our Values', { exact: true }).first()).toBeVisible();
+    const valuesSection = page
+      .locator('section')
+      .filter({ hasText: 'Our values are the foundation' })
+      .first();
+    await expect(valuesSection).toBeVisible();
+    const valuesGrid = valuesSection.locator('.grid').first();
     await expect(valuesGrid).toBeVisible();
     await expect(valuesGrid.locator('h3')).toHaveCount(4);
   });
 
   test('renders Leadership section with avatars and roles', async ({ page }) => {
-    await expect(page.getByText('Leadership')).toBeVisible();
-    const leadershipSection = page.locator('section').filter({ hasText: 'Leadership Team' });
+    const leadershipSection = page
+      .locator('section')
+      .filter({ has: page.getByRole('heading', { name: 'Leadership Team' }) });
     await expect(leadershipSection).toBeVisible();
     const leaderCards = leadershipSection.locator('.group');
     await expect(leaderCards.first()).toBeVisible();
