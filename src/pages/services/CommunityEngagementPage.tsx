@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Handshake, Phone, ArrowRight, CheckCircle, Users, Calendar, Globe, ChevronDown, ChevronUp, Mail, Heart, Award } from 'lucide-react';
+import FAQSchema from '@/components/FAQSchema';
+import { Handshake, Phone, ArrowRight, CheckCircle, Calendar, Globe, ChevronDown, ChevronUp, Heart, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Team05 from '../../components/ui/team-05';
 import RelatedServices from '../../components/RelatedServices';
@@ -12,52 +13,25 @@ const CommunityEngagementPage = () => {
 
   const teamMembers = [
     {
-      name: "Carlos Rodriguez",
-      role: "Community Engagement Manager",
-      qualifications: "Master's in Community Development, Cultural Festival Coordinator, Multicultural Event Specialist",
-      languages: ["English", "Spanish", "Portuguese"],
-      phone: "(02) 4926 1501",
-      email: "c.rodriguez@mosaicmc.org.au"
-    },
-    {
-      name: "Jennifer Kim",
-      role: "Volunteer Coordinator",
-      qualifications: "Bachelor's Social Work, Volunteer Management Certification, Community Leadership Development",
-      languages: ["English", "Korean", "Japanese"],
-      phone: "(02) 4926 1502",
-      email: "j.kim@mosaicmc.org.au"
-    },
-    {
-      name: "Hassan Al-Rashid",
-      role: "Cultural Programs Coordinator",
-      qualifications: "Community Arts background, Cultural Competency Trainer, Event Management Specialist",
-      languages: ["English", "Arabic", "Kurdish"],
-      phone: "(02) 4926 1503",
-      email: "h.alrashid@mosaicmc.org.au"
-    },
-    {
-      name: "Elena Ferguson",
-      role: "Community Advocacy Worker",
-      qualifications: "Social Science degree, Policy advocacy experience, Community consultation specialist",
-      languages: ["English", "Russian", "Ukrainian"],
-      phone: "(02) 4926 1504",
-      email: "e.ferguson@mosaicmc.org.au"
-    },
-    {
-      name: "David Thompson",
-      role: "Partnership Development Officer",
-      qualifications: "Business development background, Stakeholder engagement specialist, Grant writing expertise",
+      name: "Chiyedza Magwerekwete",
+      role: "Multicultural Case Worker",
+      qualifications: "Multicultural casework and community support",
       languages: ["English"],
-      phone: "(02) 4926 1505",
-      email: "d.thompson@mosaicmc.org.au"
+      email: "c.magwerekwete@mosaicmc.org.au"
     },
     {
-      name: "Amara Okafor",
-      role: "Cultural Events Coordinator",
-      qualifications: "Event management specialist, Cultural celebration expert, Community outreach coordinator",
-      languages: ["English", "Igbo", "French"],
-      phone: "(02) 4926 1506",
-      email: "a.okafor@mosaicmc.org.au"
+      name: "Natalia Meliendrez",
+      role: "Multicultural Community Development Lead – Central Coast",
+      qualifications: "Community services leadership and multicultural community development",
+      phone: "0431 491 748",
+      email: "n.meliendrez@mosaicmc.org.au"
+    },
+    {
+      name: "Michael Freund",
+      role: "Coordinator Settlement Volunteers – Newcastle",
+      qualifications: "Volunteer coordination and community engagement",
+      languages: ["English"],
+      email: "m.freund@mosaicmc.org.au"
     }
   ];
 
@@ -83,8 +57,8 @@ const CommunityEngagementPage = () => {
       answer: "Our advocacy services include representing community interests in policy discussions, providing submissions to government consultations, advocating for improved multicultural services, supporting individual advocacy needs, and raising awareness about multicultural issues. We work at local, state, and federal levels to ensure multicultural voices are heard and multicultural communities receive appropriate support and recognition."
     },
     {
-      question: "How can organizations partner with you?",
-      answer: "Organizations can partner with us through joint program development, cultural competency training provision, event collaboration and sponsorship, volunteer program partnerships, and policy advocacy initiatives. We work with businesses, government agencies, educational institutions, and community organizations to create more inclusive and culturally responsive services and programs throughout NSW."
+      question: "How can organisations partner with you?",
+      answer: "Organisations can partner with us through joint program development, cultural competency training provision, event collaboration and sponsorship, volunteer program partnerships, and policy advocacy initiatives. We work with businesses, government agencies, educational institutions, and community organisations to create more inclusive and culturally responsive services and programs throughout NSW."
     }
   ];
 
@@ -154,6 +128,7 @@ const CommunityEngagementPage = () => {
         <title>Mosaic Multicultural - Community Engagement</title>
         <meta name="description" content="Community engagement programs including cultural festivals, leadership development, volunteering, and advocacy to build inclusive communities." />
       </Helmet>
+      <FAQSchema faqs={faqData} name="Community Engagement FAQs" />
       {/* Hero Section with enhanced animations */}
       <section className="relative py-32 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 transition-colors duration-300 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden">
         {/* Animated background elements */}
@@ -172,23 +147,109 @@ const CommunityEngagementPage = () => {
             </div>
             <h1 className="text-5xl font-bold mb-6 text-gray-900 dark:text-white animate-fade-in-up">Building Stronger, More Inclusive Communities Together</h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-              Community engagement is at the heart of everything we do at Mosaic. Our Community Engagement programs create meaningful opportunities for participation, cultural celebration, leadership development, and social connection across diverse communities. From organizing vibrant multicultural festivals to developing community leaders and advocating for inclusive policies, we work to ensure every voice is heard and every culture is celebrated.
+              Community engagement is at the heart of everything we do at Mosaic. Our Community Engagement programs create meaningful opportunities for participation, cultural celebration, leadership development, and social connection across diverse communities. From organising vibrant multicultural festivals to developing community leaders and advocating for inclusive policies, we work to ensure every voice is heard and every culture is celebrated.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '400ms' }}>
               <Link
                 to="#programs"
-                className="bg-gradient-to-r from-leaf to-leaf/90 hover:from-leaf/90 hover:to-leaf text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-leaf/25"
+                className="bg-gradient-to-r from-leaf to-leaf/90 hover:from-leaf/90 hover:to-leaf text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-leaf/25 focus:outline-none focus:ring-2 focus:ring-leaf focus:ring-offset-2"
               >
                 Explore Community Programs
               </Link>
               <a
                 href="tel:1800813205"
-                className="border-2 border-leaf text-leaf hover:bg-leaf hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
+                className="border-2 border-leaf text-leaf hover:bg-leaf hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 focus:outline-none focus:ring-2 focus:ring-leaf focus:ring-offset-2"
               >
                 <Phone className="h-5 w-5 mr-2" />
                 Get Involved Today - 1800 813 205
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20 bg-background transition-colors duration-300 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent dark:from-white/5 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="animate-fade-in-left">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Who Can Get Involved?</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3 group">
+                  <CheckCircle className="h-5 w-5 text-leaf mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-gray-700 dark:text-gray-100">Multicultural families wanting to learn about gambling risks or needing support with gambling concerns, and adults over 18 and young people experiencing gambling harm.</span>
+                </div>
+                <div className="flex items-start space-x-3 group">
+                  <CheckCircle className="h-5 w-5 text-leaf mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-gray-700 dark:text-gray-100">Community members from all cultural backgrounds, especially families with children, plus aspiring community leaders seeking mentorship, volunteers looking to contribute, and organisations interested in partnerships and cultural programs.</span>
+                </div>
+                <div className="flex items-start space-x-3 group">
+                  <CheckCircle className="h-5 w-5 text-leaf mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-gray-700 dark:text-gray-100">Students from migrant and refugee backgrounds enrolled in local primary and secondary schools who are referred by their EALD (English as an Additional Language or Dialect) teacher. Programs run during school terms only.</span>
+                </div>
+              </div>
+              <div className="rounded-xl overflow-hidden bg-card/70 border border-border">
+                <div className="aspect-video">
+                  <img
+                    src="/images/community-engagement/eligibility.png"
+                    alt="Community engagement participation"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-white/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.3em] text-leaf font-semibold mb-3">How community engagement works</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Three simple steps from first hello to active participation</h2>
+            <p className="text-lg text-gray-600 dark:text-white/70 max-w-3xl mx-auto">
+              Start with a conversation, find events that fit, and grow into leadership and advocacy with support at every step.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              {
+                title: "1. Reach out",
+                description: "Call 1800 813 205 or visit a hub to discuss interests and goals.",
+                bullets: ["Interpreter support available", "Flexible paths for individuals and groups"],
+                icon: <Phone className="h-6 w-6 text-leaf" />
+              },
+              {
+                title: "2. Participate",
+                description: "Join festivals, workshops, playgroups, and volunteer roles that suit you.",
+                bullets: ["Clear schedules and supportive coordinators", "Skills-building while celebrating culture"],
+                icon: <Calendar className="h-6 w-6 text-leaf" />
+              },
+              {
+                title: "3. Lead & advocate",
+                description: "Access leadership training and represent your community in consultations.",
+                bullets: ["Mentoring and advisory group pathways", "Opportunities to influence programs and policy"],
+                icon: <Award className="h-6 w-6 text-leaf" />
+              }
+            ].map((step, idx) => (
+              <div key={idx} className="rounded-2xl border border-slate-100 dark:border-white/10 bg-slate-50/60 dark:bg-white/5 p-6 shadow-sm">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="p-3 bg-leaf/10 rounded-2xl">{step.icon}</div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{step.title}</h3>
+                </div>
+                <p className="text-gray-600 dark:text-white/80 mb-4">{step.description}</p>
+                <ul className="space-y-2">
+                  {step.bullets.map((bullet, bulletIdx) => (
+                    <li key={bulletIdx} className="flex items-start space-x-2 text-sm text-gray-600 dark:text-white/80">
+                      <span className="text-leaf mt-1">•</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -212,55 +273,42 @@ const CommunityEngagementPage = () => {
           <div className="grid lg:grid-cols-2 gap-8">
             {[
               {
-                title: "Cultural Festivals & Celebrations",
-                description: "We coordinate vibrant multicultural festivals and cultural celebrations that showcase the rich diversity of our communities while creating opportunities for cross-cultural understanding and connection.",
+                title: "Gambling Awareness",
+                description: "The Gamble Aware program offers culturally appropriate education and support where multicultural families learn about gambling risks and access specialist help when needed.",
                 features: [
-                  "Annual Multicultural Festival coordination",
-                  "Cultural community event support and funding",
-                  "Venue booking and permit assistance",
-                  "Event planning expertise and volunteer coordination",
-                  "Community promotion and media coverage"
+                  "Culturally sensitive workshops in your language",
+                  "Individual family support up to 4 sessions",
+                  "Direct connections to specialist gambling counsellors",
+                  "Education about gambling risks and impacts"
                 ],
-                icon: <Calendar className="h-8 w-8" />,
-                color: "leaf"
-              },
-              {
-                title: "Leadership Development Programs",
-                description: "Our leadership programs empower community members to become effective advocates and leaders, providing skills training, mentorship, and pathways to meaningful community participation.",
-                features: [
-                  "Public speaking and communication skills training",
-                  "Community advocacy and representation workshops",
-                  "Project management and event coordination skills",
-                  "Mentorship and leadership coaching",
-                  "Community advisory group participation opportunities"
-                ],
-                icon: <Award className="h-8 w-8" />,
-                color: "leaf"
-              },
-              {
-                title: "Volunteer Coordination & Training",
-                description: "We provide comprehensive volunteer programs that offer meaningful ways to give back to the community while developing new skills and building lasting connections.",
-                features: [
-                  "Volunteer recruitment and placement",
-                  "Comprehensive training and ongoing support",
-                  "Flexible scheduling and diverse opportunities",
-                  "Skills development and recognition programs",
-                  "Community impact and volunteer appreciation events"
-                ],
+                who: "Multicultural families wanting to learn about gambling risks or needing support with gambling concerns, and adults over 18 and young people experiencing gambling harm.",
                 icon: <Heart className="h-8 w-8" />,
                 color: "leaf"
               },
               {
-                title: "Advocacy & Community Representation",
-                description: "We advocate for multicultural communities at all levels of government and work to ensure community voices are heard in policy development and service planning.",
+                title: "Multicultural Community Development",
+                description: "Mosaic’s Multicultural Community Groups are safe spaces where families build real connections, maintain their cultural identity, and strengthen ties to the wider community. Our community groups welcome drop-ins.",
                 features: [
-                  "Policy advocacy and government submissions",
-                  "Community consultation and feedback coordination",
-                  "Individual advocacy support and referrals",
-                  "Multicultural awareness and education campaigns",
-                  "Partnership development with government and organizations"
+                  "Weekly playgroups & mothers' groups",
+                  "Citizenship preparation and English practice",
+                  "Regular information sessions, community workshops and cultural celebrations",
+                  "\"Playing Around the World\" activities"
                 ],
+                who: "Community members from all cultural backgrounds, especially families with children, plus aspiring community leaders seeking mentorship, volunteers looking to contribute, and organisations interested in partnerships and cultural programs.",
                 icon: <Globe className="h-8 w-8" />,
+                color: "leaf"
+              },
+              {
+                title: "Homework & Learning Centres",
+                description: "Supportive learning environments where students from migrant and refugee backgrounds develop academic skills, build social confidence, and achieve educational success alongside their peers.",
+                features: [
+                  "Free weekly tutoring during school terms",
+                  "One-on-one support in small learning groups (maximum 15 students)",
+                  "Help with English, numeracy and homework tasks",
+                  "Progress reports and social confidence building"
+                ],
+                who: "Students from migrant and refugee backgrounds enrolled in local primary and secondary schools who are referred by their EALD (English as an Additional Language or Dialect) teacher. Programs run during school terms only.",
+                icon: <Award className="h-8 w-8" />,
                 color: "leaf"
               }
             ].map((program, index) => (
@@ -294,7 +342,7 @@ const CommunityEngagementPage = () => {
                       program.color === 'earth' ? 'text-earth' :
                       'text-leaf'
                     }`} />
-                    Program Features:
+                    What We Provide:
                   </h4>
                   <ul className="space-y-3">
                     {program.features.map((feature, idx) => (
@@ -310,8 +358,51 @@ const CommunityEngagementPage = () => {
                     ))}
                   </ul>
                 </div>
+                
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-slate-50 dark:bg-slate-950">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-leaf font-semibold mb-3">Impact stories</p>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Celebrating culture, building leaders, growing community</h2>
+              <p className="text-gray-600 dark:text-white/80 mb-5">
+                Stories from participants and volunteers highlight how cultural celebrations, leadership pathways and advocacy create lasting community impact.
+              </p>
+              <ul className="space-y-3 text-gray-700 dark:text-white/80 text-sm">
+                <li className="flex items-start space-x-2">
+                  <span className="text-leaf mt-1">•</span>
+                  <span>Festival highlights with captions and multilingual voiceovers.</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-leaf mt-1">•</span>
+                  <span>Volunteer journeys into leadership and advisory roles.</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-leaf mt-1">•</span>
+                  <span>Community advocacy wins and partnership outcomes.</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/60 dark:border-white/10 shadow-2xl bg-slate-900/80 flex items-center justify-center">
+                <div className="text-center px-6">
+                  <p className="text-white font-semibold mb-2">Impact video placeholder</p>
+                  <p className="text-white/80 text-sm mb-4">Embed your video via CMS with transcripts and captions.</p>
+                  <button className="inline-flex items-center px-5 py-3 rounded-full bg-white text-slate-900 font-semibold shadow hover:scale-105 transition">
+                    <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                    Watch story
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -324,7 +415,7 @@ const CommunityEngagementPage = () => {
         accentColor="leaf"
         bottomSection={{
           title: "Collaborative Community Approach",
-          description: "Our community engagement team works collaboratively with community leaders, cultural organizations, government agencies, and local businesses to create inclusive programs that celebrate diversity and build stronger communities. We believe that the best community engagement happens when everyone has a voice and an opportunity to contribute their unique perspectives and talents."
+          description: "Our community engagement team works collaboratively with community leaders, cultural organisations, government agencies, and local businesses to create inclusive programs that celebrate diversity and build stronger communities. We believe that the best community engagement happens when everyone has a voice and an opportunity to contribute their unique perspectives and talents."
         }}
       />
 
@@ -374,35 +465,9 @@ const CommunityEngagementPage = () => {
             </div>
           </div>
 
-          <div className="text-center mt-16">
-            <div className="backdrop-blur-xl bg-white/70 dark:bg-white/10 rounded-2xl p-8 border border-white/50 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 group animate-fade-in-up">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:scale-105 transition-transform duration-300">Ready to Get Involved?</h3>
-              <p className="text-gray-600 dark:text-white/80 mb-6">
-                Our community engagement team is here to help you find the right way to participate and contribute to our vibrant multicultural community.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="tel:0249261300"
-                  className="bg-gradient-to-r from-leaf to-leaf/90 hover:from-leaf/90 hover:to-leaf text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-leaf/25"
-                >
-                  <Phone className="h-5 w-5 mr-2" />
-                  Call (02) 4926 1300
-                </a>
-                <Link
-                  to="/contact"
-                  className="border-2 border-leaf text-leaf hover:bg-leaf hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
-                >
-                  Contact Us Online
-                  <ArrowRight className="h-5 w-5 ml-2" />
-                </Link>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </section>
-
-      {/* Related Services cross-sell */}
-      <RelatedServices current="community-engagement" />
 
       {/* Contact CTA with enhanced animations */}
       <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300 overflow-hidden">
@@ -439,6 +504,7 @@ const CommunityEngagementPage = () => {
           </div>
         </div>
       </section>
+      <RelatedServices current="community-engagement" />
     </div>
   );
 };

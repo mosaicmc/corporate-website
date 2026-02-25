@@ -31,7 +31,7 @@ const SimpleCTA = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
             <Link
               to="/services"
-              className="group relative inline-flex items-center justify-center rounded-2xl bg-sand text-ocean px-10 py-5 text-xl font-bold shadow-2xl hover:bg-white hover:shadow-sand/30 transition-all duration-300 hover:scale-105 active:scale-98 border-2 border-sand/20 overflow-hidden"
+              className="group relative inline-flex items-center justify-center rounded-2xl bg-ocean text-white px-10 py-5 text-xl font-bold shadow-2xl hover:bg-ocean/90 hover:shadow-ocean/30 transition-all duration-300 hover:scale-105 active:scale-98 border-2 border-ocean/20 overflow-hidden focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
             >
               <span className="relative z-10">Explore Our Services</span>
               <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform relative z-10" />
@@ -40,11 +40,11 @@ const SimpleCTA = () => {
             
             <Link
               to="/contact"
-              className="group relative inline-flex items-center justify-center rounded-2xl backdrop-blur-md bg-white/15 border-2 border-sand/30 text-sand px-10 py-5 text-xl font-bold shadow-2xl hover:bg-sand/20 hover:text-white hover:border-sand/50 transition-all duration-300 hover:scale-105 active:scale-98 overflow-hidden"
+              className="group relative inline-flex items-center justify-center rounded-2xl backdrop-blur-md bg-white/15 border-2 border-border text-foreground px-10 py-5 text-xl font-bold shadow-2xl hover:bg-sand/20 hover:text-foreground transition-all duration-300 hover:scale-105 active:scale-98 overflow-hidden focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
             >
               <Phone className="mr-3 h-6 w-6 relative z-10" />
               <span className="relative z-10">Get Support Now</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-sand/0 via-sand/20 to-sand/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
             </Link>
           </div>
           
@@ -53,7 +53,7 @@ const SimpleCTA = () => {
               <span className="text-sand font-bold">*Service Areas:</span> Our services may vary by location. Please{" "}
               <Link 
                 to="/contact" 
-                className="text-white hover:text-sand font-bold underline decoration-2 underline-offset-4 hover:decoration-sand transition-colors duration-300"
+                className="text-white hover:text-sand font-bold underline decoration-2 underline-offset-4 hover:decoration-sand transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
               >
                 Contact us
               </Link>{" "}

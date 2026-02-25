@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ArrowRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FlipWords } from './ui/flip-words';
+import { serviceYearsLabel, languagesSpokenLabel } from '@/lib/utils';
 
 const HeroWithFlipWords = () => {
   const { t } = useTranslation();
@@ -28,7 +29,7 @@ const HeroWithFlipWords = () => {
             <div className="space-y-6">
               <div className="inline-flex items-center rounded-full backdrop-blur-md bg-white/20 border border-white/30 px-4 py-2 text-sm shadow-lg dark:bg-slate-800/30 dark:border-slate-700/50 animate-fade-in-up hover:bg-white/30 dark:hover:bg-slate-800/40 transition-all duration-300 group cursor-pointer">
                 <span className="mr-2 h-2 w-2 rounded-full bg-green-500 animate-pulse group-hover:animate-heartbeat"></span>
-                <span className="text-gray-700 dark:text-gray-300 font-medium group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">{t('hero.badge')}</span>
+                <span className="text-gray-700 dark:text-gray-300 font-medium group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">{t('hero.badge', { years: serviceYearsLabel() })}</span>
               </div>
               
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl lg:text-5xl xl:text-5xl leading-tight text-gray-900 dark:text-white animate-fade-in-up-delay-100 max-w-4xl">
@@ -36,7 +37,7 @@ const HeroWithFlipWords = () => {
                 <FlipWords 
                   words={rotatingWords}
                   duration={3000}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400 inline-block min-w-0"
+                  className="bg-gradient-to-r from-sky via-ocean to-earth bg-clip-text text-transparent inline-block px-1 sm:px-2"
                 />{" "}
                 <span className="block sm:inline mt-1 sm:mt-0">Communities Across NSW</span>
               </h1>
@@ -71,9 +72,9 @@ const HeroWithFlipWords = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 pt-8 animate-fade-in-up-delay-400">
               {[
-                { number: "43+", label: "Years of Service" },
+                { number: serviceYearsLabel(), label: "Years of Service" },
                 { number: "2,500+", label: "Families Supported" },
-                { number: "25+", label: "Languages Spoken" }
+                { number: languagesSpokenLabel(), label: "Languages Spoken" }
               ].map((stat, index) => (
                 <div key={index} className="text-center group hover:scale-105 transition-all duration-300 cursor-pointer p-2 rounded-lg hover:bg-white/10 dark:hover:bg-slate-800/20">
                   <div className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-earth dark:group-hover:text-earth transition-all duration-300 group-hover:animate-pulse-gentle">{stat.number}</div>

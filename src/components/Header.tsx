@@ -4,7 +4,7 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ThemeToggle } from './ui/theme-toggle';
 import LanguageSwitcher from './LanguageSwitcher';
-import { useTheme } from '../contexts/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 import {
   DropdownMenu,
   DropdownMenuContent,

@@ -21,7 +21,7 @@ export default function GoogleTranslateInit() {
 
     window.googleTranslateElementInit = () => {
       try {
-        // @ts-ignore - google global provided by script
+        // @ts-expect-error - google global provided by script
         new window.google.translate.TranslateElement(
           {
             pageLanguage: 'en',
@@ -32,8 +32,11 @@ export default function GoogleTranslateInit() {
           },
           'google_translate_element_hidden'
         );
-      } catch (e) {
-        // best-effort init; if script not ready yet, Google will call again
+      } catch (error) {
+        if (import.meta.env.DEV) {
+          // best-effort init; log only in development to avoid noisy consoles in production
+          console.warn('Google Translate init failed', error);
+        }
       }
     };
 

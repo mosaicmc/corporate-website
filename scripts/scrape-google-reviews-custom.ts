@@ -9,6 +9,13 @@ type Review = {
   date: string; // YYYY-MM-DD
 };
 
+const debugScrape = (process.env.DEBUG_SCRAPER || '').toLowerCase() === 'true';
+
+function logNonFatal(error: unknown, context: string) {
+  if (!debugScrape) return;
+  console.warn(`[scrape-google-reviews-custom] ${context}`, error);
+}
+
 function sleep(ms: number) {
   return new Promise((res) => setTimeout(res, ms));
 }
@@ -61,7 +68,7 @@ function normalizeDate(dateText: string | null | undefined): string {
 async function clickAllReviews(page: Page) {
   try {
     // XPath click for common text variants
-    const btn = await page.evaluate((xpList: string[]) => {
+    await page.evaluate((xpList: string[]) => {
       for (const xp of xpList) {
         const res = document.evaluate(xp, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
         if (res.snapshotLength > 0) {
@@ -82,7 +89,9 @@ async function clickAllReviews(page: Page) {
       return false;
     }, ["//button[contains(., 'All reviews') or contains(., 'See all reviews')]"]);
     await sleep(3000);
-  } catch {}
+  } catch (error) {
+    logNonFatal(error, 'clickAllReviews');
+  }
 }
 
 async function scrollReviewsContainer(page: Page, iterations = 6) {
@@ -102,22 +111,19 @@ async function scrollReviewsContainer(page: Page, iterations = 6) {
 async function expandAllMore(page: Page) {
   try {
     await page.evaluate(() => {
-      const selectors = [
-        '[jsname="fk8sZ"]',
-        'button:has(span:contains("More"))',
-        'span:contains("More")',
-      ];
       const clicked = new Set<Element>();
       const all = Array.from(document.querySelectorAll('*')) as HTMLElement[];
       for (const el of all) {
         const text = (el.textContent || '').toLowerCase();
-        if (/\bmore\b/.test(text) && typeof (el as any).click === 'function') {
-          if (!clicked.has(el)) { (el as any).click(); clicked.add(el); }
+        if (/\bmore\b/.test(text) && typeof el.click === 'function') {
+          if (!clicked.has(el)) { el.click(); clicked.add(el); }
         }
       }
     });
     await sleep(1500);
-  } catch {}
+  } catch (error) {
+    logNonFatal(error, 'expandAllMore');
+  }
 }
 
 async function getTextFromXPath(root: ElementHandle, xpath: string): Promise<string> {
@@ -168,8 +174,8 @@ async function extractReviews(page: Page, limit = 6): Promise<Review[]> {
         const children = (node as Element).children || [];
         Array.from(children).forEach((child) => {
           search(child);
-          const sr = (child as any).shadowRoot as ShadowRoot | null;
-          if (sr) search(sr);
+          const shadowHost = child as Element & { shadowRoot?: ShadowRoot | null };
+          if (shadowHost.shadowRoot) search(shadowHost.shadowRoot);
         });
       };
       search(root);
@@ -225,11 +231,17 @@ export async function scrapeGoogleMapsReviews(url: string, limit = 6): Promise<R
       if (b) b.click();
     });
     await sleep(2000);
-  } catch {}
+  } catch (error) {
+    logNonFatal(error, 'acceptCookies');
+  }
 
   await clickAllReviews(page);
   // Wait for any review article to appear
-  try { await page.waitForSelector('div[role="article"]', { timeout: 60000 }); } catch {}
+  try {
+    await page.waitForSelector('div[role="article"]', { timeout: 60000 });
+  } catch (error) {
+    logNonFatal(error, 'waitForReviews');
+  }
   // Try initial deep scroll to load more items
   await scrollReviewsContainer(page, 20);
   await expandAllMore(page);
@@ -264,7 +276,11 @@ export async function scrapeGoogleMapsReviews(url: string, limit = 6): Promise<R
         if (a) a.click();
       });
       await sleep(4000);
-      try { await page.waitForSelector('div[role="article"]', { timeout: 30000 }); } catch {}
+      try {
+        await page.waitForSelector('div[role="article"]', { timeout: 30000 });
+      } catch (error) {
+        logNonFatal(error, 'fallback waitForReviews');
+      }
       await scrollReviewsContainer(page, 20);
       await expandAllMore(page);
       reviews = await extractReviews(page, limit * 2);
@@ -286,7 +302,9 @@ export async function scrapeGoogleMapsReviews(url: string, limit = 6): Promise<R
         }
       }
       reviews = reviews.slice(0, limit);
-    } catch {}
+    } catch (error) {
+      logNonFatal(error, 'fallback review extraction');
+    }
   }
 
   await browser.close();
@@ -317,10 +335,16 @@ export async function scrapeGoogleReviewLinks(links: string[], limit = 6): Promi
           if (b) b.click();
         });
         await sleep(1500);
-      } catch {}
+      } catch (error) {
+        logNonFatal(error, 'acceptCookies loop');
+      }
 
       // Try to expand and load content around the focused review
-      try { await page.waitForSelector('div[role="article"], [data-review-id]', { timeout: 45000 }); } catch {}
+      try {
+        await page.waitForSelector('div[role="article"], [data-review-id]', { timeout: 45000 });
+      } catch (error) {
+        logNonFatal(error, 'waitForReviewArticle');
+      }
       await expandAllMore(page);
       await scrollReviewsContainer(page, 8);
       const found = await extractReviews(page, limit * 2);
@@ -330,7 +354,9 @@ export async function scrapeGoogleReviewLinks(links: string[], limit = 6): Promi
         if (out.length >= limit) break;
       }
       if (out.length >= limit) break;
-    } catch {}
+    } catch (error) {
+      logNonFatal(error, 'scrapeGoogleReviewLinks iteration');
+    }
   }
   await browser.close();
   return out.slice(0, limit);

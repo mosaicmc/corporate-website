@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Users, HeartHandshake, Globe, ShieldCheck, AlertTriangle } from "lucide-react";
+import { Users, HeartHandshake, Globe, AlertTriangle } from "lucide-react";
 
 export default function DiversityInclusionPolicyPage() {
   const pdfHref = "https://mosaicmc.org.au/wp-content/uploads/2025/10/Mosaic-Diversity-and-Inclusion-Policy-.pdf";

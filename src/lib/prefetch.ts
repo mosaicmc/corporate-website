@@ -22,6 +22,7 @@ const routeImportMap: Record<string, Prefetcher> = {
   '/resources/emergency-translation': () => import('../pages/resources/EmergencyTranslationPage'),
   '/resources/annual-reports': () => import('../pages/resources/AnnualReportsPage'),
   '/resources/helpful-links': () => import('../pages/resources/HelpfulLinksPage'),
+  '/resources/faqs': () => import('../pages/resources/FAQPage'),
   '/stories': () => import('../pages/StoriesPage'),
   '/contact': () => import('../pages/ContactPage'),
   '/donate': () => import('../pages/DonatePage'),

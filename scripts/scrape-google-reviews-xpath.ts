@@ -7,6 +7,13 @@ type Review = {
   date: string; // YYYY-MM-DD
 };
 
+const debugScrape = (process.env.DEBUG_SCRAPER || '').toLowerCase() === 'true';
+
+function logNonFatal(error: unknown, context: string) {
+  if (!debugScrape) return;
+  console.warn(`[scrape-google-reviews-xpath] ${context}`, error);
+}
+
 function sleep(ms: number) {
   return new Promise((res) => setTimeout(res, ms));
 }
@@ -73,7 +80,11 @@ async function clickAllReviews(page: Page) {
   for (const sel of candidates) {
     const el = await page.$(sel);
     if (el) {
-      try { await el.click({ delay: 50 }); } catch {}
+      try {
+        await el.click({ delay: 50 });
+      } catch (error) {
+        logNonFatal(error, `click candidate ${sel}`);
+      }
       await sleep(5000); // rate limit
       return;
     }
@@ -97,7 +108,9 @@ async function clickAllReviews(page: Page) {
       if (a) a.click();
     });
     await sleep(5000);
-  } catch {}
+  } catch (error) {
+    logNonFatal(error, 'click direct reviews link');
+  }
 }
 
 async function ensureReviewsVisible(page: Page) {
@@ -105,11 +118,21 @@ async function ensureReviewsVisible(page: Page) {
   try {
     await page.waitForSelector('div[role="article"], article, [data-review-id]', { timeout: 60000 });
     return;
-  } catch {}
+  } catch (error) {
+    logNonFatal(error, 'initial waitForSelector');
+  }
   await clickAllReviews(page);
   // Wait for reviews container first
-  try { await page.waitForSelector('div[aria-label*="Reviews"], div[role="region"], div[role="main"]', { timeout: 30000 }); } catch {}
-  try { await page.waitForSelector('div[role="article"], article, [data-review-id]', { timeout: 60000 }); } catch {}
+  try {
+    await page.waitForSelector('div[aria-label*="Reviews"], div[role="region"], div[role="main"]', { timeout: 30000 });
+  } catch (error) {
+    logNonFatal(error, 'waitForReviewsContainer');
+  }
+  try {
+    await page.waitForSelector('div[role="article"], article, [data-review-id]', { timeout: 60000 });
+  } catch (error) {
+    logNonFatal(error, 'waitForReviewsAfterClick');
+  }
 }
 
 async function scrollToLoad(page: Page, minIterations = 6) {
@@ -174,13 +197,6 @@ async function extractTopSix(page: Page): Promise<Review[]> {
   return out.slice(0, 6);
 }
 
-async function waitForXPath(page: Page, xpath: string, timeout = 30000): Promise<void> {
-  await page.waitForFunction((xp) => {
-    const res = document.evaluate(xp, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-    return !!res.singleNodeValue;
-  }, { timeout }, xpath);
-}
-
 async function run() {
   const url = process.env.GOOGLE_REVIEWS_URL || 'https://www.google.com/maps/place/Mosaic+Multicultural+Connections/@-32.9788824,151.5700162,38365m/data=!3m2!1e3!5s0x6b733d8ca7ff37c9:0xff5014fa7fdef09d!4m8!3m7!1s0x6b7315b2fa7bebf3:0x8a9e6364976fac2d!8m2!3d-32.9615701!4d151.6945456!9m1!1b1!16s%2Fg%2F1jky5bhjd?entry=ttu';
   let browser: Browser | null = null;
@@ -203,7 +219,9 @@ async function run() {
         if (target) target.click();
       });
       await sleep(3000);
-    } catch {}
+    } catch (error) {
+      logNonFatal(error, 'consent handling');
+    }
 
     // Detect captcha
     const captcha = await page.$('iframe[src*="recaptcha"], div:has(iframe[src*="recaptcha"])');

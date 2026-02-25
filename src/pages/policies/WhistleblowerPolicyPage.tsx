@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ShieldAlert, FileWarning, ShieldCheck, Scale, AlertTriangle } from "lucide-react";
+import { FileWarning, ShieldCheck, Scale, AlertTriangle } from "lucide-react";
 
 export default function WhistleblowerPolicyPage() {
   const pdfHref = "https://mosaicmc.org.au/wp-content/uploads/2025/10/Mosaic-Whistleblower-Policy-.pdf";

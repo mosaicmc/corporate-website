@@ -1,40 +1,41 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { serviceYearsBase, languagesSpokenBase } from '@/lib/utils';
+
+const STATS = [
+  { 
+    number: serviceYearsBase(), 
+    suffix: "+", 
+    label: "Years of Service",
+    description: "Serving communities since 1981",
+    color: "earth"
+  },
+  { 
+    number: 4, 
+    suffix: "", 
+    label: "Office Locations",
+    description: "Across NSW regions",
+    color: "sun"
+  },
+  { 
+    number: 2500, 
+    suffix: "+", 
+    label: "Families Supported",
+    description: "Lives transformed annually",
+    color: "sky"
+  },
+  { 
+    number: languagesSpokenBase(), 
+    suffix: "+", 
+    label: "Languages Spoken",
+    description: "Cultural diversity embraced",
+    color: "leaf"
+  }
+] as const;
 
 const Statistics = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [counts, setCounts] = useState([0, 0, 0, 0]);
+  const [counts, setCounts] = useState(() => STATS.map(() => 0));
   const sectionRef = useRef<HTMLElement>(null);
-
-  const stats = [
-    { 
-      number: 43, 
-      suffix: "+", 
-      label: "Years of Service",
-      description: "Serving communities since 1981",
-      color: "earth"
-    },
-    { 
-      number: 4, 
-      suffix: "", 
-      label: "Office Locations",
-      description: "Across NSW regions",
-      color: "sun"
-    },
-    { 
-      number: 2500, 
-      suffix: "+", 
-      label: "Families Supported",
-      description: "Lives transformed annually",
-      color: "sky"
-    },
-    { 
-      number: 25, 
-      suffix: "+", 
-      label: "Languages Spoken",
-      description: "Cultural diversity embraced",
-      color: "leaf"
-    }
-  ];
 
   // Intersection Observer to trigger animation when section comes into view
   useEffect(() => {
@@ -50,13 +51,14 @@ const Statistics = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentSection = sectionRef.current;
+    if (currentSection) {
+      observer.observe(currentSection);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentSection) {
+        observer.unobserve(currentSection);
       }
     };
   }, [isVisible]);
@@ -66,7 +68,7 @@ const Statistics = () => {
     if (!isVisible) return;
 
     const animateNumbers = () => {
-      stats.forEach((stat, index) => {
+      STATS.forEach((stat, index) => {
         const duration = 2000;
         const steps = 60;
         const increment = stat.number / steps;
@@ -144,7 +146,7 @@ const Statistics = () => {
 
         {/* Statistics Grid with enhanced glass morphism */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {stats.map((stat, index) => (
+          {STATS.map((stat, index) => (
             <div 
               key={index} 
               className={`group relative text-center transform transition-all duration-700 ${

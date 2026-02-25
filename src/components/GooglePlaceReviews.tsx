@@ -8,6 +8,29 @@ interface PlaceReview {
   text: string;
 }
 
+type GooglePlacesService = {
+  getDetails: (
+    request: { placeId: string; fields: string[] },
+    callback: (result: { reviews?: PlaceReview[] } | null, status: string) => void
+  ) => void;
+};
+
+type GoogleNamespace = {
+  maps?: {
+    Map: new (el: HTMLElement) => unknown;
+    places?: {
+      PlacesService: new (map: unknown) => GooglePlacesService;
+      PlacesServiceStatus: { OK: string };
+    };
+  };
+};
+
+declare global {
+  interface Window {
+    google?: GoogleNamespace;
+  }
+}
+
 const GOOGLE_REVIEWS_URL = 'https://maps.app.goo.gl/mYc8i3DawKk6PsPc9';
 
 function Stars({ rating }: { rating: number }) {
@@ -42,7 +65,7 @@ const GooglePlaceReviews = () => {
       if (existing) {
         existing.addEventListener('load', () => resolve());
         existing.addEventListener('error', () => reject(new Error('Failed to load Google Maps script')));
-        if ((window as any).google?.maps) return resolve();
+        if (window.google?.maps) return resolve();
       } else {
         const s = document.createElement('script');
         s.src = src;
@@ -57,7 +80,7 @@ const GooglePlaceReviews = () => {
     const src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
     loadScript(src)
       .then(() => {
-        const google = (window as any).google;
+        const google = window.google;
         if (!google?.maps?.places) {
           throw new Error('Google Places library unavailable');
         }
@@ -73,13 +96,13 @@ const GooglePlaceReviews = () => {
             placeId,
             fields: ['name', 'rating', 'user_ratings_total', 'reviews'],
           },
-          (result: any, status: string) => {
+          (result: { reviews?: PlaceReview[] } | null, status: string) => {
             if (status !== google.maps.places.PlacesServiceStatus.OK) {
               setError('Unable to load live reviews automatically.');
               setLoading(false);
               return;
             }
-            const list = (result?.reviews || []) as PlaceReview[];
+            const list = result?.reviews || [];
             const sorted = list
               .slice()
               .sort((a, b) => (b.rating - a.rating) || a.relative_time_description.localeCompare(b.relative_time_description))

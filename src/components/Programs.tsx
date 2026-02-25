@@ -1,4 +1,5 @@
 import React from 'react';
+import { AU } from '@/lib/auSpelling';
 import { ArrowRight, Heart, Users, BookOpen, Lightbulb, Home, Utensils } from 'lucide-react';
 
 const Programs = () => {
@@ -6,31 +7,31 @@ const Programs = () => {
     {
       icon: <Heart className="h-8 w-8" />,
       title: "Healthcare Access",
-      description: "Providing essential medical care and health education to underserved communities.",
+      description: AU("Providing essential medical care and health education to underserved communities."),
       image: "https://images.pexels.com/photos/6129507/pexels-photo-6129507.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
       icon: <BookOpen className="h-8 w-8" />,
       title: "Education Support",
-      description: "Building schools and providing educational resources for children in remote areas.",
+      description: AU("Building schools and providing educational resources for children in remote areas."),
       image: "https://images.pexels.com/photos/8423049/pexels-photo-8423049.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
       icon: <Utensils className="h-8 w-8" />,
       title: "Food Security",
-      description: "Establishing sustainable food programs and teaching agricultural techniques.",
+      description: AU("Establishing sustainable food programs and teaching agricultural techniques."),
       image: "https://images.pexels.com/photos/6994982/pexels-photo-6994982.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
       icon: <Home className="h-8 w-8" />,
       title: "Housing Development",
-      description: "Building safe, affordable housing and improving living conditions.",
+      description: AU("Building safe, affordable housing and improving living conditions."),
       image: "https://images.pexels.com/photos/8926563/pexels-photo-8926563.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
       icon: <Lightbulb className="h-8 w-8" />,
       title: "Skills Training",
-      description: "Empowering communities through vocational training and micro-enterprise development.",
+      description: AU("Empowering communities through vocational training and micro-enterprise development."),
       image: "https://images.pexels.com/photos/8923197/pexels-photo-8923197.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {

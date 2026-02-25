@@ -1,43 +1,50 @@
+import type { ComponentType } from "react";
+import { AU } from '@/lib/auSpelling';
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
 import BackLink from "../../components/ui/BackLink";
-import { Globe, FileText, Radio, MapPin, Phone, Languages, ShieldCheck, ExternalLink, AlertTriangle } from "lucide-react";
+import RelatedServices from '@/components/RelatedServices';
+import { Globe, Radio, MapPin, Languages, ShieldCheck, ExternalLink, AlertTriangle } from "lucide-react";
 
 export default function HelpfulLinksPage() {
-  const links = [
+  const links: Array<{
+    title: string;
+    desc: string;
+    href: string;
+    icon: ComponentType<{ className?: string }>;
+  }> = [
     {
       title: "Legal Aid NSW",
-      desc: "Free legal help and advice across NSW",
+      desc: AU("Free legal help and advice across NSW"),
       href: "https://www.legalaid.nsw.gov.au/",
       icon: ShieldCheck,
     },
     {
       title: "Translating & Interpreting Service (TIS National)",
-      desc: "131 450 — 24/7 interpreter support",
+      desc: AU("131 450 — 24/7 interpreter support"),
       href: "https://www.tisnational.gov.au/",
       icon: Languages,
     },
     {
       title: "NSW Government Emergencies",
-      desc: "Official guidance and contacts",
+      desc: AU("Official guidance and contacts"),
       href: "https://www.nsw.gov.au/emergencies",
       icon: MapPin,
     },
     {
       title: "Hazards Near Me NSW",
-      desc: "Local emergency information app",
+      desc: AU("Local emergency information app"),
       href: "https://www.nsw.gov.au/emergencies/near-me",
       icon: AlertTriangle,
     },
     {
       title: "Bureau of Meteorology",
-      desc: "Weather updates and flood warnings",
+      desc: AU("Weather updates and flood warnings"),
       href: "https://www.bom.gov.au/",
       icon: Radio,
     },
     {
       title: "Live Traffic NSW",
-      desc: "Traffic updates and road closures",
+      desc: AU("Traffic updates and road closures"),
       href: "https://www.livetraffic.com/",
       icon: Globe,
     },
@@ -64,7 +71,7 @@ export default function HelpfulLinksPage() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {links.map((link) => {
-            const Icon = link.icon as any;
+            const Icon = link.icon;
             return (
               <a
                 key={link.title}
@@ -99,6 +106,7 @@ export default function HelpfulLinksPage() {
           <BackLink to="/resources">Back to Resources</BackLink>
         </div>
       </section>
+      <RelatedServices />
     </div>
   );
 }

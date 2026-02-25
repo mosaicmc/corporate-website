@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import RelatedServices from '@/components/RelatedServices';
 import { Globe, Phone, Info } from "lucide-react";
 
 export default function TranslationServicesPage() {
@@ -74,6 +75,7 @@ export default function TranslationServicesPage() {
           </div>
         </div>
       </section>
+      <RelatedServices />
     </div>
   );
 }

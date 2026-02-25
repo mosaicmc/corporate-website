@@ -20,7 +20,6 @@ const GOOGLE_REVIEWS_URL = 'https://maps.app.goo.gl/mYc8i3DawKk6PsPc9';
 const GoogleReviews = () => {
   const [reviews, setReviews] = React.useState<ScrapedReview[]>([]);
   const [placeUrl, setPlaceUrl] = React.useState<string | null>(null);
-  const [visibleCount, setVisibleCount] = React.useState(6); // show six featured by default
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
   const sectionRef = React.useRef<HTMLElement | null>(null);
@@ -38,8 +37,7 @@ const GoogleReviews = () => {
         .then((data) => {
           const items: ScrapedReview[] = Array.isArray(data?.reviews) ? data.reviews : [];
           if (typeof data?.placeUrl === 'string') setPlaceUrl(data.placeUrl);
-          // Display only the available unique reviews; do not artificially duplicate.
-          setReviews(items);
+          setReviews(items.slice(0, 3));
           setLoading(false);
         })
         .catch((err) => {
@@ -60,9 +58,7 @@ const GoogleReviews = () => {
     return () => observer.disconnect();
   }, []);
 
-  const onLoadMore = () => setVisibleCount((c) => Math.min(c + 3, reviews.length || c + 3));
-
-  const featured = reviews.slice(0, visibleCount);
+  
 
   return (
     <section
@@ -92,9 +88,9 @@ const GoogleReviews = () => {
           </div>
         )}
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" aria-live="polite">
+        <div className="relative" aria-live="polite">
           {loading && (
-            <>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {Array.from({ length: 3 }).map((_, i) => (
                 <Card key={`skeleton-${i}`} className="animate-pulse">
                   <CardHeader>
@@ -110,60 +106,53 @@ const GoogleReviews = () => {
                   </CardFooter>
                 </Card>
               ))}
-            </>
+            </div>
           )}
 
-          {!loading && featured.map((item) => (
-            <Card key={item.id} className="group relative hover:scale-[1.02] focus-within:ring-2 focus-within:ring-primary" tabIndex={0}>
-              <CardHeader className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Avatar src={item.authorAvatarUrl} name={item.authorName} size={40} />
-                  <div>
-                    <div className="text-sm font-semibold text-gray-800 dark:text-white/90">{item.authorName || 'Anonymous'}</div>
-                    <div className="text-xs text-gray-500 dark:text-white/60">{item.dateText}</div>
-                  </div>
-                </div>
-                <StarRating value={item.rating} ariaLabel={`${item.rating} out of 5 stars`} />
-              </CardHeader>
-              <CardContent>
-                <blockquote className="relative z-10 text-gray-700 dark:text-white/90 leading-relaxed text-base">“{item.text}”</blockquote>
-              </CardContent>
-              <CardFooter>
-                <span className="text-xs text-gray-500 dark:text-white/60">Source: Google Reviews</span>
-                <a
-                  href={item.reviewUrl || placeUrl || GOOGLE_REVIEWS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-                  aria-label="View review on Google"
-                >
-                  View on Google
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </CardFooter>
-            </Card>
-          ))}
+          {!loading && (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {reviews.map((item) => (
+                <Card key={item.id} className="group relative hover:scale-[1.02] focus-within:ring-2 focus-within:ring-primary" tabIndex={0}>
+                  <CardHeader className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Avatar src={item.authorAvatarUrl} name={item.authorName} size={40} />
+                      <div>
+                        <div className="text-sm font-semibold text-gray-800 dark:text-white/90">{item.authorName || 'Anonymous'}</div>
+                        <div className="text-xs text-gray-500 dark:text-white/60">{item.dateText}</div>
+                      </div>
+                    </div>
+                    <StarRating value={item.rating} ariaLabel={`${item.rating} out of 5 stars`} />
+                  </CardHeader>
+                  <CardContent>
+                    <blockquote className="relative z-10 text-gray-700 dark:text-white/90 leading-relaxed text-base">“{item.text}”</blockquote>
+                  </CardContent>
+                  <CardFooter>
+                    <span className="text-xs text-gray-500 dark:text-white/60">Source: Google Reviews</span>
+                    <a
+                      href={item.reviewUrl || placeUrl || GOOGLE_REVIEWS_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+                      aria-label="View review on Google"
+                    >
+                      View on Google
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
 
-        {!loading && reviews.length > visibleCount && (
-          <div className="text-center mt-8">
-            <button
-              type="button"
-              onClick={onLoadMore}
-              className="inline-flex items-center gap-2 rounded-lg border bg-card px-5 py-3 text-sm shadow-sm hover:shadow-md transition"
-              aria-label="Load more reviews"
-            >
-              Load more reviews
-            </button>
-          </div>
-        )}
+        
 
         <div className="text-center mt-10">
           <a
             href={placeUrl || GOOGLE_REVIEWS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border bg-card px-5 py-3 text-sm shadow-sm hover:shadow-md transition"
+            className="inline-flex items-center gap-2 rounded-lg border bg-card px-5 py-3 text-sm shadow-sm hover:shadow-md transition focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
             aria-label="Read all reviews on Google"
           >
             Read all reviews on Google

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 import { Home, Heart, Users, Handshake, ArrowRight, CheckCircle } from 'lucide-react';
 import { GlowingEffect } from './ui/glowing-effect';
 
@@ -221,9 +222,10 @@ const ServiceCards = () => {
                       ))}
                     </ul>
                     
-                    <Link
-                      to={service.link}
-                      className={`inline-flex items-center px-6 py-3 rounded-full text-white font-medium min-w-40 text-[15px] transition-all duration-300 hover:shadow-lg ${
+                    <Button
+                      variant="cta"
+                      asChild
+                      className={`inline-flex items-center px-6 py-3 rounded-full text-white dark:text-foreground font-medium min-w-40 text-[15px] ${
                         service.color === 'sky' ? 'bg-sky hover:bg-sky/90 hover:shadow-sky/25' :
                         service.color === 'earth' ? 'bg-earth hover:bg-earth/90 hover:shadow-earth/25' :
                         service.color === 'care' ? 'bg-care hover:bg-care/90 hover:shadow-care/25' :
@@ -231,9 +233,11 @@ const ServiceCards = () => {
                         'bg-sun hover:bg-sun/90 hover:shadow-sun/25'
                       }`}
                     >
-                      Learn More
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
+                      <Link to={service.link}>
+                        Learn More
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -260,13 +264,16 @@ const ServiceCards = () => {
         </div>
         
         <div className="mt-16 text-center">
-          <Link
-            to="/services"
-            className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-ocean to-sky px-8 py-4 text-base font-semibold text-white shadow-xl hover:from-ocean/90 hover:to-sky/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean transition-all duration-300 hover:shadow-ocean/25 backdrop-blur-sm dark:from-sky dark:to-ocean"
+          <Button
+            variant="cta"
+            asChild
+            className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-ocean to-sky px-8 py-4 text-base font-semibold text-white shadow-xl hover:from-ocean/90 hover:to-sky/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean backdrop-blur-sm dark:from-sky dark:to-ocean"
           >
-            View All Services
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
+            <Link to="/services">
+              View All Services
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

@@ -17,7 +17,7 @@
     "communityEngagement": "Community Engagement"
   },
   "hero": {
-    "badge": "Serving NSW communities for 43+ years",
+    "badge": "Serving NSW communities for {{years}} years",
     "title": "Supporting Diverse Communities Across NSW",
     "titleHighlight": "Diverse",
     "description": "Empowering multicultural communities through settlement support, aged care, family services, and community engagement programs tailored to your needs.",
@@ -60,7 +60,7 @@
         "Parenting programs",
         "Youth services",
         "Crisis support",
-        "Counseling services"
+        "Counselling services"
       ]
     },
     "communityEngagement": {
@@ -88,7 +88,7 @@
     "changeLanguage": "Change Language"
   },
   "footer": {
-    "description": "Supporting multicultural communities across NSW with culturally appropriate services and programs.",
+    "description": "Supporting multicultural communities across NSW with culturally appropriate services and programs. Mosaic Multicultural Connections provides settlement support, aged care, family services, language and translation, and community engagement. Our multilingual team partners with communities to improve access, inclusion, and wellbeing.",
     "quickLinks": "Quick Links",
     "contactInfo": "Contact Information",
     "followUs": "Follow Us",
@@ -106,7 +106,8 @@
       "privacy": "Privacy",
       "terms": "Terms",
       "knowledgeBase": "Knowledge Base",
-      "annualReports": "Annual Reports"
+      "annualReports": "Annual Reports",
+      "policies": "Policies"
     },
     "newsletter": {
       "title": "Stay up to date",

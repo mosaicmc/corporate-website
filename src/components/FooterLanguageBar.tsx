@@ -31,26 +31,6 @@ const languages: Lang[] = [
   { code: 'vi', label: 'VI', flag: '🇻🇳', direction: 'ltr' },
 ];
 
-// Map app codes to Google Translate where needed
-const gtLangMap: Record<string, string> = {
-  'zh': 'zh-CN',
-  'zh-tw': 'zh-TW',
-};
-
-const setGoogTransCookie = (targetLang: string) => {
-  const lang = gtLangMap[targetLang] || targetLang;
-  const cookieVal = `/auto/${lang}`;
-  const hostname = window.location.hostname;
-  const expires = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
-  document.cookie = `googtrans=${cookieVal}; expires=${expires}; path=/;`;
-  document.cookie = `googtrans=${cookieVal}; expires=${expires}; domain=.${hostname}; path=/;`;
-};
-
-const clearGoogTransCookie = () => {
-  const hostname = window.location.hostname;
-  document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
-  document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=.${hostname}; path=/;`;
-};
 
 export const FooterLanguageBar: React.FC<{ className?: string }> = ({ className }) => {
   const { i18n } = useTranslation();
@@ -60,13 +40,7 @@ export const FooterLanguageBar: React.FC<{ className?: string }> = ({ className 
     document.documentElement.dir = direction;
     document.documentElement.lang = code;
     localStorage.setItem('preferred-language', code);
-    if (code === 'en') {
-      clearGoogTransCookie();
-    } else {
-      setGoogTransCookie(code);
-    }
-    // Reload to ensure Google Translate applies uniformly
-    setTimeout(() => window.location.reload(), 50);
+    // Pure i18n-based switching; no Google Translate cookies or reloads
   };
 
   return (

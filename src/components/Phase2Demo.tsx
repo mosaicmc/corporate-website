@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, Heart, Users, Globe, FileText, ChevronDown, ChevronUp, CheckCircle } from 'lucide-react';
+import { ChevronDown, ChevronUp, CheckCircle } from 'lucide-react';
 import { GlowingEffect } from './ui/glowing-effect';
 
 const Phase2Demo = () => {
@@ -37,7 +37,7 @@ const Phase2Demo = () => {
               {
                 category: "Aged Care Services",
                 title: "Culturally Appropriate Care",
-                details: "Honoring traditions while providing professional aged care services in familiar languages.",
+                details: "Honouring traditions while providing professional aged care services in familiar languages.",
                 emoji: "❤️"
               }
             ].map((service, index) => (

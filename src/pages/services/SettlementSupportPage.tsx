@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Home, Phone, AlertTriangle, ArrowRight, CheckCircle, Users, MapPin, Clock, ChevronDown, ChevronUp, Mail, Globe, FileText } from 'lucide-react';
+import FAQSchema from '@/components/FAQSchema';
+import { Home, Phone, AlertTriangle, ArrowRight, CheckCircle, Users, ChevronDown, ChevronUp, Globe, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Team05 from '../../components/ui/team-05';
 import RelatedServices from '../../components/RelatedServices';
@@ -12,75 +13,90 @@ const SettlementSupportPage = () => {
 
   const teamMembers = [
     {
-      name: "Sarah Chen",
-      role: "Settlement Services Manager",
-      qualifications: "Master's in Social Work, Settlement Services Specialist, Multicultural Community Development",
-      languages: ["English", "Mandarin", "Cantonese"],
-      phone: "(02) 4926 1301",
-      email: "s.chen@mosaicmc.org.au"
+      name: "Mirja Colding-Moran",
+      role: "Settlement Team Leader",
+      qualifications: "Leadership in settlement services, community partnerships specialist",
+      languages: ["English"],
+      image: "/images/Mirja.png"
     },
     {
-      name: "Ahmed Hassan",
-      role: "Senior Settlement Worker",
-      qualifications: "Bachelor's Social Science, Former refugee advocate, Community liaison specialist",
-      languages: ["English", "Arabic", "French"],
-      phone: "(02) 4926 1302",
-      email: "a.hassan@mosaicmc.org.au"
+      name: "Madan Narayanamurthy",
+      role: "Regional Coordinator (Armidale)",
+      qualifications: "Regional programme coordination, multicultural engagement specialist",
+      languages: ["English"],
+      image: "/images/Madan Narayanamurthy.png"
     },
     {
-      name: "Maria Santos",
+      name: "Maram Mohamed",
+      role: "Settlement Caseworker",
+      qualifications: "Settlement case management, community liaison experience",
+      languages: ["English"],
+      image: "/images/Maram2.png"
+    },
+    {
+      name: "Rose Oku",
       role: "Settlement Worker",
-      qualifications: "Community Services qualifications, Housing support specialist",
-      languages: ["English", "Spanish", "Portuguese"],
-      phone: "(02) 4926 1303",
-      email: "m.santos@mosaicmc.org.au"
+      qualifications: "Community services background, family support facilitation",
+      languages: ["English"],
+      image: "/images/Rose.png"
     },
     {
-      name: "Jennifer Kim",
-      role: "Employment Support Coordinator",
-      qualifications: "Career counseling certification, Job placement specialist",
-      languages: ["English", "Korean", "Japanese"],
-      phone: "(02) 4926 1304",
-      email: "j.kim@mosaicmc.org.au"
+      name: "Bronwyn Lin",
+      role: "Settlement Case Worker",
+      qualifications: "Social services qualifications, multicultural youth support",
+      languages: ["English"],
+      image: "/images/Bron.png"
     },
     {
-      name: "Hassan Al-Rashid",
-      role: "Community Orientation Worker",
-      qualifications: "Community development background, Cultural competency trainer",
-      languages: ["English", "Arabic", "Kurdish"],
-      phone: "(02) 4926 1305",
-      email: "h.alrashid@mosaicmc.org.au"
+      name: "Mohammad Sami Zakhil",
+      role: "Settlement Caseworker / Youth Connector",
+      qualifications: "Youth mentoring, bicultural advocacy",
+      languages: ["English"],
+      image: "/images/Sami.png"
     },
     {
-      name: "Elena Ferguson",
-      role: "Housing Support Specialist",
-      qualifications: "Property management background, Tenant advocacy specialist",
-      languages: ["English", "Russian", "Ukrainian"],
-      phone: "(02) 4926 1306",
-      email: "e.ferguson@mosaicmc.org.au"
+      name: "Michael de Laroche Souvestre",
+      role: "Settlement Worker (Tamworth)",
+      qualifications: "Regional settlement support, community orientation specialist",
+      languages: ["English"],
+      image: "/images/Mike2.png"
+    },
+    {
+      name: "Basim Khudeda",
+      role: "Settlement Worker (Armidale)",
+      qualifications: "Community engagement, multilingual client support",
+      languages: ["English"],
+      image: "/images/Basim Khudeda.png"
+    },
+    {
+      name: "Patricia Camilleri",
+      role: "Settlement Worker (Central Coast)",
+      qualifications: "Regional case management, family settlement support",
+      languages: ["English"],
+      image: "/images/Patricia 01.png"
     }
   ];
 
   const faqData = [
     {
       question: "Who is eligible for settlement support services?",
-      answer: "Settlement support is available to recent migrants and refugees within their first 5 years in Australia, family members of eligible migrants, people from culturally and linguistically diverse backgrounds, and anyone needing assistance navigating Australian systems and services. There are no visa status restrictions - we support all multicultural families regardless of their immigration status."
+      answer: "Settlement support is available to recent migrants and multicultural community members within their first 5 years in Australia, family members of eligible migrants, people from culturally and linguistically diverse backgrounds, and anyone needing assistance navigating Australian systems and services. There are no visa status restrictions - we support all multicultural families regardless of their immigration status."
     },
     {
       question: "What housing assistance do you provide?",
-      answer: "We help with finding suitable accommodation, understanding rental processes and tenant rights, connecting with real estate agents and housing services, assistance with rental applications and bond support, understanding utility connections and services, and advocacy with housing providers. Our housing workers can accompany you to property inspections and help negotiate rental agreements."
+      answer: "We help with finding suitable accommodation, understanding rental processes and tenant rights, connecting with real estate agents and housing services, preparing rental applications, understanding utility connections, and advocating with housing providers. Our settlement workers guide you through inspections and negotiations so you feel confident engaging with real estate agents."
     },
     {
       question: "How do you help with employment?",
-      answer: "Our employment support includes resume writing and interview preparation, job search assistance and connecting with employers, understanding Australian workplace culture and rights, skills recognition and qualification assessment support, referrals to training and education programs, and ongoing career development guidance. We work with local employers who value cultural diversity."
+      answer: "Our employment support includes resume writing and interview preparation, job search assistance and connecting with employers, understanding Australian workplace culture and rights, skills recognition and qualification assessment support, referrals to training and education programmes, and ongoing career development guidance. We work with local employers who value cultural diversity."
     },
     {
       question: "What government services can you help me access?",
-      answer: "We provide navigation support for Centrelink services and payments, Medicare registration and healthcare access, taxation and Australian Business Number (ABN) applications, driver's license and transport services, school enrollment for children, and legal services and advocacy support. Our workers can accompany you to appointments and help with paperwork."
+      answer: "We provide navigation support for Centrelink services and payments, Medicare registration and healthcare access, taxation and Australian Business Number (ABN) applications, driver licence and transport services, school enrolment for children, and legal services and advocacy support. Our workers can accompany you to appointments and help with paperwork."
     },
     {
       question: "Do you provide language support?",
-      answer: "Yes, we offer professional interpreter services for all appointments and meetings, translation of important documents, referrals to English language programs and classes, assistance with understanding official correspondence, and support in your preferred language during service delivery. Many of our staff speak multiple languages and understand the challenges of language barriers."
+      answer: "Yes, we offer professional interpreter services for all appointments and meetings, translation of important documents, referrals to English language programmes and classes, assistance with understanding official correspondence, and support in your preferred language during service delivery. Many of our staff speak multiple languages and understand the challenges of language barriers."
     },
     {
       question: "How long can I access settlement support?",
@@ -151,9 +167,13 @@ const SettlementSupportPage = () => {
   return (
     <div className="animate-fade-in">
       <Helmet>
-        <title>Mosaic Multicultural - Settlement Support</title>
-        <meta name="description" content="Comprehensive settlement services: housing, employment, government navigation, language support, and community orientation for new arrivals." />
+        <title>Settlement Support & Refugee Services | Central Coast, Newcastle & Northern NSW</title>
+        <meta
+          name="description"
+          content="Free settlement services for migrants and multicultural communities across the Central Coast, Newcastle, Lake Macquarie, Maitland, Tamworth and Armidale. Practical help with housing, work, English, safety and legal support."
+        />
       </Helmet>
+      <FAQSchema faqs={faqData} name="Settlement Support FAQs" />
       {/* Crisis Banner with subtle animation */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 animate-fade-in-down">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -186,25 +206,126 @@ const SettlementSupportPage = () => {
               <Home className="mr-2 h-4 w-4 text-sky" />
               <span className="text-gray-700 dark:text-white/90 font-medium">Settlement Support</span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 text-gray-900 dark:text-white animate-fade-in-up">Your Journey to Independence Starts Here</h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-              Starting life in a new country is one of life's biggest challenges. At Mosaic, our Settlement Support program provides comprehensive assistance to help new arrivals establish their lives in Australia with dignity, independence, and confidence. From finding housing and employment to understanding government services and community connections, we're here to guide you through every step of your settlement journey.
+            <h1 className="text-5xl font-bold mb-6 text-gray-900 dark:text-white animate-fade-in-up">Starting Again in Australia? We Walk With You.</h1>
+            <p
+              className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8 animate-fade-in-up"
+              style={{ animationDelay: '200ms' }}
+            >
+              You’re not alone. Starting fresh in Australia can feel overwhelming when rentals, work and government systems are unfamiliar. For more than 40 years Mosaic Multicultural Connections has walked beside migrants and multicultural communities across the Central Coast, Newcastle, Maitland, Tamworth and Armidale so they can access services with confidence. We listen, map out a simple plan, and stay with you until you feel safe, connected and capable.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '350ms' }}>
               <Link
-                to="#services"
-                className="bg-gradient-to-r from-sky to-sky/90 hover:from-sky/90 hover:to-sky text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-sky/25"
+                to="#programs"
+                className="bg-gradient-to-r from-sky to-sky/90 hover:from-sky/90 hover:to-sky text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-sky/25 focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-2"
               >
-                Explore Settlement Services
+                Explore Settlement Programs
               </Link>
               <a
                 href="tel:1800813205"
-                className="border-2 border-sky text-sky hover:bg-sky hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
+                className="border-2 border-sky text-sky hover:bg-sky hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 focus:outline-none focus:ring-2 focus:ring-sky focus:ring-offset-2"
               >
                 <Phone className="h-5 w-5 mr-2" />
-                Get Support Today - 1800 813 205
+                Call 1800 813 205
               </a>
             </div>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mt-6 animate-fade-in-up" style={{ animationDelay: '450ms' }}>
+              Free service • Interpreters available • Bring a trusted friend or family member.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20 bg-background transition-colors duration-300 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent dark:from-white/5 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-16">
+            <div className="animate-fade-in-left">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Who Can Access Our Services?</h2>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3 group">
+                    <CheckCircle className="h-5 w-5 text-sky mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                    <span className="text-gray-700 dark:text-gray-100">New migrants and multicultural communities within first 5 years</span>
+                  </div>
+                  <div className="flex items-start space-x-3 group">
+                    <CheckCircle className="h-5 w-5 text-sky mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                    <span className="text-gray-700 dark:text-gray-100">Families needing help with housing, work, English or legal support</span>
+                  </div>
+                  <div className="flex items-start space-x-3 group">
+                    <CheckCircle className="h-5 w-5 text-sky mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                    <span className="text-gray-700 dark:text-gray-100">Anyone seeking guidance to navigate Australian systems and services</span>
+                  </div>
+                  <div className="flex items-start space-x-3 group">
+                    <CheckCircle className="h-5 w-5 text-sky mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                    <span className="text-gray-700 dark:text-gray-100">Professional interpreters available for all appointments</span>
+                  </div>
+                </div>
+                <div className="rounded-xl overflow-hidden bg-card/70 border border-border">
+                  <div className="aspect-video">
+                    <img
+                      src="/images/settlement/eligibility.png"
+                      alt="Settlement support eligibility"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+          </div>
+        </div>
+      </section>
+
+      {/* How it works section */}
+      <section className="py-16 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-white/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.3em] text-sky font-semibold mb-3">How settlement support works</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Three simple steps from first call to feeling at home</h2>
+            <p className="text-lg text-gray-600 dark:text-white/70 max-w-3xl mx-auto">
+              Every pathway starts with your story. We match you with a settlement worker, agree on priorities, then check in until the plan is complete.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              {
+                title: "1. Reach out",
+                description: "Call 1800 813 205, visit a Mosaic hub or ask a service provider to refer you.",
+                bullets: ["Free service with interpreters on request", "Available across Central Coast, Newcastle, Maitland, Tamworth & Armidale"],
+                icon: <Phone className="h-6 w-6 text-sky" />
+              },
+              {
+                title: "2. Plan together",
+                description: "We listen, map urgent needs, and create a settlement plan that fits your goals and family life.",
+                bullets: ["Housing, work, English, legal and safety actions prioritised", "Clear steps with dates, contacts and responsibilities"],
+                icon: <CheckCircle className="h-6 w-6 text-sky" />
+              },
+              {
+                title: "3. Walk the journey",
+                description: "Your worker walks beside you at appointments, checks forms, and keeps you connected to community supports.",
+                bullets: ["Warm referrals to local partners and programmes", "Stay with us until you feel confident navigating Australia"],
+                icon: <Users className="h-6 w-6 text-sky" />
+              }
+            ].map((step, idx) => (
+              <div key={idx} className="rounded-2xl border border-slate-100 dark:border-white/10 bg-slate-50/60 dark:bg-white/5 p-6 shadow-sm">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="p-3 bg-sky/10 rounded-2xl">{step.icon}</div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{step.title}</h3>
+                </div>
+                <p className="text-gray-600 dark:text-white/80 mb-4">{step.description}</p>
+                <ul className="space-y-2">
+                  {step.bullets.map((bullet, bulletIdx) => (
+                    <li key={bulletIdx} className="flex items-start space-x-2 text-sm text-gray-600 dark:text-white/80">
+                      <span className="text-sky mt-1">•</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -219,9 +340,9 @@ const SettlementSupportPage = () => {
               <span className="mr-2 h-2 w-2 rounded-full bg-sky animate-pulse"></span>
               <span className="text-gray-700 dark:text-white/90 font-medium">Our Programs</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 animate-fade-in-up">Comprehensive Settlement Support Programs</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 animate-fade-in-up">What We Help You Tackle First</h2>
             <p className="text-xl text-gray-600 dark:text-white/70 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-              Our settlement support program addresses every aspect of establishing life in Australia. From immediate practical needs to long-term integration goals, we provide culturally appropriate assistance that respects your background while helping you navigate Australian systems with confidence.
+              Tell us whether housing, work, government forms or community connections feel hardest right now. We break each step into plain-language actions so you can see progress every week.
             </p>
           </div>
 
@@ -229,52 +350,52 @@ const SettlementSupportPage = () => {
             {[
               {
                 title: "Housing & Accommodation Support",
-                description: "Finding safe, affordable housing is often the first priority for new arrivals. Our housing specialists provide comprehensive support throughout your housing journey.",
+                description: "Gain confidence finding a safe, affordable home with a settlement worker who helps you prepare for inspections, explains leasing rules and rehearses paperwork before you submit it.",
                 features: [
-                  "Property search assistance and real estate liaison",
-                  "Rental application support and bond assistance",
+                  "Property search coaching and real estate liaison",
+                  "Rental application preparation and reference support",
                   "Tenant rights education and advocacy",
-                  "Utility connections and household setup",
-                  "Emergency accommodation referrals"
+                  "Guidance for setting up utilities and household services",
+                  "Rapid referrals to emergency accommodation partners"
                 ],
                 icon: <Home className="h-8 w-8" />,
                 color: "sky"
               },
               {
                 title: "Employment & Career Development",
-                description: "Securing meaningful employment is crucial for independence and community integration. Our employment team provides tailored support for your career goals.",
+                description: "Turn your skills into local job opportunities with resume mentoring, interview practice and introductions to inclusive employers.",
                 features: [
-                  "Resume writing and interview preparation",
-                  "Job search strategies and employer connections",
-                  "Skills recognition and qualification assessment",
+                  "Resume reviews and tailored interview coaching",
+                  "Job search strategies and employer introductions",
+                  "Support with skills recognition and qualification assessment",
                   "Workplace culture orientation and rights education",
-                  "Career development and training referrals"
+                  "Career development advice and training referrals"
                 ],
                 icon: <Users className="h-8 w-8" />,
                 color: "sky"
               },
               {
                 title: "Government Services Navigation",
-                description: "Understanding and accessing government services can be overwhelming. We provide step-by-step guidance through essential systems and processes.",
+                description: "Work alongside a settlement worker who breaks down Centrelink, Medicare, tax and licensing steps so every form is correct and deadlines are met.",
                 features: [
-                  "Centrelink registration and payment assistance",
-                  "Medicare enrollment and healthcare access",
-                  "Tax file number and banking setup",
-                  "Driver's license and transport services",
-                  "Legal services and advocacy support"
+                  "Centrelink registration guidance and payment assistance",
+                  "Medicare enrolment support and healthcare access",
+                  "Tax file number applications and banking setup assistance",
+                  "Driver licensing preparation and transport advice",
+                  "Warm referrals to legal and advocacy services"
                 ],
                 icon: <FileText className="h-8 w-8" />,
                 color: "sky"
               },
               {
                 title: "Community Orientation & Integration",
-                description: "Building connections and understanding Australian culture while maintaining your heritage is essential for successful settlement.",
+                description: "Learn your new city, schools, doctors and community hubs while staying proud of your culture and traditions, with guidance tailored to your family.",
                 features: [
                   "Local area orientation and community tours",
-                  "School enrollment and education support",
-                  "Healthcare system navigation",
-                  "Cultural orientation and social connections",
-                  "Community group referrals and participation"
+                  "School enrolment preparation and education support",
+                  "Healthcare system navigation and GP introductions",
+                  "Cultural orientation and social connection sessions",
+                  "Community group referrals and participation planning"
                 ],
                 icon: <Globe className="h-8 w-8" />,
                 color: "sky"
@@ -332,6 +453,51 @@ const SettlementSupportPage = () => {
         </div>
       </section>
 
+      
+
+      {/* Impact video stories */}
+      <section className="py-16 bg-slate-50 dark:bg-slate-950">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-sky font-semibold mb-3">Impact stories</p>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Watch how support sparks confidence</h2>
+              <p className="text-gray-600 dark:text-white/80 mb-5">
+                Short videos from Mosaic clients showcase practical wins: finding a rental, enrolling children, or feeling safe enough to volunteer, supported by settlement workers.
+              </p>
+              <ul className="space-y-3 text-gray-700 dark:text-white/80 text-sm">
+                <li className="flex items-start space-x-2">
+                  <span className="text-sky mt-1">•</span>
+                  <span>Feature one impact story per region or service stream.</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-sky mt-1">•</span>
+                  <span>Include captions and interpreter voiceovers for accessibility.</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-sky mt-1">•</span>
+                  <span>Close with a call to contact Mosaic for settlement planning.</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/60 dark:border-white/10 shadow-2xl bg-slate-900/80 flex items-center justify-center">
+                <div className="text-center px-6">
+                  <p className="text-white font-semibold mb-2">Impact video placeholder</p>
+                  <p className="text-white/80 text-sm mb-4">Embed your YouTube, Vimeo or hosted video here via CMS.</p>
+                  <button className="inline-flex items-center px-5 py-3 rounded-full bg-white text-slate-900 font-semibold shadow hover:scale-105 transition">
+                    <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                    Watch story
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Team Section */}
       <Team05
         title="Meet Your Settlement Support Team"
@@ -340,7 +506,7 @@ const SettlementSupportPage = () => {
         accentColor="sky"
         bottomSection={{
           title: "Comprehensive Settlement Approach",
-          description: "Our team works collaboratively to provide integrated settlement support that addresses all aspects of establishing life in Australia. From immediate practical needs to long-term community integration, we ensure no aspect of your settlement journey is overlooked. Professional interpreters are available for all services, and we maintain strong partnerships with local employers, housing providers, and community organizations."
+          description: "Our team works collaboratively to provide integrated settlement support that addresses all aspects of establishing life in Australia. From immediate practical needs to long-term community integration, we ensure no aspect of your settlement journey is overlooked. Professional interpreters are available for all services, and we maintain strong partnerships with local employers, housing providers, and community organisations."
         }}
       />
 
@@ -390,37 +556,10 @@ const SettlementSupportPage = () => {
             </div>
           </div>
 
-          <div className="text-center mt-16">
-            <div className="backdrop-blur-xl bg-white/70 dark:bg-white/10 rounded-2xl p-8 border border-white/50 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 group">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:scale-105 transition-transform duration-300">Still Have Questions?</h3>
-              <p className="text-gray-600 dark:text-white/80 mb-6">
-                Our multilingual settlement team is here to help you understand how we can support your settlement journey.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="tel:1800813205"
-                  className="bg-gradient-to-r from-sky to-sky/90 hover:from-sky/90 hover:to-sky text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-sky/25"
-                >
-                  <Phone className="h-5 w-5 mr-2" />
-                  Call 1800 813 205
-                </a>
-                <Link
-                  to="/contact"
-                  className="border-2 border-sky text-sky hover:bg-sky hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
-                >
-                  Contact Us Online
-                  <ArrowRight className="h-5 w-5 ml-2" />
-                </Link>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </section>
 
-      {/* Related Services cross-sell */}
-      <RelatedServices current="settlement-support" />
-
-      {/* Contact CTA with enhanced animations */}
       <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-blue-500/20 dark:from-slate-900/50 dark:to-blue-900/30"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-400/30 rounded-full blur-3xl dark:bg-purple-500/20 animate-blob"></div>
@@ -455,6 +594,10 @@ const SettlementSupportPage = () => {
           </div>
         </div>
       </section>
+
+      <RelatedServices current="settlement-support" />
+
+      
     </div>
   );
 };

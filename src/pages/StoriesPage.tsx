@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Calendar, MapPin, User, ArrowRight } from 'lucide-react';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
+import RelatedServices from '@/components/RelatedServices';
 
 const StoriesPage = () => {
   const stories = [
@@ -249,6 +250,7 @@ const StoriesPage = () => {
           </div>
         </div>
       </section>
+      <RelatedServices />
     </div>
   );
 };

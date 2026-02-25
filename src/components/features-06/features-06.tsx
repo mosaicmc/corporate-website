@@ -25,13 +25,13 @@ const defaultFeatures: ServiceFeature[] = [
   {
     category: "Aged Care Services",
     title: "Culturally Appropriate Care",
-    details: "Honoring traditions while providing professional aged care services in familiar languages. Home care packages, personal care, and cultural activities.",
+    details: "Honouring traditions while providing professional aged care services in familiar languages. Home care packages, personal care, and cultural activities.",
     tutorialLink: "/services/aged-care",
   },
   {
     category: "Family Support",
     title: "Strengthening Families",
-    details: "Programs designed to strengthen families and build resilient community connections. Family counseling, parenting support, and crisis intervention services.",
+    details: "Programs designed to strengthen families and build resilient community connections. Family counselling, parenting support, and crisis intervention services.",
     tutorialLink: "/services/family-support",
   },
   {
@@ -95,6 +95,7 @@ const ServicesList = ({ title = "Our Comprehensive Services", features = default
                   {feature.details}
                 </p>
                 <Button
+                  variant="cta"
                   asChild
                   className={`mt-6 rounded-full min-w-40 text-[15px] ${buttonColorClass(feature.category)} text-white`}
                 >

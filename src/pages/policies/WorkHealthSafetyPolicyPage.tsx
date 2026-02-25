@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ShieldCheck, FileWarning, AlertTriangle, Users, ClipboardCheck, HardHat, LifeBuoy } from "lucide-react";
+import { ShieldCheck, FileWarning, AlertTriangle, ClipboardCheck, HardHat, LifeBuoy } from "lucide-react";
 
 export default function WorkHealthSafetyPolicyPage() {
   const pdfHref = "https://mosaicmc.org.au/wp-content/uploads/2025/10/Mosaic-Work-Health-and-Safety-Policy.pdf";

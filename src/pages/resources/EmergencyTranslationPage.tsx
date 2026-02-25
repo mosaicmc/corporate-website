@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import RelatedServices from '@/components/RelatedServices';
 import { Phone, AlertTriangle, Flame, CloudLightning, Satellite, Radio, Zap, MapPin, Languages } from "lucide-react";
 
 import BackLink from "../../components/ui/BackLink";
@@ -200,6 +200,7 @@ export default function EmergencyTranslationPage() {
           </div>
         </div>
       </section>
+      <RelatedServices />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
+import RelatedServices from '@/components/RelatedServices';
 
 const ContactPage = () => {
   const { t } = useTranslation();
@@ -398,6 +399,7 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
+      <RelatedServices />
     </div>
   );
 };

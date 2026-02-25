@@ -25,7 +25,7 @@ export function GlassCard({
   hover = true,
   bordered = true,
 }: GlassCardProps) {
-  const Comp = as as any;
+  const Comp = as;
   return (
     <Comp
       className={cn(

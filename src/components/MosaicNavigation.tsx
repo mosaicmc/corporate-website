@@ -8,15 +8,16 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu-trigger-style";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { prefetchOnHover, prefetchRoute } from "@/lib/prefetch";
-import { Menu, Phone, X, Home, Heart, Users, Globe, LucideIcon, AlertTriangle, FileText, Book, ShieldCheck } from "lucide-react";
+import { Menu, Phone, X, Home, Heart, Users, Globe, LucideIcon, AlertTriangle, Book, ShieldCheck, Search } from "lucide-react";
+import { logSearchQuery, getMonthlyTop } from '@/lib/searchAnalytics';
 import { ThemeToggle } from './ui/theme-toggle';
 import LanguageSwitcher from './LanguageSwitcher';
-import { useTheme } from '../contexts/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
 import { useTranslation } from 'react-i18next';
 
 const services: {
@@ -77,7 +78,29 @@ const resourcesLinks: { title: string; href: string; description: string; icon: 
     description: "Organisational policies and governance resources",
     icon: Book,
   },
+  {
+    title: "FAQs",
+    href: "/resources/faqs",
+    description: "Common questions across services and access",
+    icon: Book,
+  },
 ];
+
+type SearchItem = { path: string; title: string; body: string; tags: string[]; lang?: string };
+let runtimeIndex: SearchItem[] = [];
+let indexLoaded = false;
+async function loadSearchIndex() {
+  if (indexLoaded) return;
+  try {
+    const res = await fetch('/search-index.json');
+    const data = await res.json();
+    runtimeIndex = Array.isArray(data.items) ? data.items : [];
+    indexLoaded = true;
+  } catch {
+    runtimeIndex = [];
+    indexLoaded = true;
+  }
+}
 
 type ListItemProps = {
   title: string;
@@ -100,6 +123,7 @@ const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
               // Improved hover/focus visibility in dark mode
               "hover:bg-sand/60 dark:hover:bg-white/10 hover:text-ocean dark:hover:text-sky",
               "hover:shadow-sm border border-transparent hover:border-ocean/20 dark:hover:border-sky/20",
+              "focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background",
               className
             )}
             {...prefetchOnHover(to)}
@@ -136,14 +160,18 @@ const Logo = () => {
 export default function MosaicNavigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [showCrisisBanner, setShowCrisisBanner] = useState(false);
-  const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
   const location = useLocation();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [topQueries, setTopQueries] = useState<{ query: string; count: number }[]>([]);
+  const [isOwner, setIsOwner] = useState(false);
 
   // Check if current path matches navigation item
   const isActivePath = (href: string, hasDropdown?: boolean) => {
     if (hasDropdown) {
-      return location.pathname.startsWith('/services');
+      return location.pathname.startsWith(href);
     }
     return location.pathname === href;
   };
@@ -151,6 +179,143 @@ export default function MosaicNavigation() {
   const handleCloseCrisisBanner = () => {
     setShowCrisisBanner(false);
   };
+
+  React.useEffect(() => {
+    loadSearchIndex();
+    const onKey = (e: KeyboardEvent) => {
+      const isMetaK = (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k';
+      if (isMetaK) {
+        e.preventDefault();
+        setShowOverlay((v) => !v);
+        setIsSearchOpen(true);
+        setTimeout(() => {
+          const el = document.getElementById('header-search-input');
+          (el as HTMLInputElement | null)?.focus();
+        }, 20);
+      } else if (e.key === '/') {
+        e.preventDefault();
+        setIsSearchOpen(true);
+        setTimeout(() => {
+          const el = document.getElementById('header-search-input');
+          (el as HTMLInputElement | null)?.focus();
+        }, 20);
+      } else if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === 'o') {
+        e.preventDefault();
+        const next = !(localStorage.getItem('mosaic-owner') === '1');
+        localStorage.setItem('mosaic-owner', next ? '1' : '0');
+        setIsOwner(next);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    const initialOwner = localStorage.getItem('mosaic-owner') === '1' || (import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV;
+    setIsOwner(!!initialOwner);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  function expandSynonyms(q: string): string[] {
+    const base = q.toLowerCase();
+    const syn: Record<string, string[]> = {
+      volunteer: ['get involved', 'help', 'participate'],
+      interpreting: ['translation', 'language', 'tis'],
+      donate: ['support', 'give', 'funding'],
+      services: ['programs', 'support'],
+      emergency: ['000', 'police', 'fire', 'ambulance'],
+      'aged care': ['elder care', 'elderly', 'senior', 'seniors'],
+      'elder care': ['aged care', 'elderly', 'senior', 'seniors'],
+      elder: ['aged care'],
+      employment: ['jobs', 'job', 'career', 'work', 'get involved', 'work for us', 'volunteer', 'join our team'],
+      jobs: ['employment', 'job', 'career', 'work', 'get involved', 'work for us', 'volunteer', 'join our team'],
+      job: ['employment', 'jobs', 'career', 'work', 'get involved', 'work for us', 'join our team'],
+      career: ['employment', 'jobs', 'work', 'get involved', 'work for us', 'join our team'],
+      work: ['employment', 'jobs', 'career', 'get involved', 'work for us', 'join our team'],
+      'old people': ['aged care', 'elderly', 'senior', 'seniors', 'elder care'],
+      old: ['aged care', 'elderly', 'senior', 'seniors', 'elder care'],
+    };
+    const acc = new Set<string>([base]);
+    for (const [k, arr] of Object.entries(syn)) {
+      if (base.includes(k)) arr.forEach((a) => acc.add(a));
+      for (const a of arr) if (base.includes(a)) acc.add(k);
+    }
+
+    const lang = (i18n.language || 'en').toLowerCase();
+    const trans: Record<string, Record<string, string[]>> = {
+      hi: {
+        'रोजगार': ['employment', 'jobs', 'work'],
+        'नौकरी': ['jobs', 'employment'],
+        'करियर': ['career'],
+        'काम': ['work', 'employment'],
+        'वृद्ध': ['aged care', 'elder care'],
+        'वृद्ध देखभाल': ['aged care', 'elder care'],
+        'बुजुर्ग': ['aged care', 'elder care'],
+        'सेवाएं': ['services'],
+        'स्वयंसेवी': ['volunteer', 'get involved'],
+        'naukri': ['jobs', 'employment'],
+        'kaam': ['work', 'employment'],
+        'buzurg': ['aged care', 'elder care'],
+        'sewa': ['services'],
+        'dekhbhal': ['aged care', 'elder care']
+      },
+      es: {
+        'empleo': ['employment', 'jobs', 'work'],
+        'trabajo': ['work', 'employment'],
+        'carrera': ['career'],
+        'ancianos': ['aged care', 'elder care'],
+        'cuidado de mayores': ['aged care', 'elder care'],
+        'servicios': ['services'],
+        'voluntariado': ['volunteer', 'get involved']
+      },
+      vi: {
+        'việc làm': ['employment', 'jobs', 'work'],
+        'nghề nghiệp': ['career'],
+        'người già': ['aged care', 'elder care'],
+        'chăm sóc người cao tuổi': ['aged care', 'elder care'],
+        'dịch vụ': ['services'],
+        'tình nguyện': ['volunteer', 'get involved']
+      },
+      ar: {
+        'عمل': ['work', 'employment'],
+        'وظائف': ['jobs', 'employment'],
+        'وظيفة': ['job', 'employment'],
+        'مسار مهني': ['career'],
+        'مسن': ['aged care', 'elder care'],
+        'رعاية المسنين': ['aged care', 'elder care'],
+        'خدمات': ['services'],
+        'تطوع': ['volunteer', 'get involved']
+      }
+    };
+    const langMap = trans[lang];
+    if (langMap) {
+      for (const [k, arr] of Object.entries(langMap)) {
+        if (base.includes(k)) {
+          acc.add(k);
+          arr.forEach((a) => acc.add(a));
+        }
+      }
+    }
+    return Array.from(acc);
+  }
+
+  function rankResults(q: string, items: SearchItem[]): SearchItem[] {
+    const qs = expandSynonyms(q);
+    const lang = (i18n.language || 'en').toLowerCase();
+    const scored = items.map((it) => {
+      const hay = `${it.title} ${it.body} ${(it.tags || []).join(' ')}`.toLowerCase();
+      let score = 0;
+      for (const term of qs) {
+        if (!term) continue;
+        if (it.title.toLowerCase() === term) score += 8;
+        if (it.title.toLowerCase().startsWith(term)) score += 6;
+        if (it.title.toLowerCase().includes(term)) score += 5;
+        if (hay.includes(term)) score += 3;
+      }
+      if (it.lang && it.lang.toLowerCase() === lang) score += 4;
+      return { it, score };
+    });
+    return scored
+      .filter((s) => s.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map((s) => s.it);
+  }
 
   return (
     <>
@@ -195,8 +360,9 @@ export default function MosaicNavigation() {
                         className={cn(
                           navigationMenuTriggerStyle(),
                           isActivePath('/')
-                            ? "text-white dark:text-white bg-ocean dark:bg-sky shadow-lg border border-ocean/20 dark:border-sky/20"
-                            : "text-gray-800 dark:text-white hover:text-ocean dark:hover:text-sky hover:bg-sand/50 dark:hover:bg-slate-700/50"
+                            ? "text-white dark:text-ocean bg-ocean dark:bg-sky shadow-lg border border-ocean/20 dark:border-sky/20"
+                            : "text-gray-800 dark:text-white hover:text-ocean dark:hover:text-sky hover:bg-sand/50 dark:hover:bg-slate-700/50",
+                          "focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
                         )}
                         {...prefetchOnHover('/')}
                       >
@@ -209,8 +375,9 @@ export default function MosaicNavigation() {
                   <NavigationMenuItem>
                     <NavigationMenuTrigger className={cn(
                       isActivePath('/services', true)
-                        ? "text-white dark:text-white bg-ocean dark:bg-sky shadow-lg border border-ocean/20 dark:border-sky/20"
-                        : "text-gray-800 dark:text-white hover:text-ocean dark:hover:text-sky hover:bg-sand/50 dark:hover:bg-slate-700/50"
+                        ? "text-white dark:text-ocean bg-ocean dark:bg-sky shadow-lg border border-ocean/20 dark:border-sky/20"
+                        : "text-gray-800 dark:text-white hover:text-ocean dark:hover:text-sky hover:bg-sand/50 dark:hover:bg-slate-700/50",
+                      "focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
                     )}
                       onMouseEnter={() => {
                         prefetchRoute('/services');
@@ -282,8 +449,9 @@ export default function MosaicNavigation() {
                           className={cn(
                             navigationMenuTriggerStyle(),
                             isActivePath(item.href)
-                              ? "text-white dark:text-white bg-ocean dark:bg-sky shadow-lg border border-ocean/20 dark:border-sky/20"
-                              : "text-gray-800 dark:text-white hover:text-ocean dark:hover:text-sky hover:bg-sand/50 dark:hover:bg-slate-700/50"
+                              ? "text-white dark:text-ocean bg-ocean dark:bg-sky shadow-lg border border-ocean/20 dark:border-sky/20"
+                              : "text-gray-800 dark:text-white hover:text-ocean dark:hover:text-sky hover:bg-sand/50 dark:hover:bg-slate-700/50",
+                            "focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
                           )}
                           {...prefetchOnHover(item.href)}
                         >
@@ -298,8 +466,9 @@ export default function MosaicNavigation() {
                     <NavigationMenuTrigger
                       className={cn(
                         isActivePath('/resources', true)
-                          ? "text-white dark:text-white bg-ocean dark:bg-sky shadow-lg border border-ocean/20 dark:border-sky/20"
-                          : "text-gray-800 dark:text-white hover:text-ocean dark:hover:text-sky hover:bg-sand/50 dark:hover:bg-slate-700/50"
+                          ? "text-white dark:text-ocean bg-ocean dark:bg-sky shadow-lg border border-ocean/20 dark:border-sky/20"
+                          : "text-gray-800 dark:text-white hover:text-ocean dark:hover:text-sky hover:bg-sand/50 dark:hover:bg-slate-700/50",
+                        "focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
                       )}
                       onMouseEnter={() => {
                         prefetchRoute('/resources');
@@ -326,7 +495,7 @@ export default function MosaicNavigation() {
                           <h6 className="pl-2.5 font-semibold uppercase text-sm text-muted-foreground">Explore</h6>
                           <ul className="mt-2.5 grid gap-3">
                             <ListItem title="All Resources" to="/resources" icon={Globe}>
-                              Browse resources, emergency contacts, and compliance information
+                              Browse brochures, annual reports, helpful links, emergency & translation
                             </ListItem>
                             <ListItem title="Contact" to="/contact" icon={Phone}>
                               Reach us for guidance and support
@@ -341,28 +510,105 @@ export default function MosaicNavigation() {
             </div>
 
             {/* Desktop Actions */}
-            <div className="hidden md:flex items-center space-x-3">
-              {/* Phone Icon - Compact */}
-              <a href="tel:1800813205" className="p-2 rounded-lg text-ocean dark:text-sky hover:bg-sand/50 dark:hover:bg-slate-800/50 transition-colors">
-                <Phone className="w-5 h-5" />
-              </a>
+            <div className="hidden md:flex items-center space-x-3 relative">
+              <button
+                type="button"
+                aria-label="Open search"
+                onClick={() => setIsSearchOpen((v) => !v)}
+                className="p-2 rounded-lg text-ocean dark:text-sky hover:bg-sand/50 dark:hover:bg-slate-800/50 transition-colors focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
+              >
+                <Search className="w-5 h-5" />
+              </button>
+
+              {isSearchOpen && (
+                <div className={`${showOverlay ? 'fixed inset-0 max-w-2xl mx-auto mt-24' : 'absolute right-0 top-12'} z-50 w-80 sm:w-[36rem] rounded-xl border border-border bg-background p-3 shadow-2xl`}>
+                  <div className="flex items-center gap-2">
+                    <input
+                      id="header-search-input"
+                      autoFocus
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search the site (Cmd+K)"
+                      className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
+                    />
+                    <button
+                      type="button"
+                      aria-label="Close search"
+                      onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
+                      className="p-2 rounded-md text-muted-foreground hover:bg-sand/50 dark:hover:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <div className="mt-3 max-h-64 overflow-auto">
+                    {searchQuery.trim() ? (
+                      <ul className="space-y-1">
+                        {rankResults(searchQuery, runtimeIndex).slice(0, 12).map((item) => (
+                          <li key={item.path}>
+                            <Link
+                              to={item.path}
+                              className="block rounded-md px-2 py-1.5 text-sm text-foreground hover:bg-sand/50 dark:hover:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
+                          {...prefetchOnHover(item.path)}
+                              onClick={() => { logSearchQuery(searchQuery, i18n.language); setIsSearchOpen(false); setSearchQuery(""); setShowOverlay(false); }}
+                            >
+                              {item.title}
+                            </Link>
+                          </li>
+                        ))}
+                        {rankResults(searchQuery, runtimeIndex).length === 0 && (
+                          <li className="px-2 py-1.5 text-sm text-muted-foreground">No results</li>
+                        )}
+                      </ul>
+                    ) : (
+                      <div className="px-2 py-1.5 text-sm text-muted-foreground">Type to search</div>
+                    )}
+                  </div>
+                  <div className="mt-3 flex items-center justify-between">
+                    <div className="text-xs text-muted-foreground">Press Esc to close</div>
+                    {isOwner && (
+                      <button
+                        type="button"
+                        className="text-xs rounded-md px-2 py-1 border border-border hover:bg-sand/50 dark:hover:bg-slate-800/50"
+                        onClick={() => { setTopQueries(getMonthlyTop(undefined, 20)); }}
+                      >View monthly top searches</button>
+                    )}
+                  </div>
+                  {isOwner && topQueries.length > 0 && (
+                    <div className="mt-2 border-t border-border pt-2">
+                      <div className="text-xs font-semibold mb-1">Top searches</div>
+                      <ul className="text-xs text-muted-foreground grid grid-cols-2 gap-1">
+                        {topQueries.map((x) => (
+                          <li key={x.query} className="flex justify-between"><span>{x.query}</span><span>{x.count}</span></li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )}
               
-              {/* Theme Toggle */}
-              <ThemeToggle />
+            {/* Theme Toggle */}
+            <ThemeToggle />
 
               {/* Language Switcher */}
               <LanguageSwitcher />
               
               {/* Action Buttons Group */}
               <div className="flex items-center space-x-2">
-                <Button size="sm" asChild className="bg-gradient-to-r from-leaf to-leaf/90 hover:from-leaf/90 hover:to-leaf text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
+                <Button
+                  variant="cta"
+                  size="default"
+                  asChild
+                  className="bg-gradient-to-r from-leaf to-leaf/90 hover:from-leaf/90 hover:to-leaf text-ocean font-semibold h-9 text-sm px-6 shadow-lg focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
+                >
                   <Link to="/get-involved" {...prefetchOnHover('/get-involved')}>{t('nav.getInvolved')}</Link>
                 </Button>
                 {/* Prominent Donate Button */}
                 <Button 
+                  variant="cta"
                   size="default" 
                   asChild
-                  className="bg-gradient-to-r from-sun to-earth hover:from-sun/90 hover:to-earth/90 text-white font-semibold px-6 shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="bg-gradient-to-r from-sun to-earth hover:from-sun/90 hover:to-earth/90 text-ocean font-semibold h-9 text-sm px-6 shadow-lg focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
                 >
                   <Link to="/donate" {...prefetchOnHover('/donate')}>Donate</Link>
                 </Button>
@@ -386,8 +632,9 @@ export default function MosaicNavigation() {
                       to="/" 
                       className={cn("text-lg font-medium transition-colors",
                         isActivePath('/')
-                          ? "text-white dark:text-white bg-ocean dark:bg-sky px-4 py-2 rounded-lg shadow-lg"
-                          : "text-gray-800 dark:text-gray-200 hover:text-ocean dark:hover:text-sky"
+                          ? "text-white dark:text-ocean bg-ocean dark:bg-sky px-4 py-2 rounded-lg shadow-lg"
+                          : "text-gray-800 dark:text-gray-200 hover:text-ocean dark:hover:text-sky",
+                        "focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
                       )}
                       {...prefetchOnHover('/')}
                       onClick={() => setIsOpen(false)}
@@ -399,8 +646,9 @@ export default function MosaicNavigation() {
                       to="/services" 
                       className={cn("text-lg font-medium transition-colors",
                         isActivePath('/services', true)
-                          ? "text-white dark:text-white bg-ocean dark:bg-sky px-4 py-2 rounded-lg shadow-lg"
-                          : "text-gray-800 dark:text-gray-200 hover:text-ocean dark:hover:text-sky"
+                          ? "text-white dark:text-ocean bg-ocean dark:bg-sky px-4 py-2 rounded-lg shadow-lg"
+                          : "text-gray-800 dark:text-gray-200 hover:text-ocean dark:hover:text-sky",
+                        "focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
                       )}
                       {...prefetchOnHover('/services')}
                       onClick={() => setIsOpen(false)}
@@ -431,8 +679,9 @@ export default function MosaicNavigation() {
                         to={item.href}
                         className={cn("text-lg font-medium transition-colors",
                           isActivePath(item.href)
-                            ? "text-white dark:text-white bg-ocean dark:bg-sky px-4 py-2 rounded-lg shadow-lg"
-                            : "text-gray-800 dark:text-gray-200 hover:text-ocean dark:hover:text-sky"
+                            ? "text-white dark:text-ocean bg-ocean dark:bg-sky px-4 py-2 rounded-lg shadow-lg"
+                            : "text-gray-800 dark:text-gray-200 hover:text-ocean dark:hover:text-sky",
+                          "focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
                         )}
                         {...prefetchOnHover(item.href)}
                         onClick={() => setIsOpen(false)}
@@ -446,8 +695,9 @@ export default function MosaicNavigation() {
                       to="/resources" 
                       className={cn("text-lg font-medium transition-colors",
                         isActivePath('/resources')
-                          ? "text-white dark:text-white bg-ocean dark:bg-sky px-4 py-2 rounded-lg shadow-lg"
-                          : "text-gray-800 dark:text-gray-200 hover:text-ocean dark:hover:text-sky"
+                          ? "text-white dark:text-ocean bg-ocean dark:bg-sky px-4 py-2 rounded-lg shadow-lg"
+                          : "text-gray-800 dark:text-gray-200 hover:text-ocean dark:hover:text-sky",
+                        "focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
                       )}
                       {...prefetchOnHover('/resources')}
                       onClick={() => setIsOpen(false)}
@@ -478,7 +728,11 @@ export default function MosaicNavigation() {
                       <Button variant="outline" size="sm" asChild className="w-full border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-300 hover:bg-sand/50 dark:hover:bg-slate-800/50">
                         <a href="tel:1800813205">📞 Call 1800 813 205</a>
                       </Button>
-                      <Button size="sm" asChild className="w-full bg-gradient-to-r from-leaf to-leaf/90 hover:from-leaf/90 hover:to-leaf text-white font-semibold shadow-lg">
+                      <Button
+                        size="default"
+                        asChild
+                        className="w-full bg-gradient-to-r from-leaf to-leaf/90 hover:from-leaf/90 hover:to-leaf text-ocean font-semibold h-9 text-sm px-6 shadow-lg focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
+                      >
                         <Link to="/get-involved" onClick={() => setIsOpen(false)}>
                           {/* Prefetch Get Involved route on hover/focus */}
                           <span {...prefetchOnHover('/get-involved')}> 
@@ -490,7 +744,7 @@ export default function MosaicNavigation() {
                       <Button 
                         size="default" 
                         asChild 
-                        className="w-full bg-gradient-to-r from-sun to-earth hover:from-sun/90 hover:to-earth/90 text-white font-semibold py-3 shadow-lg"
+                        className="w-full bg-gradient-to-r from-sun to-earth hover:from-sun/90 hover:to-earth/90 text-ocean font-semibold h-9 text-sm px-6 shadow-lg focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2 focus:ring-offset-background"
                       >
                         <Link to="/donate" {...prefetchOnHover('/donate')} onClick={() => setIsOpen(false)}>
                           Donate to Support Our Community

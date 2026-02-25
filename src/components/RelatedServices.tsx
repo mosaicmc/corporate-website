@@ -1,57 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Home, Heart, Users, Handshake, ChevronRight } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
+import { getRelatedPages, keyForPath, copyFor, RelatedItem } from '@/lib/related';
 
-type ServiceKey = 'settlement-support' | 'aged-care' | 'family-support' | 'community-engagement';
-
-interface RelatedServicesProps {
-  current?: ServiceKey;
-}
-
-const SERVICES: Record<ServiceKey, {
-  title: string;
-  description: string;
-  link: string;
-  color: 'sky' | 'care' | 'sun' | 'leaf' | 'earth';
-  icon: React.ReactNode;
-}> = {
-  'settlement-support': {
-    title: 'Settlement Support',
-    description: 'Housing, jobs, and orientation support for new arrivals.',
-    link: '/services/settlement-support',
-    color: 'sky',
-    icon: <Home className="h-6 w-6" />,
-  },
-  'aged-care': {
-    title: 'Aged Care Services',
-    description: 'Culturally appropriate in‑home care and social support.',
-    link: '/services/aged-care',
-    color: 'care',
-    icon: <Heart className="h-6 w-6" />,
-  },
-  'family-support': {
-    title: 'Family Support',
-    description: 'Counselling, parenting workshops, and multicultural playgroups.',
-    link: '/services/family-support',
-    color: 'sun',
-    icon: <Users className="h-6 w-6" />,
-  },
-  'community-engagement': {
-    title: 'Community Engagement',
-    description: 'Events, volunteering, and partnership initiatives across NSW.',
-    link: '/services/community-engagement',
-    color: 'leaf',
-    icon: <Handshake className="h-6 w-6" />,
-  },
-};
+interface RelatedServicesProps { current?: 'settlement-support' | 'aged-care' | 'family-support' | 'community-engagement' }
 
 export default function RelatedServices({ current }: RelatedServicesProps) {
-  const entries = Object.entries(SERVICES);
-  const items = (current
-    ? entries.filter(([key]) => key !== current)
-    : entries
-  ).map(([key, svc]) => ({ key: key as ServiceKey, ...svc }));
+  const location = useLocation();
+  const path = location.pathname;
+  const items: RelatedItem[] = getRelatedPages(path);
+  const currentKey = current ?? keyForPath(path);
+  const paragraph = copyFor(currentKey);
 
   const gradientFor = (color: string) => (
     color === 'sky' ? 'from-sky to-sky/80' :
@@ -69,7 +29,7 @@ export default function RelatedServices({ current }: RelatedServicesProps) {
           <span className="text-gray-700 dark:text-white/90 font-medium">Related Services</span>
         </div>
         <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">You May Also Be Interested In</h2>
-        <p className="text-xl text-gray-700 dark:text-gray-100 max-w-3xl mx-auto">Explore other support we offer that often complements this service.</p>
+        <p className="text-xl text-gray-700 dark:text-gray-100 max-w-3xl mx-auto">{paragraph}</p>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -82,7 +42,10 @@ export default function RelatedServices({ current }: RelatedServicesProps) {
               <div className="absolute inset-0 bg-gradient-to-br from-white/20 dark:from-white/5 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="flex items-start gap-4">
                 <div className={`rounded-lg text-white p-3 bg-gradient-to-br ${gradientFor(svc.color)} shadow-md`}>
-                  {svc.icon}
+                  {svc.icon === 'home' && <Home className="h-6 w-6" />}
+                  {svc.icon === 'heart' && <Heart className="h-6 w-6" />}
+                  {svc.icon === 'users' && <Users className="h-6 w-6" />}
+                  {svc.icon === 'handshake' && <Handshake className="h-6 w-6" />}
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 dark:text-white">{svc.title}</h3>

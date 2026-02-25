@@ -1,4 +1,6 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from 'react-helmet-async';
+import { AU } from '@/lib/auSpelling';
+import RelatedServices from '@/components/RelatedServices';
 import { Phone, AlertTriangle, Flame, CloudLightning, Satellite, Radio, Zap, MapPin, Languages } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -162,9 +164,9 @@ export default function EmergencyServicesPage() {
           </div>
 
           <div className="mt-8 rounded-lg bg-muted p-4 text-sm text-muted-foreground">
-            If you need language support in an emergency, call the Translating &
-            Interpreting Service on <a className="text-primary hover:underline" href="tel:131450">131 450</a> and
-            ask for an interpreter.
+            {AU('If you need language support in an emergency, call the Translating & Interpreting Service on ')}
+            <a className="text-primary hover:underline" href="tel:131450">131 450</a>
+            {AU(' and ask for an interpreter.')}
           </div>
 
           <div className="mt-10 text-center">
@@ -174,6 +176,7 @@ export default function EmergencyServicesPage() {
           </div>
         </div>
       </section>
+      <RelatedServices />
     </div>
   );
 }

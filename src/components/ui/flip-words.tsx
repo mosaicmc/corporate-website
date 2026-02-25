@@ -12,27 +12,32 @@ export const FlipWords = ({
   duration?: number;
   className?: string;
 }) => {
+  const hasWords = Array.isArray(words) && words.length > 0;
   const [currentWord, setCurrentWord] = useState(words[0] || "");
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
-  // Early return if no words provided
-  if (!words || words.length === 0) {
-    return null;
-  }
-
   // thanks for the fix Julian - https://github.com/Julian-AT
   const startAnimation = useCallback(() => {
+    if (!hasWords) return;
     const word = words[words.indexOf(currentWord) + 1] || words[0];
     setCurrentWord(word);
     setIsAnimating(true);
-  }, [currentWord, words]);
+  }, [currentWord, words, hasWords]);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
+    if (!hasWords) return undefined;
+    if (!isAnimating) {
+      const timeout = window.setTimeout(() => {
         startAnimation();
       }, duration);
-  }, [isAnimating, duration, startAnimation]);
+      return () => window.clearTimeout(timeout);
+    }
+    return undefined;
+  }, [isAnimating, duration, startAnimation, hasWords]);
+
+  if (!hasWords) {
+    return null;
+  }
 
   return (
     <AnimatePresence
@@ -61,7 +66,7 @@ export const FlipWords = ({
           position: "absolute",
         }}
         className={cn(
-          "z-10 inline-block relative text-left text-neutral-900 dark:text-neutral-100 px-1 sm:px-2 py-0 leading-[1.1] min-h-[1.4em] overflow-visible",
+          "z-10 inline-block relative text-left px-1 sm:px-2 py-0 leading-[1.1] min-h-[1.4em] overflow-visible bg-gradient-to-r from-sky via-ocean to-earth bg-clip-text text-transparent dark:from-sky dark:via-ocean dark:to-earth",
           className
         )}
         key={currentWord}

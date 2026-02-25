@@ -29,11 +29,28 @@ type Output = {
   reviews: ScrapedReview[];
 };
 
+type ApiReview = {
+  authorName: string;
+  rating: number;
+  text: string;
+  timestamp?: number;
+};
+
 const GOOGLE_REVIEWS_URL = process.env.GOOGLE_REVIEWS_URL || 'https://maps.app.goo.gl/mYc8i3DawKk6PsPc9';
 const MAX_REVIEWS = parseInt(process.env.MAX_REVIEWS || '30', 10);
 const OUTPUT_PATH = path.resolve('public/reviews.json');
+const debugScrape = (process.env.DEBUG_SCRAPER || '').toLowerCase() === 'true';
 
-async function getReviewsContext(page: Page): Promise<Page | Frame> {
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+
+function logNonFatal(error: unknown, context: string) {
+  if (!debugScrape) return;
+  console.warn(`[scrape-google-reviews] ${context}`, error);
+}
+
+type FrameLike = Page | Frame;
+
+async function getReviewsContext(page: Page): Promise<FrameLike> {
   // Some Google search links render reviews inside an iframe; prefer that frame.
   const candidates = page.frames();
   const frame = candidates.find((f) => {
@@ -43,7 +60,7 @@ async function getReviewsContext(page: Page): Promise<Page | Frame> {
   return frame || page;
 }
 
-async function ensureReviewsPanel(ctx: Page | Frame) {
+async function ensureReviewsPanel(ctx: FrameLike) {
   // Try clicking on the Reviews tab/button if present
   const selectorsToTry = [
     'button[aria-label*="Reviews"]',
@@ -52,16 +69,16 @@ async function ensureReviewsPanel(ctx: Page | Frame) {
     'a[aria-label*="Reviews"]',
   ];
   for (const sel of selectorsToTry) {
-    const handle = await (ctx as any).$(sel);
+    const handle = await ctx.$(sel);
     if (handle) {
       await handle.click({ delay: 50 });
-      await new Promise((res) => setTimeout(res, 1500));
+      await delay(1500);
       break;
     }
   }
 }
 
-async function scrollReviews(ctx: Page | Frame) {
+async function scrollReviews(ctx: FrameLike) {
   // Attempt to find a scrollable reviews container; fallback to window scroll
   const scrollContainerSelectorCandidates = [
     'div[role="main"]',
@@ -72,28 +89,27 @@ async function scrollReviews(ctx: Page | Frame) {
     'div[jscontroller*="e6MZhf"]',
   ];
   for (const sel of scrollContainerSelectorCandidates) {
-    const exists = await (ctx as any).$(sel);
+    const exists = await ctx.$(sel);
     if (exists) {
       for (let i = 0; i < 20; i++) {
-        await (ctx as any).evaluate((selector: string) => {
+        await ctx.evaluate((selector: string) => {
           const el = document.querySelector(selector);
           if (el) el.scrollBy({ top: 1000, behavior: 'smooth' });
         }, sel);
-        await new Promise((res) => setTimeout(res, 500));
+        await delay(500);
       }
       return;
     }
   }
   // Fallback: scroll window
   for (let i = 0; i < 20; i++) {
-    await (ctx as any).evaluate(() => window.scrollBy(0, 1000));
-    await new Promise((res) => setTimeout(res, 500));
+    await ctx.evaluate(() => window.scrollBy(0, 1000));
+    await delay(500);
   }
 }
-
-async function extractReviews(ctx: Page | Frame): Promise<ScrapedReview[]> {
+async function extractReviews(ctx: FrameLike): Promise<ScrapedReview[]> {
   // This extraction uses heuristic selectors as Google DOM changes often.
-  const reviews: ScrapedReview[] = await (ctx as any).evaluate(() => {
+  const reviews: ScrapedReview[] = await ctx.evaluate(() => {
     const sanitize = (s: string) => s.replace(/\s+/g, ' ').trim();
     // Helper: query across shadow DOM
     function queryAllDeep(selectorList: string[]): Element[] {
@@ -101,12 +117,14 @@ async function extractReviews(ctx: Page | Frame): Promise<ScrapedReview[]> {
       const results: Element[] = [];
       const visit = (root: Document | ShadowRoot | Element) => {
         for (const sel of selectors) {
-          results.push(...Array.from((root as any).querySelectorAll?.(sel) || []));
+          const queryable = root as Document | ShadowRoot | Element;
+          const matched = queryable.querySelectorAll ? Array.from(queryable.querySelectorAll(sel)) : [];
+          results.push(...matched);
         }
-        const treeWalker = document.createTreeWalker(root as any, NodeFilter.SHOW_ELEMENT, null);
+        const treeWalker = document.createTreeWalker(root as Node, NodeFilter.SHOW_ELEMENT, null);
         let current = treeWalker.currentNode as Element | null;
         while (current) {
-          const sr = (current as any).shadowRoot as ShadowRoot | null;
+          const sr = (current as Element & { shadowRoot?: ShadowRoot | null }).shadowRoot || null;
           if (sr) visit(sr);
           current = treeWalker.nextNode() as Element | null;
         }
@@ -177,7 +195,7 @@ async function extractReviews(ctx: Page | Frame): Promise<ScrapedReview[]> {
   }));
 }
 
-async function fetchApiReviews(placeId?: string, apiKey?: string): Promise<any[]> {
+async function fetchApiReviews(placeId?: string, apiKey?: string): Promise<ApiReview[]> {
   if (!placeId || !apiKey) return [];
   const fields = 'reviews,url,place_id,rating,user_ratings_total';
   const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${encodeURIComponent(placeId)}&fields=${fields}&key=${apiKey}`;
@@ -186,11 +204,11 @@ async function fetchApiReviews(placeId?: string, apiKey?: string): Promise<any[]
   const data = await res.json();
   const reviews = data?.result?.reviews || [];
   // Normalize minimal fields used for verification
-  return reviews.map((r: any) => ({
+  return reviews.map((r: { author_name: string; rating: number; text: string; time?: number }) => ({
     authorName: r.author_name,
     rating: r.rating,
     text: r.text || '',
-    timestamp: r.time, // epoch seconds
+    timestamp: r.time,
   }));
 }
 
@@ -198,7 +216,7 @@ function normalize(s: string): string {
   return s.replace(/\s+/g, ' ').trim().toLowerCase();
 }
 
-function matchToApi(scraped: ScrapedReview[], apiReviews: any[]): ScrapedReview[] {
+function matchToApi(scraped: ScrapedReview[], apiReviews: ApiReview[]): ScrapedReview[] {
   return scraped.map((s) => {
     const match = apiReviews.find((ar) => normalize(ar.text).includes(normalize(s.text)) || normalize(ar.authorName) === normalize(s.authorName));
     if (match) {
@@ -229,7 +247,7 @@ async function run() {
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36'
     );
     await page.goto(GOOGLE_REVIEWS_URL, { waitUntil: 'networkidle2', timeout: 60000 });
-    await new Promise((res) => setTimeout(res, 1500));
+    await delay(1500);
 
     // Handle potential Google consent screens ("Before you continue" / "Accept all")
     async function maybeAcceptConsent(p: Page) {
@@ -240,10 +258,14 @@ async function run() {
         'button[aria-label*="I agree"]',
       ];
       for (const sel of candidates) {
-        const btn = await p.$(sel as any);
+        const btn = await p.$(sel);
         if (btn) {
-          try { await btn.click({ delay: 50 }); } catch {}
-          await new Promise((res) => setTimeout(res, 1200));
+          try {
+            await btn.click({ delay: 50 });
+          } catch (error) {
+            logNonFatal(error, 'consent click');
+          }
+          await delay(1200);
           break;
         }
       }
@@ -254,15 +276,21 @@ async function run() {
           const target = buttons.find((b) => /accept all|i agree|agree|accept/i.test((b.innerText || '').toLowerCase()));
           if (target) target.click();
         });
-        await new Promise((res) => setTimeout(res, 1000));
-      } catch {}
+        await delay(1000);
+      } catch (error) {
+        logNonFatal(error, 'consent fallback evaluate');
+      }
       // Try within frames
       for (const f of p.frames()) {
         for (const sel of candidates) {
-          const btn = await f.$(sel as any);
+          const btn = await f.$(sel);
           if (btn) {
-            try { await btn.click({ delay: 50 }); } catch {}
-            await new Promise((res) => setTimeout(res, 1200));
+            try {
+              await btn.click({ delay: 50 });
+            } catch (error) {
+              logNonFatal(error, 'consent frame click');
+            }
+            await delay(1200);
             break;
           }
         }
@@ -272,8 +300,10 @@ async function run() {
             const target = buttons.find((b) => /accept all|i agree|agree|accept/i.test((b.innerText || '').toLowerCase()));
             if (target) target.click();
           });
-          await new Promise((res) => setTimeout(res, 1000));
-        } catch {}
+          await delay(1000);
+        } catch (error) {
+          logNonFatal(error, 'consent frame fallback');
+        }
       }
     }
     await maybeAcceptConsent(page);
@@ -289,7 +319,7 @@ async function run() {
     const PLACE_ID = process.env.GOOGLE_PLACE_ID;
     const API_KEY = process.env.GOOGLE_MAPS_API_KEY;
     let verifiedReviews = reviews;
-    let apiReviews: any[] = [];
+    let apiReviews: ApiReview[] = [];
     try {
       apiReviews = await fetchApiReviews(PLACE_ID, API_KEY);
       if (apiReviews.length) {

@@ -34,7 +34,7 @@ export default function GoogleTranslateWidget({
     }
 
     window.googleTranslateElementInit = () => {
-      // @ts-ignore
+      // @ts-expect-error - google global provided by script
       new window.google.translate.TranslateElement(
         {
           pageLanguage,
@@ -60,8 +60,10 @@ export default function GoogleTranslateWidget({
         banner.parentNode.removeChild(banner);
       }
       window.location.reload();
-    } catch (e) {
-      // noop: best-effort reset
+    } catch (error) {
+      if (import.meta.env.DEV) {
+        console.warn('Google Translate reset failed', error);
+      }
     }
   }, []);
 

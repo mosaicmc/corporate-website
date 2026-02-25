@@ -4,9 +4,10 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import MosaicNavigation from './components/MosaicNavigation';
 import Footer from './components/Footer';
 import Breadcrumbs from './components/ui/Breadcrumbs';
-import QuickLinks from './components/ui/QuickLinks';
 import ScrollToTop from './components/ui/ScrollToTop';
+import { ScrollToTopButton } from './components/ui/floating-elements';
 import GoogleTranslateInit from './components/GoogleTranslateInit';
+import DefaultSEO from './components/SEO';
 
 // Lazy load pages
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -19,22 +20,25 @@ const StoriesPage = lazy(() => import('./pages/StoriesPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const DonatePage = lazy(() => import('./pages/DonatePage'));
 // Resources subpages
-const EmergencyServicesPage = lazy(() => import('./pages/resources/EmergencyServicesPage'));
-const TranslationServicesPage = lazy(() => import('./pages/resources/TranslationServicesPage'));
 const AnnualReportsPage = lazy(() => import('./pages/resources/AnnualReportsPage'));
 const EmergencyTranslationPage = lazy(() => import('./pages/resources/EmergencyTranslationPage'));
 const HelpfulLinksPage = lazy(() => import('./pages/resources/HelpfulLinksPage'));
+const FAQPage = lazy(() => import('./pages/resources/FAQPage'));
 // Policy pages
 const CodeOfConductPolicyPage = lazy(() => import('./pages/policies/CodeOfConductPolicyPage'));
 const DiversityInclusionPolicyPage = lazy(() => import('./pages/policies/DiversityInclusionPolicyPage'));
 const WhistleblowerPolicyPage = lazy(() => import('./pages/policies/WhistleblowerPolicyPage'));
-  const QualityManagementPolicyPage = lazy(() => import('./pages/policies/QualityManagementPolicyPage'));
-  const WorkHealthSafetyPolicyPage = lazy(() => import('./pages/policies/WorkHealthSafetyPolicyPage'));
-  const KnowledgeBasePage = lazy(() => import('./pages/company/KnowledgeBasePage'));
+const QualityManagementPolicyPage = lazy(() => import('./pages/policies/QualityManagementPolicyPage'));
+const WorkHealthSafetyPolicyPage = lazy(() => import('./pages/policies/WorkHealthSafetyPolicyPage'));
+const KnowledgeBasePage = lazy(() => import('./pages/company/KnowledgeBasePage'));
 const SettlementSupportPage = lazy(() => import('./pages/services/SettlementSupportPage'));
 const AgedCarePage = lazy(() => import('./pages/services/AgedCarePage'));
 const FamilySupportPage = lazy(() => import('./pages/services/FamilySupportPage'));
 const CommunityEngagementPage = lazy(() => import('./pages/services/CommunityEngagementPage'));
+const NewcastleVolunteerPage = lazy(() => import('./pages/volunteer/NewcastleVolunteerPage'));
+const CentralCoastVolunteerPage = lazy(() => import('./pages/volunteer/CentralCoastVolunteerPage'));
+const ArmidaleVolunteerPage = lazy(() => import('./pages/volunteer/ArmidaleVolunteerPage'));
+const TamworthVolunteerPage = lazy(() => import('./pages/volunteer/TamworthVolunteerPage'));
 
 function App() {
   return (
@@ -47,7 +51,7 @@ function App() {
           >
             Skip to content
           </a>
-          {/* Hidden Google Translate initializer (keeps machine translation working) */}
+          <DefaultSEO />
           <GoogleTranslateInit />
           <ScrollToTop />
           <MosaicNavigation />
@@ -70,9 +74,14 @@ function App() {
                 <Route path="/resources/emergency-translation" element={<EmergencyTranslationPage />} />
                 <Route path="/resources/annual-reports" element={<AnnualReportsPage />} />
                 <Route path="/resources/helpful-links" element={<HelpfulLinksPage />} />
+                <Route path="/resources/faqs" element={<FAQPage />} />
                 <Route path="/stories" element={<StoriesPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/donate" element={<DonatePage />} />
+                <Route path="/volunteer/newcastle" element={<NewcastleVolunteerPage />} />
+                <Route path="/volunteer/central-coast" element={<CentralCoastVolunteerPage />} />
+                <Route path="/volunteer/armidale" element={<ArmidaleVolunteerPage />} />
+                <Route path="/volunteer/tamworth" element={<TamworthVolunteerPage />} />
                 {/* Policies */}
                 <Route path="/policies/code-of-conduct" element={<CodeOfConductPolicyPage />} />
                 <Route path="/policies/diversity-inclusion" element={<DiversityInclusionPolicyPage />} />
@@ -82,10 +91,10 @@ function App() {
         <Route path="/company/knowledge-base" element={<KnowledgeBasePage />} />
               </Routes>
             </Suspense>
-            <QuickLinks />
           </main>
-          
-          <Footer />
+        
+        <Footer />
+        <ScrollToTopButton />
         </div>
       </Router>
     </ThemeProvider>

@@ -15,6 +15,7 @@ import vi from './translations/vi.json';
 import hi from './translations/hi.json';
 import tl from './translations/tl.json';
 import it from './translations/it.json';
+import { auSpelling } from '@/lib/auSpelling';
 
 const resources = {
   en: { translation: en },
@@ -33,6 +34,15 @@ const resources = {
 
 i18n
   .use(LanguageDetector)
+  .use({
+    type: 'postProcessor',
+    name: 'auSpelling',
+    process(value: string, _key: string, _options: unknown, translator: { language?: string } | undefined) {
+      const lng = translator && translator.language ? translator.language : i18n.language;
+      if (lng === 'en') return auSpelling(value);
+      return value;
+    },
+  })
   .use(initReactI18next)
   .init({
     resources,
@@ -50,6 +60,7 @@ i18n
     },
     
     debug: false, // Set to true for development debugging
+    postProcess: ['auSpelling'],
   });
 
 export default i18n;

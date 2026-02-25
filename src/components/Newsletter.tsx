@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AU } from '@/lib/auSpelling';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 const Newsletter = () => {
@@ -54,7 +55,7 @@ const Newsletter = () => {
             </div>
             <h2 className="text-3xl font-bold tracking-tight text-gray-900">Get in touch</h2>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              We're here to help you access the support and services you need. Contact our multilingual team today.
+              {AU("We're here to help you access the support and services you need. Contact our multilingual team today.")}
             </p>
             <dl className="mt-10 space-y-4 text-base leading-7 text-gray-600">
               <div className="flex gap-x-4">

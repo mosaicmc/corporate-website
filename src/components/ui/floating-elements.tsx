@@ -9,6 +9,7 @@ interface FloatingActionButtonProps {
   position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
   size?: 'sm' | 'md' | 'lg';
   variant?: 'primary' | 'secondary';
+  ariaLabel?: string;
 }
 
 export const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
@@ -18,6 +19,7 @@ export const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
   position = 'bottom-right',
   size = 'md',
   variant = 'primary',
+  ariaLabel,
 }) => {
   const positionClasses = {
     'bottom-right': 'bottom-6 right-6',
@@ -47,6 +49,8 @@ export const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
   return (
     <button
       onClick={onClick}
+      aria-label={ariaLabel}
+      title={ariaLabel}
       className={`
         fixed z-50 ${positionClasses[position]} ${sizeClasses[size]}
         ${variantClasses[variant]} ${className}
@@ -67,32 +71,44 @@ export const ScrollToTopButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          setIsVisible(window.pageYOffset > 300);
+          ticking = false;
+        });
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll as EventListener);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    const startY = window.pageYOffset;
+    const duration = 500;
+    const startTime = performance.now();
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutCubic(progress);
+      const nextY = Math.max(startY * (1 - eased), 0);
+      window.scrollTo(0, nextY);
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
   };
-
-  if (!isVisible) return null;
 
   return (
     <FloatingActionButton
-      icon={<ArrowUp className="h-5 w-5" />}
+      icon={<ArrowUp className="h-5 w-5" aria-hidden="true" />}
       onClick={scrollToTop}
-      className="animate-fade-in"
+      className={`${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'} transition-opacity duration-300 md:w-14 md:h-14 w-12 h-12`}
+      variant="secondary"
+      ariaLabel="Go to top"
     />
   );
 };

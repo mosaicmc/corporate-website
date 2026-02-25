@@ -111,9 +111,9 @@ const Testimonials = () => {
           if (typeof meta.bottomText === 'string' && meta.bottomText.trim()) setBottomText(meta.bottomText.trim());
           if (typeof meta.badgeLabel === 'string' && meta.badgeLabel.trim()) setBadgeLabel(meta.badgeLabel.trim());
         }
-      } catch (err) {
+      } catch (error) {
         // keep defaults on error
-        console.warn('Failed to load testimonials.json, using defaults');
+        console.warn('Failed to load testimonials.json, using defaults', error);
       }
     }
     loadTestimonials();

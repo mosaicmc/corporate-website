@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import BackLink from "../../components/ui/BackLink";
@@ -7,7 +8,7 @@ type KBItem = {
   title: string;
   href: string;
   desc: string;
-  icon: any;
+  icon: ComponentType<{ className?: string }>;
 };
 
 export default function KnowledgeBasePage() {
@@ -63,7 +64,7 @@ export default function KnowledgeBasePage() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => {
-            const Icon = item.icon as any;
+            const Icon = item.icon;
             return (
               <Link
                 key={item.title}

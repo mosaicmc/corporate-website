@@ -8,11 +8,17 @@ type ReviewItem = {
   text: string;
 };
 
+type ApiReview = {
+  authorName: string;
+  rating: number;
+  text: string;
+};
+
 function normalize(s: string): string {
   return s.replace(/\s+/g, ' ').trim().toLowerCase();
 }
 
-async function fetchApiReviews(placeId?: string, apiKey?: string): Promise<any[]> {
+async function fetchApiReviews(placeId?: string, apiKey?: string): Promise<ApiReview[]> {
   if (!placeId || !apiKey) return [];
   const fields = 'reviews,url,place_id';
   const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${encodeURIComponent(placeId)}&fields=${fields}&key=${apiKey}`;
@@ -20,7 +26,7 @@ async function fetchApiReviews(placeId?: string, apiKey?: string): Promise<any[]
   if (!res.ok) throw new Error(`Google Places API failed: ${res.status}`);
   const data = await res.json();
   const reviews = data?.result?.reviews || [];
-  return reviews.map((r: any) => ({ authorName: r.author_name, rating: r.rating, text: r.text || '' }));
+  return reviews.map((r: { author_name: string; rating: number; text: string }) => ({ authorName: r.author_name, rating: r.rating, text: r.text || '' }));
 }
 
 async function run() {
@@ -33,7 +39,7 @@ async function run() {
   }
   const local = JSON.parse(fs.readFileSync(inputPath, 'utf-8'));
   const items: ReviewItem[] = Array.isArray(local?.reviews) ? local.reviews : [];
-  let apiReviews: any[] = [];
+  let apiReviews: ApiReview[] = [];
   try {
     apiReviews = await fetchApiReviews(placeId, apiKey);
   } catch (e) {
@@ -41,7 +47,7 @@ async function run() {
     process.exit(1);
   }
 
-  const mismatches: any[] = [];
+  const mismatches: Array<Record<string, unknown>> = [];
   for (const r of items) {
     const match = apiReviews.find((ar) => normalize(ar.text).includes(normalize(r.text)) || normalize(ar.authorName) === normalize(r.authorName));
     if (!match) {
@@ -73,4 +79,3 @@ async function run() {
 }
 
 run();
-

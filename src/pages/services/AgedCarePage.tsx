@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Heart, Phone, FileText, ArrowRight, CheckCircle, Users, Home, Clock } from 'lucide-react';
+import FAQSchema from '@/components/FAQSchema';
+import { Heart, Phone, ArrowRight, CheckCircle, Users, Home, Clock, ShieldCheck, Megaphone, Scale } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Team05 from '../../components/ui/team-05';
+import { GlassCard } from '@/components/ui/GlassCard';
 import RelatedServices from '../../components/RelatedServices';
 
 const AgedCarePage = () => {
@@ -12,52 +14,28 @@ const AgedCarePage = () => {
 
   const teamMembers = [
     {
-      name: "Maria Santos",
-      role: "Aged Care Director",
-      qualifications: "Registered nurse, Cultural competency expert, Aged care management specialist",
-      languages: ["English", "Spanish", "Tagalog"],
-      phone: "(02) 4926 1401",
-      email: "m.santos@mosaicmc.org.au"
+      name: "Stacey Anderson",
+      role: "Care Coordinator (CHSP)",
+      qualifications: "Endorsed Enrolled Nurse; Diploma Community Services (in progress). Varied nursing experience including Emergency, Theatres, outpatients; Treatment Nurse in medical centres; Red Cross Lifeblood; Continuous Improvement Coach; Manager of dementia‑specific day centre.",
+      languages: ["English", "Spanish (learning)"]
     },
     {
-      name: "Li Wei Chen",
-      role: "Senior Care Coordinator",
-      qualifications: "Bachelor's Nursing, Gerontology specialist, Multicultural aged care expert",
-      languages: ["English", "Mandarin", "Cantonese"],
-      phone: "(02) 4926 1402",
-      email: "l.chen@mosaicmc.org.au"
+      name: "Corinne Rietdijk",
+      role: "Care Coordinator (SaH)",
+      qualifications: "Certificate III in Aged Care. 20+ years in aged, dementia, palliative, community, residential disability and mental health care.",
+      languages: ["English"]
     },
     {
-      name: "Giuseppe Romano",
-      role: "Cultural Care Worker",
-      qualifications: "Certificate IV Aged Care, Italian cultural liaison, Family support specialist",
-      languages: ["English", "Italian", "Sicilian"],
-      phone: "(02) 4926 1403",
-      email: "g.romano@mosaicmc.org.au"
+      name: "Dianne Rainbow",
+      role: "Care Coordinator (CHSP)",
+      qualifications: "Care Coordinator – CHSP.",
+      languages: ["English"]
     },
     {
-      name: "Fatima Al-Zahra",
-      role: "Home Care Coordinator",
-      qualifications: "Community Services qualifications, Home care packages specialist",
-      languages: ["English", "Arabic", "Farsi"],
-      phone: "(02) 4926 1404",
-      email: "f.alzahra@mosaicmc.org.au"
-    },
-    {
-      name: "Elena Papadopoulos",
-      role: "Family Liaison Officer",
-      qualifications: "Social Work degree, Family counseling, Aged care advocacy",
-      languages: ["English", "Greek", "Macedonian"],
-      phone: "(02) 4926 1405",
-      email: "e.papadopoulos@mosaicmc.org.au"
-    },
-    {
-      name: "Raj Patel",
-      role: "Cultural Activities Coordinator",
-      qualifications: "Recreation therapy background, Cultural program development",
-      languages: ["English", "Hindi", "Gujarati"],
-      phone: "(02) 4926 1406",
-      email: "r.patel@mosaicmc.org.au"
+      name: "Sally Wiltshire",
+      role: "ACVVS Coordinator",
+      qualifications: "ACVVS program coordination, volunteer visitor matching, multicultural community outreach.",
+      languages: ["English"]
     }
   ];
 
@@ -75,7 +53,7 @@ const AgedCarePage = () => {
     {
       question: "Am I eligible for your services?",
       answer:
-        "Generally, people aged 65+ (or 50+ for Aboriginal and Torres Strait Islander people) living at home are eligible for aged care supports. Carers may access Flexible Respite. If you’re unsure, contact us — we’ll help you understand options and pathways.",
+        "Generally, people aged 65+ (or 50+ for Aboriginal and Torres Strait Islander people) living at home are eligible for aged care supports. Carers may access Flexible Respite. If you’re unsure, contact us and we’ll help you understand options and pathways.",
     },
     {
       question: "How do I get started?",
@@ -146,6 +124,7 @@ const AgedCarePage = () => {
         <title>Mosaic Multicultural - Aged Care Services</title>
         <meta name="description" content="Culturally appropriate aged care with multilingual staff, home care packages, and family support across NSW." />
       </Helmet>
+      <FAQSchema faqs={faqData} name="Aged Care FAQs" />
       {/* Announcement: New Aged Care Act commencement (single line) */}
       <section className="bg-gradient-to-r from-care to-care/90 text-white py-4 animate-fade-in-down">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -191,108 +170,145 @@ const AgedCarePage = () => {
             </div>
             <h1 className="text-5xl font-bold mb-6 text-gray-900 dark:text-white animate-fade-in-up">Culturally Appropriate Aged Care</h1>
             <p className="text-xl text-gray-700 dark:text-gray-100 leading-relaxed animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-              Honoring traditions and providing comfort in familiar languages while delivering professional aged care services.
+              Honouring traditions and providing comfort in familiar languages while delivering professional aged care services.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '400ms' }}>
               <Link
                 to="#programs"
-                className="bg-gradient-to-r from-care to-care/90 hover:from-care/90 hover:to-care text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-care/25"
+                className="bg-gradient-to-r from-care to-care/90 hover:from-care/90 hover:to-care text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-care/25 focus:outline-none focus:ring-2 focus:ring-care focus:ring-offset-2"
               >
                 Explore Our Aged Care Programs
               </Link>
               <a
-                href="tel:0249261400"
-                className="border-2 border-care text-care hover:bg-care hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
+                href="tel:1800813205"
+                className="border-2 border-care text-care hover:bg-care hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 focus:outline-none focus:ring-2 focus:ring-care focus:ring-offset-2"
+                aria-label="Call Mosaic on 1800 813 205"
               >
                 <Phone className="h-5 w-5 mr-2" />
-                Talk to Us Today - (02) 4926 1400
+                Talk to Us Today - 1800 813 205
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Understanding the New Aged Care Act */}
+      {/* Eligibility section placed directly after hero */}
+      <section className="relative py-20 bg-background transition-colors duration-300 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent dark:from-white/5 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="animate-fade-in-left">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Who Can Access Our Services?</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3 group">
+                  <CheckCircle className="h-5 w-5 text-care mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-gray-700 dark:text-gray-100">Seniors from multicultural backgrounds requiring aged care support</span>
+                </div>
+                <div className="flex items-start space-x-3 group">
+                  <CheckCircle className="h-5 w-5 text-care mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-gray-700 dark:text-gray-100">People with approved home care packages</span>
+                </div>
+                <div className="flex items-start space-x-3 group">
+                  <CheckCircle className="h-5 w-5 text-care mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-gray-700 dark:text-gray-100">Families seeking culturally appropriate care options</span>
+                </div>
+                <div className="flex items-start space-x-3 group">
+                  <CheckCircle className="h-5 w-5 text-care mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-gray-700 dark:text-gray-100">Individuals requiring respite care services</span>
+                </div>
+              </div>
+              <div className="rounded-xl overflow-hidden bg-card/70 border border-border">
+                <div className="aspect-video">
+                  <img
+                    src="/images/aged-care/eligibility.png"
+                    alt="Multicultural aged care support"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="relative py-20 bg-background transition-colors duration-300 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent dark:from-white/5 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center rounded-full backdrop-blur-md bg-white/60 dark:bg-white/10 border border-white/40 dark:border-white/20 px-6 py-2 text-sm shadow-lg mb-6">
-              <FileText className="mr-2 h-4 w-4 text-care" />
-              <span className="text-gray-700 dark:text-white/90 font-medium">Understanding the New Aged Care Act</span>
-            </div>
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white">The New Aged Care Act Is Now In Effect</h2>
-            <p className="text-lg text-gray-700 dark:text-gray-100 mt-4 max-w-3xl mx-auto">
-              The new Aged Care Act strengthens your rights, voice, and independence. We’ll help you understand what’s changing and make sure you get the support you deserve.
-            </p>
+            <p className="text-sm uppercase tracking-[0.3em] text-care font-semibold mb-3">How aged care works</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Understanding rights, eligibility and getting started</h2>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                title: 'Your Rights Are Protected',
-                description:
-                  'A new Statement of Rights outlines what you deserve: respect, quality care, and choice — regardless of language or background.',
-              },
-              {
-                title: 'Your Voice in Decisions',
-                description:
-                  'You can formally register people who support your choices — family, friends, advocates — so your values guide your care.',
-              },
-              {
-                title: 'Better Accountability',
-                description:
-                  'Complaints have clearer pathways to resolution. Providers are more accountable for respectful, safe, and quality care.',
-              },
-            ].map((card, i) => (
-              <div
-                key={i}
-                className="backdrop-blur-md bg-white/60 dark:bg-white/10 rounded-xl p-6 border border-white/40 dark:border-white/20 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="flex items-start gap-3 mb-2">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-care"></span>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{card.title}</h3>
-                </div>
-                <p className="text-gray-700 dark:text-gray-100">{card.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 grid md:grid-cols-2 gap-8">
+          <div className="space-y-16">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How to Prepare</h3>
-              <ul className="space-y-3">
+              <div className="grid md:grid-cols-3 gap-6">
                 {[
-                  'Understand your rights under the new Statement of Rights',
-                  'Think about who will support your decisions',
-                  'Review your current care plan and preferences',
-                  'Know how to raise concerns if something isn’t right',
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-care mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-100">{item}</span>
-                  </li>
+                  {
+                    title: 'Your Rights',
+                    description:
+                      'A new Statement of Rights outlines what you deserve: respect, quality care, and choice, regardless of language or background.',
+                    icon: <ShieldCheck className="h-6 w-6 text-care" />,
+                  },
+                  {
+                    title: 'Your Choice',
+                    description:
+                      'You can formally register people who support your choices: family, friends, advocates, so your values guide your care.',
+                    icon: <Megaphone className="h-6 w-6 text-care" />,
+                  },
+                  {
+                    title: 'Your Voice',
+                    description:
+                      'Complaints have clearer pathways to resolution. Providers are more accountable for respectful, safe, and quality care.',
+                    icon: <Scale className="h-6 w-6 text-care" />,
+                  },
+                ].map((card, i) => (
+                  <GlassCard key={i} className="rounded-xl hover:shadow-lg hover:ring-1 hover:ring-care/30" padding="lg">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <div className="p-3 bg-care/10 rounded-2xl">{card.icon}</div>
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{card.title}</h3>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-100">{card.description}</p>
+                  </GlassCard>
                 ))}
-              </ul>
-            </div>
-            <div className="rounded-xl p-6 backdrop-blur-md bg-white/60 dark:bg-white/10 border border-white/40 dark:border-white/20">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">We’re Here to Help</h3>
-              <p className="text-gray-700 dark:text-gray-100 mb-6">
-                Our multilingual team can explain the changes in your language and help you prepare for the transition.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="tel:1800813205"
-                  className="bg-gradient-to-r from-care to-care/90 hover:from-care/90 hover:to-care text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-care/25"
-                >
-                  <Phone className="h-5 w-5 mr-2" /> Call 1800 813 205
-                </a>
-                <Link
-                  to="/contact"
-                  className="border-2 border-care text-care hover:bg-care hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
-                >
-                  Contact Us Online <ArrowRight className="h-5 w-5 ml-2" />
-                </Link>
+              </div>
+              <div className="mt-12 grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How to Prepare</h3>
+                  <ul className="space-y-3">
+                    {[
+                      'Understand your rights under the new Statement of Rights',
+                      'Think about who will support your decisions',
+                      'Review your current care plan and preferences',
+                      'Know how to raise concerns if something isn’t right',
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-care mt-0.5 flex-shrink-0" />
+                        <span className="text-gray-700 dark:text-gray-100">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-xl p-6 backdrop-blur-md bg-white/60 dark:bg-white/10 border border-white/40 dark:border-white/20">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">We’re Here to Help</h3>
+                  <p className="text-gray-700 dark:text-gray-100 mb-6">
+                    Our multilingual team can explain the changes in your language and help you prepare for the transition.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <a
+                      href="tel:1800813205"
+                      className="bg-gradient-to-r from-care to-care/90 hover:from-care/90 hover:to-care text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-care/25"
+                    >
+                      <Phone className="h-5 w-5 mr-2" /> Call 1800 813 205
+                    </a>
+                    <Link
+                      to="/contact"
+                      className="border-2 border-care text-care hover:bg-care hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
+                    >
+                      Contact Us Online <ArrowRight className="h-5 w-5 ml-2" />
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -361,7 +377,7 @@ const AgedCarePage = () => {
                   ]
                 }
               ].map((program, index) => (
-                <div key={index} className="backdrop-blur-md bg-white/50 dark:bg-white/5 rounded-lg p-6 border border-white/30 dark:border-white/10 hover:shadow-lg transition-all duration-300 group hover:scale-105 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+                <GlassCard key={index} className="rounded-xl hover:shadow-lg hover:ring-1 hover:ring-care/30 group hover:scale-105 animate-fade-in-up" padding="lg" style={{ animationDelay: `${index * 100}ms` }}>
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-10 h-10 bg-care rounded-full flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
                       {program.icon}
@@ -377,59 +393,50 @@ const AgedCarePage = () => {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </GlassCard>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Eligibility & Process with enhanced animations */}
-      <section className="relative py-20 bg-background transition-colors duration-300 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent dark:from-white/5 pointer-events-none"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16">
-            <div className="animate-fade-in-left">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Who Can Access Our Services?</h2>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3 group">
-                  <CheckCircle className="h-5 w-5 text-care mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="text-gray-700 dark:text-gray-100">Seniors from multicultural backgrounds requiring aged care support</span>
-                </div>
-                <div className="flex items-start space-x-3 group">
-                  <CheckCircle className="h-5 w-5 text-care mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="text-gray-700 dark:text-gray-100">People with approved home care packages</span>
-                </div>
-                <div className="flex items-start space-x-3 group">
-                  <CheckCircle className="h-5 w-5 text-care mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="text-gray-700 dark:text-gray-100">Families seeking culturally appropriate care options</span>
-                </div>
-                <div className="flex items-start space-x-3 group">
-                  <CheckCircle className="h-5 w-5 text-care mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="text-gray-700 dark:text-gray-100">Individuals requiring respite care services</span>
-                </div>
-              </div>
-            </div>
 
-            <div className="animate-fade-in-right">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Getting Started</h2>
-              <div className="space-y-6">
-                {[
-                  { step: "1", title: "Initial Consultation", description: "Discuss your needs and cultural preferences" },
-                  { step: "2", title: "Care Assessment", description: "Comprehensive assessment of care requirements" },
-                  { step: "3", title: "Care Plan Development", description: "Create a personalized, culturally appropriate care plan" },
-                  { step: "4", title: "Service Delivery", description: "Begin receiving care from our trained multicultural staff" }
-                ].map((item, index) => (
-                  <div key={index} className="flex items-start space-x-4 group hover:scale-105 transition-transform duration-300" style={{ animationDelay: `${index * 100}ms` }}>
-                    <div className="w-8 h-8 bg-care rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      {item.step}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-care transition-colors">{item.title}</h3>
-                      <p className="text-gray-700 dark:text-gray-100">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
+      <section className="py-16 bg-slate-50 dark:bg-slate-950">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-care font-semibold mb-3">Impact stories</p>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Dignity, independence and cultural comfort</h2>
+              <p className="text-gray-700 dark:text-gray-100 mb-5">
+                Short videos show clients staying independent at home with support in familiar languages and respectful care.
+              </p>
+              <ul className="space-y-3 text-gray-700 dark:text-gray-100 text-sm">
+                <li className="flex items-start space-x-2">
+                  <span className="text-care mt-1">•</span>
+                  <span>Stories matched to language or culture.</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-care mt-1">•</span>
+                  <span>Captions and interpreter voiceovers.</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-care mt-1">•</span>
+                  <span>Invite families to contact Mosaic.</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/60 dark:border-white/10 shadow-2xl bg-slate-900/80 flex items-center justify-center">
+                <div className="text-center px-6">
+                  <p className="text-white font-semibold mb-2">Impact video placeholder</p>
+                  <p className="text-white/80 text-sm mb-4">Embed a video via CMS.</p>
+                  <button className="inline-flex items-center px-5 py-3 rounded-full bg-white text-slate-900 font-semibold shadow transition">
+                    <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                    Watch story
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -444,7 +451,7 @@ const AgedCarePage = () => {
         accentColor="care"
         bottomSection={{
           title: "Culturally Sensitive Care Approach",
-          description: "Our team understands that quality aged care goes beyond medical needs. We honor cultural traditions, dietary requirements, religious practices, and family dynamics while delivering professional care services. Our multilingual staff and cultural competency training ensure every client receives care that respects their heritage and values."
+          description: "Our team understands that quality aged care goes beyond medical needs. We honour cultural traditions, dietary requirements, religious practices, and family dynamics while delivering professional care services. Our multilingual staff and cultural competency training ensure every client receives care that respects their heritage and values."
         }}
       />
 
@@ -491,33 +498,9 @@ const AgedCarePage = () => {
             </div>
           </div>
 
-          <div className="text-center mt-16">
-            <div className="backdrop-blur-xl bg-white/70 dark:bg-white/10 rounded-2xl p-8 border border-white/50 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 group">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:scale-105 transition-transform duration-300">Still Have Questions?</h3>
-              <p className="text-gray-600 dark:text-white/80 mb-6">
-                Our multilingual aged care team can help you understand which program fits your needs.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="tel:1800813205"
-                  className="bg-gradient-to-r from-care to-care/90 hover:from-care/90 hover:to-care text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-care/25"
-                >
-                  <Phone className="h-5 w-5 mr-2" /> Call 1800 813 205
-                </a>
-                <Link
-                  to="/contact"
-                  className="border-2 border-care text-care hover:bg-care hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center hover:scale-105"
-                >
-                  Contact Us Online <ArrowRight className="h-5 w-5 ml-2" />
-                </Link>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </section>
-
-      {/* Related Services cross-sell */}
-      <RelatedServices current="aged-care" />
 
       {/* Contact CTA with enhanced animations */}
       <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300 overflow-hidden">
@@ -549,6 +532,8 @@ const AgedCarePage = () => {
           </div>
         </div>
       </section>
+
+      <RelatedServices current="aged-care" />
     </div>
   );
 };

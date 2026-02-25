@@ -9,6 +9,8 @@ interface TeamMember {
   phone?: string;
   email?: string;
   image?: string;
+  focalY?: number;
+  scale?: number;
 }
 
 interface Team05Props {
@@ -16,6 +18,7 @@ interface Team05Props {
   description: string;
   teamMembers: TeamMember[];
   accentColor?: string;
+  showDecoration?: boolean;
   bottomSection?: {
     title: string;
     description: string;
@@ -27,19 +30,9 @@ const Team05: React.FC<Team05Props> = ({
   description, 
   teamMembers, 
   accentColor = "sky",
+  showDecoration = true,
   bottomSection 
 }) => {
-  const getAccentColor = (color: string) => {
-    const colorMap = {
-      sky: "border-sky",
-      earth: "border-earth",
-      care: "border-care",
-      leaf: "border-leaf",
-      sun: "border-sun"
-    };
-    return colorMap[color as keyof typeof colorMap] || colorMap.sky;
-  };
-
   const getIconColor = (color: string) => {
     const colorMap = {
       sky: "text-sky hover:bg-sky",
@@ -51,16 +44,7 @@ const Team05: React.FC<Team05Props> = ({
     return colorMap[color as keyof typeof colorMap] || colorMap.sky;
   };
 
-  const getGradientColor = (color: string) => {
-    const colorMap = {
-      sky: "from-sky/20 via-sky/10 to-transparent",
-      earth: "from-earth/20 via-earth/10 to-transparent",
-      care: "from-care/20 via-care/10 to-transparent",
-      leaf: "from-leaf/20 via-leaf/10 to-transparent",
-      sun: "from-sun/20 via-sun/10 to-transparent"
-    };
-    return colorMap[color as keyof typeof colorMap] || colorMap.sky;
-  };
+  
 
   const getRingColor = (color: string) => {
     const colorMap = {
@@ -73,52 +57,26 @@ const Team05: React.FC<Team05Props> = ({
     return colorMap[color as keyof typeof colorMap] || colorMap.sky;
   };
 
-  const getNotionGradient = (color: string, index: number) => {
-    const gradients = {
-      sky: [
-        "from-blue-400 via-cyan-300 to-sky-400",
-        "from-indigo-400 via-blue-300 to-cyan-400", 
-        "from-sky-400 via-blue-300 to-indigo-400",
-        "from-cyan-400 via-sky-300 to-blue-400",
-        "from-blue-300 via-indigo-300 to-sky-300",
-        "from-sky-300 via-cyan-300 to-blue-300"
-      ],
-      earth: [
-        "from-orange-400 via-red-300 to-pink-400",
-        "from-red-400 via-orange-300 to-yellow-400",
-        "from-pink-400 via-red-300 to-orange-400",
-        "from-yellow-400 via-orange-300 to-red-400",
-        "from-orange-300 via-pink-300 to-red-300",
-        "from-red-300 via-yellow-300 to-orange-300"
-      ],
-      care: [
-        "from-pink-400 via-rose-300 to-fuchsia-400",
-        "from-rose-400 via-pink-300 to-red-400",
-        "from-fuchsia-400 via-pink-300 to-rose-400",
-        "from-red-400 via-rose-300 to-pink-400",
-        "from-pink-300 via-fuchsia-300 to-rose-300",
-        "from-rose-300 via-red-300 to-pink-300"
-      ],
-      leaf: [
-        "from-green-400 via-emerald-300 to-teal-400",
-        "from-emerald-400 via-green-300 to-lime-400",
-        "from-teal-400 via-green-300 to-emerald-400",
-        "from-lime-400 via-emerald-300 to-green-400",
-        "from-green-300 via-teal-300 to-emerald-300",
-        "from-emerald-300 via-lime-300 to-green-300"
-      ],
-      sun: [
-        "from-yellow-400 via-amber-300 to-orange-400",
-        "from-amber-400 via-yellow-300 to-lime-400",
-        "from-orange-400 via-yellow-300 to-amber-400",
-        "from-lime-400 via-amber-300 to-yellow-400",
-        "from-yellow-300 via-orange-300 to-amber-300",
-        "from-amber-300 via-lime-300 to-yellow-300"
-      ]
+  const getFocusRing = (color: string) => {
+    const colorMap = {
+      sky: "focus:ring-sky",
+      earth: "focus:ring-earth",
+      care: "focus:ring-care",
+      leaf: "focus:ring-leaf",
+      sun: "focus:ring-sun"
     };
-    
-    const colorGradients = gradients[color as keyof typeof gradients] || gradients.sky;
-    return colorGradients[index % colorGradients.length];
+    return colorMap[color as keyof typeof colorMap] || colorMap.sky;
+  };
+
+  const getUniformGradient = (color: string) => {
+    const gradients = {
+      sky: "from-ocean via-sky to-ocean",
+      earth: "from-earth via-sand to-earth",
+      care: "from-care via-sand to-care",
+      leaf: "from-leaf via-sand to-leaf",
+      sun: "from-sun via-sand to-sun"
+    };
+    return gradients[color as keyof typeof gradients] || gradients.sky;
   };
 
   const getNotionPattern = (index: number) => {
@@ -188,38 +146,49 @@ const Team05: React.FC<Team05Props> = ({
               {/* Glass morphism card */}
               <div className="relative backdrop-blur-xl bg-white/70 dark:bg-white/10 rounded-2xl p-8 border border-white/50 dark:border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] hover:bg-white/80 dark:hover:bg-white/15 h-full">
                 
-                {/* Enhanced gradient overlay for depth */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${getGradientColor(accentColor)} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                
                 
                 {/* Content */}
                 <div className="relative z-10 h-full flex flex-col">
                   {/* Notion-Style Profile Icon with Enhanced Effects */}
                   <div className="relative mx-auto mb-6">
                     {/* Animated Ring Effect */}
-                    <div className={`absolute inset-0 rounded-full ring-4 ${getRingColor(accentColor)} animate-pulse group-hover:ring-8 transition-all duration-500`}></div>
+                    {showDecoration && (
+                      <div className={`absolute inset-0 rounded-full ring-4 ${getRingColor(accentColor)} animate-pulse group-hover:ring-8 transition-all duration-500`}></div>
+                    )}
                     
                     {/* Gradient Border Ring */}
-                    <div className={`absolute -inset-2 rounded-full bg-gradient-to-r ${getNotionGradient(accentColor, index)} opacity-0 group-hover:opacity-75 blur-sm transition-all duration-500 animate-spin-slow`}></div>
+                    {showDecoration && (
+                      <div className={`absolute -inset-2 rounded-full bg-gradient-to-r ${getUniformGradient(accentColor)} opacity-0 group-hover:opacity-75 blur-sm transition-all duration-500 animate-spin-slow`}></div>
+                    )}
                     
                     {/* Main Profile Container with Enhanced Effects */}
                     <div className="relative w-40 h-40 group-hover:scale-110 transition-transform duration-500">
                       {/* Background Glow Effect */}
-                      <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${getNotionGradient(accentColor, index)} blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                      {showDecoration && (
+                        <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${getUniformGradient(accentColor)} blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                      )}
                       
                       {/* Notion-Style Icon Container */}
-                      <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-white/50 dark:border-white/20">
+                      <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-white/50 dark:border-white/20 bg-white/90 dark:bg-slate-800/90">
                         {member.image ? (
                           <img 
                             src={member.image} 
                             alt={member.name}
-                            className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
+                            className="w-full h-full object-cover filter saturate-105 contrast-102 transition-all duration-500 group-hover:brightness-105"
+                            style={{ 
+                              objectPosition: `50% ${typeof member.focalY === 'number' ? `${member.focalY}%` : '35%'}`,
+                              transform: `scale(${typeof member.scale === 'number' ? member.scale : 1.08})`,
+                              WebkitMaskImage: 'radial-gradient(circle at 50% 38%, #fff 60%, transparent 100%)',
+                              maskImage: 'radial-gradient(circle at 50% 38%, #fff 60%, transparent 100%)'
+                            }}
                           />
                         ) : (
                           /* Beautiful Notion-Style Icon */
-                          <div className={`w-full h-full bg-gradient-to-br ${getNotionGradient(accentColor, index)} flex items-center justify-center relative overflow-hidden`}>
+                          <div className={`w-full h-full bg-gradient-to-br ${getUniformGradient(accentColor)} flex items-center justify-center relative overflow-hidden`}>
                             
                             {/* Notion-style geometric patterns */}
-                            {getNotionPattern(index)}
+                            {showDecoration && getNotionPattern(index)}
                             
                             {/* Main User Icon */}
                             <div className="relative z-10">
@@ -227,44 +196,55 @@ const Team05: React.FC<Team05Props> = ({
                             </div>
                             
                             {/* Subtle shine effect */}
-                            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            {showDecoration && (
+                              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            )}
                             
                             {/* Floating particles effect */}
-                            <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-white/40 rounded-full animate-pulse" style={{ animationDelay: '0s' }}></div>
-                            <div className="absolute top-1/3 right-1/3 w-0.5 h-0.5 bg-white/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-                            <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-white/20 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+                            {showDecoration && (
+                              <>
+                                <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-white/40 rounded-full animate-pulse" style={{ animationDelay: '0s' }}></div>
+                                <div className="absolute top-1/3 right-1/3 w-0.5 h-0.5 bg-white/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                                <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-white/20 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+                              </>
+                            )}
                           </div>
                         )}
                         
+                        {/* Uniform background overlay to neutralize differing photo backgrounds */}
+                        <div className="absolute inset-0 bg-white/65 dark:bg-slate-900/40 mix-blend-multiply"></div>
                         {/* Overlay Gradient for Professional Look */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        {showDecoration && (
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        )}
                       </div>
                     </div>
                     
                     {/* Enhanced Contact Icons with Better Positioning */}
-                    <div className="absolute -bottom-3 -right-3 flex space-x-2">
-                      {member.email && (
-                        <a
-                          href={`mailto:${member.email}`}
-                          className={`w-12 h-12 rounded-full bg-white/95 dark:bg-slate-800/95 border-2 border-white dark:border-slate-700 shadow-xl flex items-center justify-center ${getIconColor(accentColor)} hover:text-white transition-all duration-300 hover:scale-125 hover:rotate-12 backdrop-blur-sm`}
-                          title={`Email ${member.name}`}
-                        >
-                          <Mail className="h-5 w-5" />
-                        </a>
-                      )}
-                      {member.phone && (
-                        <a
-                          href={`tel:${member.phone.replace(/\s/g, '')}`}
-                          className={`w-12 h-12 rounded-full bg-white/95 dark:bg-slate-800/95 border-2 border-white dark:border-slate-700 shadow-xl flex items-center justify-center ${getIconColor(accentColor)} hover:text-white transition-all duration-300 hover:scale-125 hover:-rotate-12 backdrop-blur-sm`}
-                          title={`Call ${member.name}`}
-                        >
-                          <Phone className="h-5 w-5" />
-                        </a>
-                      )}
-                    </div>
+                    {(member.email || member.phone) && (
+                      <div className="absolute -bottom-3 -right-3 flex space-x-2">
+                        {member.email && (
+                          <a
+                            href={`mailto:${member.email}`}
+                            className={`w-12 h-12 rounded-full bg-white/95 dark:bg-slate-800/95 border-2 border-white dark:border-slate-700 shadow-xl flex items-center justify-center ${getIconColor(accentColor)} hover:text-white transition-all duration-300 hover:scale-125 hover:rotate-12 backdrop-blur-sm focus:outline-none focus:ring-2 ${getFocusRing(accentColor)} focus:ring-offset-2`}
+                            title={`Email ${member.name}`}
+                          >
+                            <Mail className="h-5 w-5" />
+                          </a>
+                        )}
+                        {member.phone && (
+                          <a
+                            href={`tel:${member.phone.replace(/\s/g, '')}`}
+                            className={`w-12 h-12 rounded-full bg-white/95 dark:bg-slate-800/95 border-2 border-white dark:border-slate-700 shadow-xl flex items-center justify-center ${getIconColor(accentColor)} hover:text-white transition-all duration-300 hover:scale-125 hover:-rotate-12 backdrop-blur-sm focus:outline-none focus:ring-2 ${getFocusRing(accentColor)} focus:ring-offset-2`}
+                            title={`Call ${member.name}`}
+                          >
+                            <Phone className="h-5 w-5" />
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
                   
-                  {/* Name and Role */}
                   <div className="text-center mb-4">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-gray-700 dark:group-hover:text-gray-100 transition-colors">{member.name}</h3>
                     <p className={`text-base font-semibold ${
@@ -301,16 +281,20 @@ const Team05: React.FC<Team05Props> = ({
                 </div>
 
                 {/* Enhanced accent border with animation */}
-                <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-1 rounded-b-full bg-gradient-to-r ${getNotionGradient(accentColor, index)} opacity-60 group-hover:opacity-100 group-hover:w-24 transition-all duration-500`}></div>
+                {showDecoration && (
+                  <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-1 rounded-b-full bg-gradient-to-r ${getUniformGradient(accentColor)} opacity-60 group-hover:opacity-100 group-hover:w-24 transition-all duration-500`}></div>
+                )}
                 
                 {/* Enhanced corner glow effect */}
-                <div className={`absolute -top-3 -right-3 w-6 h-6 rounded-full ${
-                  accentColor === 'sky' ? 'bg-sky' :
-                  accentColor === 'earth' ? 'bg-earth' :
-                  accentColor === 'care' ? 'bg-care' :
-                  accentColor === 'leaf' ? 'bg-leaf' :
-                  'bg-sun'
-                } opacity-0 group-hover:opacity-80 transition-all duration-500 blur-sm animate-pulse`}></div>
+                {showDecoration && (
+                  <div className={`absolute -top-3 -right-3 w-6 h-6 rounded-full ${
+                    accentColor === 'sky' ? 'bg-sky' :
+                    accentColor === 'earth' ? 'bg-earth' :
+                    accentColor === 'care' ? 'bg-care' :
+                    accentColor === 'leaf' ? 'bg-leaf' :
+                    'bg-sun'
+                  } opacity-0 group-hover:opacity-80 transition-all duration-500 blur-sm animate-pulse`}></div>
+                )}
               </div>
             </div>
           ))}
